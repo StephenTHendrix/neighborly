@@ -1,17 +1,36 @@
 const Sequelize = require('sequelize')
 const db = {}
-const sequelize = new Sequelize('neighborly', 'root', 'root', {
-  host: 'localhost',
-  dialect: 'mysql',
-  operatorsAliases: false,
+require("dotenv").config();
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-})
+let sequelize;
+if (process.env.NODE_ENV === "development") {
+  sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USERNAME, process.env.DATABASE_PASSWORD, {
+    host: 'localhost',
+    dialect: 'mysql',
+    operatorsAliases: false,
+
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  })
+}
+else if (process.env.NODE_ENV === "production") {
+  sequelize = new Sequelize("JAWSDB_URL", {
+    host: 'localhost',
+    dialect: 'mysql',
+    operatorsAliases: false,
+
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  })
+}
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
