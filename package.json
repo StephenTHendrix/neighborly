@@ -1,24 +1,40 @@
 {
-  "name": "fakazon2",
+  "name": "nodejs-mysql-authentication",
   "version": "1.0.0",
-  "description": "A nice ecommerce template",
+  "description": "nodejs login with jwt token",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server.js",
-    "dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm start"
+    "test": "node server.js",
+    "dev": "nodemon server.js",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
-  "author": "Cody Clark",
+  "keywords": [
+    "nodejs",
+    "jwt",
+    "passport",
+    "express"
+  ],
+  "author": "Arjun Araneta",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^4.1.2",
-    "nodemon": "^1.18.7"
-  },
   "dependencies": {
-    "bcrypt": "^3.0.6",
-    "express": "^4.17.1",
-    "mongoose": "^5.7.11",
-    "path": "^0.12.7"
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^7.4.2",
+    "mysql": "^2.14.1",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.38.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^1.18.3"
   }
 }
