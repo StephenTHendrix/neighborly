@@ -1,3 +1,12 @@
+/* Color Palette:
+
+purple-grey: #4C4556
+maroon: #872642
+orange: #F6C0265
+sky-blue: #A0D3F9
+white: #fff
+*/
+
 body {
     margin: 0;
     padding: 0;
@@ -7,5 +16,8 @@ body {
 .title {
     font-family: 'Atma', cursive;
 }
+
+
+
 
 
