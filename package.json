@@ -1,0 +1,24 @@
+{
+  "name": "fakazon2",
+  "version": "1.0.0",
+  "description": "A nice ecommerce template",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server.js",
+    "dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm start"
+  },
+  "author": "Cody Clark",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.11",
+    "path": "^0.12.7"
+  }
+}
