@@ -18,7 +18,7 @@ users.post('/register', (req, res) => {
     password: req.body.password,
     created: today
   }
-
+console.log("reached 1");
   User.findOne({
     where: {
       email: req.body.email
@@ -26,6 +26,8 @@ users.post('/register', (req, res) => {
   })
     //TODO bcrypt
     .then(user => {
+      console.log("reached in then: " + user);
+      console.log(userData)
       if (!user) {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           userData.password = hash
