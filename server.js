@@ -14,11 +14,10 @@ app.use(
 )
 
 var Users = require('./routes/Users')
-
 app.use('/users', Users)
 
 const db = require("./models");
-
+require("./routes/event.js")(app);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
