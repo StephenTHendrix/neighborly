@@ -49,3 +49,11 @@ export const getUsers = () => {
   //   console.log('UserFunctions: ', response)
   // })
 }
+
+export const getEvents = () => {
+  return axios
+    .get('users/events')
+    // .then(response => {
+    //   console.log('UserFunctions: ', response)
+    // })
+}
