@@ -18,6 +18,11 @@ body {
     overflow-x: hidden;
 }
 
+h1 {
+    font-family: 'Atma', cursive;
+    color: #762121;
+}
+
 .nav-link {
     color: #F6C026;
 }
