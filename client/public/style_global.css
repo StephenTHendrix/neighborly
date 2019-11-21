@@ -7,6 +7,14 @@ sky-blue: #A0D3F9
 white: #fff
 */
 
+/* 
+font-family: 'Luckiest Guy', cursive;
+font-family: 'Titan One', cursive;
+font-family: 'Baloo Da', cursive;
+font-family: 'Chicle', cursive;
+font-family: 'Atma', cursive;
+font-family: 'Open Sans', sans-serif; */
+
 /* * {
     border: 1px dotted yellow;
 } */
@@ -18,20 +26,26 @@ body {
     overflow-x: hidden;
 }
 
+/* h1 {
+    font-family: 'Atma', cursive;
+    color: #762121;
+} */
+
+.title {
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    font-size: 10em;
+    color: rgb(204, 158, 32);
+    text-shadow: 2px 2px black;
+}
+
 .nav-link {
     color: #F6C026;
 }
 
 .nav-link:hover {
     color: #A0D3F9;
-}
-
-.title {
-    font-family: 'Atma', cursive;
-    font-weight: bolder;
-    font-size: 10em;
-    color: #762121;
-    text-shadow: 2px 2px black;
 }
 
 .vimeo-wrapper iframe {
