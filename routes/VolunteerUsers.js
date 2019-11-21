@@ -8,6 +8,7 @@ const User = require('../models/User')
 const Volunteer = require("../models/Volunteer")
 const db = require("../models")
 users.use(cors())
+var db = require("../models");
 
 process.env.SECRET_KEY = 'secret'
 
@@ -75,7 +76,7 @@ users.post('/register', (req, res) => {
 });
 
 users.post('/login', (req, res) => {
-  User.findOne({
+  db.User.findOne({
     where: {
       email: req.body.email
     }
@@ -100,12 +101,29 @@ users.post('/login', (req, res) => {
 users.get('/profile', (req, res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
-  User.findOne({
+  db.User.findOne({
     where: {
       id: decoded.id
     }
   })
     .then(user => {
+      if (user) {
+        res.json(user)
+      } else {
+        res.send('User does not exist')
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+
+users.get('/all', (req, res) => {
+  // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+  db.User.findAll()
+    .then(user => {
+      console.log('USERSJS: ', user);
       if (user) {
         res.json(user)
       } else {

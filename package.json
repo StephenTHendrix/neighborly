@@ -33,6 +33,7 @@
     "jsonwebtoken": "^7.4.2",
     "mysql": "^2.14.1",
     "mysql2": "^1.6.1",
+    "path": "^0.12.7",
     "sequelize": "^4.38.0"
   },
   "devDependencies": {

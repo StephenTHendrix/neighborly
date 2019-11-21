@@ -28,3 +28,11 @@ export const login = user => {
       console.log(err)
     })
 }
+
+export const getUsers = () => {
+  return axios
+    .get('users/all')
+    // .then(response => {
+    //   console.log('UserFunctions: ', response)
+    // })
+}

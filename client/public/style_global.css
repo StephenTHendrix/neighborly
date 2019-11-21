@@ -1,11 +1,98 @@
+/* Color Palette:
+
+purple-grey: #4C4556
+maroon: #762121
+orange: #F6C026
+sky-blue: #A0D3F9
+white: #fff
+*/
+
+/* 
+font-family: 'Luckiest Guy', cursive;
+font-family: 'Titan One', cursive;
+font-family: 'Baloo Da', cursive;
+font-family: 'Chicle', cursive;
+font-family: 'Atma', cursive;
+font-family: 'Open Sans', sans-serif; */
+
+/* * {
+    border: 1px dotted yellow;
+} */
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
 }
 
-.title {
+/* h1 {
     font-family: 'Atma', cursive;
+    color: #762121;
+} */
+
+.title {
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    font-size: 10em;
+    color: rgb(204, 158, 32);
+    text-shadow: 2px 2px black;
 }
+
+.nav-link {
+    color: #F6C026;
+}
+
+.nav-link:hover {
+    color: #A0D3F9;
+}
+
+.vimeo-wrapper iframe {
+   width: 100vw;
+   height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+   min-height: 100vh;
+   min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: -10;
+   
+}
+
+.img-hero {
+    border-radius: .4em;
+    border: 2px solid #F6C026;
+}
+
+
+.img-boxes {
+    margin-top: 10%;
+    position: relative;
+}
+
+.text-lower, .text-upper{
+    color: white;
+    font-size: 2em;
+    text-shadow: 2px 2px black;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    opacity: 0.75;
+}
+
+.text-lower{
+    bottom: 0px;
+}
+
+    
+
+
+
+
+
 
 

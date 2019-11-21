@@ -1,4 +1,5 @@
 var express = require('express')
+var path = require('path')
 var cors = require('cors')
 var bodyParser = require('body-parser')
 var app = express()
@@ -18,6 +19,24 @@ app.use('/volunteer/', VolunteerUsers)
 // app.use('seeker/users', Users)
 
 
-app.listen(PORT, () => {
-  console.log(`App listening on PORT ${PORT}`);
+const db = require("./models");
+
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
+
+db.sequelize.sync().then(() => {
+  // inside our db sync callback, we start the server.
+  // this is our way of making sure the server is not listening
+  // to requests if we have not yet made a db connection
+  app.listen(PORT, () => {
+    console.log(`App listening on PORT ${PORT}`);
+  });
+});
+
+
