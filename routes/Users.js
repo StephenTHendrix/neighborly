@@ -109,4 +109,21 @@ users.get('/all', (req, res) => {
     })
 })
 
+users.get('/events', (req, res) => {
+  // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+  db.Event.findAll()
+    .then(event => {
+      console.log('eventSJS: ', event);
+      if (event) {
+        res.json(event)
+      } else {
+        res.send('event does not exist')
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+
 module.exports = users
