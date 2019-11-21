@@ -1,11 +1,15 @@
 /* Color Palette:
 
 purple-grey: #4C4556
-maroon: #872642
-orange: #F6C0265
+maroon: #762121
+orange: #F6C026
 sky-blue: #A0D3F9
 white: #fff
 */
+
+/* * {
+    border: 1px dotted yellow;
+} */
 
 body {
     margin: 0;
@@ -16,6 +20,10 @@ body {
 
 .title {
     font-family: 'Atma', cursive;
+    font-weight: bolder;
+    font-size: 10em;
+    color: #762121;
+    text-shadow: 2px 2px black;
 }
 
 .vimeo-wrapper iframe {
@@ -30,4 +38,39 @@ body {
    z-index: -10;
    
 }
+
+.img-hero {
+    border-radius: .4em;
+    border: 1px solid #F6C026;
+}
+
+
+.img-boxes {
+    margin-top: 10%;
+    position: relative;
+}
+
+.text-lower, .text-upper{
+    color: white;
+    font-size: 2em;
+    text-shadow: 2px 2px black;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    opacity: 0.75;
+}
+
+.text-lower{
+    bottom: 0px;
+}
+
+    
+
+
+
+
+
+
 
