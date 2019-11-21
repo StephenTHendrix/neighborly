@@ -1,13 +1,14 @@
 import axios from 'axios'
 
-export const volunteerRegister = newUser => {
-  console.log(newUser)
+export const volunteerRegister = (newUser, newVolunteer) => {
+  console.log(newUser, newVolunteer)
   return axios
     .post('/volunteer/register', {
       first_name: newUser.first_name,
       last_name: newUser.last_name,
       email: newUser.email,
-      password: newUser.password
+      password: newUser.password,
+      city: newVolunteer.city
     })
     .then(response => {
       console.log('Registered')
@@ -32,7 +33,7 @@ export const login = user => {
 export const getUsers = () => {
   return axios
     .get('users/all')
-    // .then(response => {
-    //   console.log('UserFunctions: ', response)
-    // })
+  // .then(response => {
+  //   console.log('UserFunctions: ', response)
+  // })
 }

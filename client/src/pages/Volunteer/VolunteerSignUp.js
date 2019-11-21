@@ -34,7 +34,7 @@ class VolunteerSignUp extends Component {
         const newVolunteer = {
             city: this.state.city
         }
-        volunteerRegister(newUser).then(res => {
+        volunteerRegister(newUser, newVolunteer).then(res => {
             this.props.history.push(`/login`)
         })
     }

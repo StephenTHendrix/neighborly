@@ -8,12 +8,11 @@ const User = require('../models/User')
 const Volunteer = require("../models/Volunteer")
 const db = require("../models")
 users.use(cors())
-var db = require("../models");
 
 process.env.SECRET_KEY = 'secret'
 
 users.post('/register', (req, res) => {
-  console.log(req)
+  console.log("Volunteer Users hit")
   const today = new Date()
   const userData = {
     first_name: req.body.first_name,
@@ -29,7 +28,7 @@ users.post('/register', (req, res) => {
 
   const newUser =
     // console.log("reached 1");
-    User.findOne({
+    db.User.findOne({
       where: {
         email: req.body.email
       }
@@ -41,13 +40,8 @@ users.post('/register', (req, res) => {
         if (!user) {
           bcrypt.hash(req.body.password, 10, (err, hash) => {
             userData.password = hash
-            User.create(userData)
-              .then(user => {
-                res.json({ status: user.email + 'Registered!' })
-              })
-              .catch(err => {
-                res.send('error: ' + err)
-              })
+            db.User.create(userData)
+
           })
         } else {
           res.json({ error: 'User already exists' })
@@ -55,12 +49,6 @@ users.post('/register', (req, res) => {
       })
 
   const newVolunteer = db.Volunteer.create(volunteerData)
-    .then(function (dbVolunteer) {
-      res.json(dbVolunteer)
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
 
   Promise
     .all([newUser, newVolunteer])
