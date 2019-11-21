@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-export const register = newUser => {
+export const volunteerRegister = newUser => {
+  console.log(newUser)
   return axios
-    .post('users/register', {
+    .post('/volunteer/register', {
       first_name: newUser.first_name,
       last_name: newUser.last_name,
       email: newUser.email,

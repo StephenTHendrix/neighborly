@@ -12,9 +12,11 @@ app.use(
   })
 )
 
-var Users = require('./routes/Users')
+var VolunteerUsers = require('./routes/VolunteerUsers')
 
-app.use('/users', Users)
+app.use('/volunteer/', VolunteerUsers)
+// app.use('seeker/users', Users)
+
 
 app.listen(PORT, () => {
   console.log(`App listening on PORT ${PORT}`);
