@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+import EventCard from "./EventCard";
+import { getEvents } from './UserFunctions.js'
 
 class Profile extends Component {
   constructor() {
@@ -8,11 +10,28 @@ class Profile extends Component {
       first_name: '',
       last_name: '',
       email: '',
-      errors: {}
+      errors: {},
+      events: []
     }
   }
 
+  loadEvents = () => {
+    getEvents().then(res => {
+      console.log('Profile: ', res)
+      
+        this.setState({
+          events: res.data,
+        })
+      
+        
+        console.log(this.state.events)
+      })
+      .catch(err => console.log(err));
+  }
+  
+
   componentDidMount() {
+    this.loadEvents();
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
     this.setState({
@@ -46,6 +65,14 @@ class Profile extends Component {
             </tbody>
           </table>
         </div>
+        {this.state.events.map(event => (
+              <EventCard key={event.id} title = {event.title}>
+                
+                
+               
+                
+              </EventCard>
+            ))}
       </div>
     )
   }
