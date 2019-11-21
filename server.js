@@ -14,20 +14,21 @@ app.use(
 )
 
 var VolunteerUsers = require('./routes/VolunteerUsers')
+var SeekerUsers = require('./routes/SeekerUsers')
 
 app.use('/volunteer/', VolunteerUsers)
-// app.use('seeker/users', Users)
+app.use('/seeker/', SeekerUsers)
 
 
 const db = require("./models");
 
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
+  app.use(express.static('client/build'));
 }
 
 app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 db.sequelize.sync().then(() => {

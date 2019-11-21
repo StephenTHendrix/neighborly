@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 export const volunteerRegister = (newUser, newVolunteer) => {
-  console.log(newUser, newVolunteer)
   return axios
     .post('/volunteer/register', {
       first_name: newUser.first_name,
@@ -9,6 +8,19 @@ export const volunteerRegister = (newUser, newVolunteer) => {
       email: newUser.email,
       password: newUser.password,
       city: newVolunteer.city
+    })
+    .then(response => {
+      console.log('Registered')
+    })
+}
+export const seekerRegister = (newUser, newSeeker) => {
+  return axios
+    .post('/seeker/register', {
+      first_name: newUser.first_name,
+      last_name: newUser.last_name,
+      email: newUser.email,
+      password: newUser.password,
+      city: newSeeker.city
     })
     .then(response => {
       console.log('Registered')

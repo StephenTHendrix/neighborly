@@ -3,9 +3,6 @@ const users = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-
-const User = require('../models/User')
-const Volunteer = require("../models/Volunteer")
 const db = require("../models")
 users.use(cors())
 
@@ -53,12 +50,9 @@ users.post('/register', (req, res) => {
   Promise
     .all([newUser, newVolunteer])
     .then(responses => {
-      console.log("********** COMPLETE RESULTS ****************")
-      console.log(responses[0])
-      console.log(responses[1])
+      console.log("Rows Inserted")
     })
     .catch(err => {
-      console.log("**********ERROR RESULT****************")
       console.log(err);
     });
 });
