@@ -12,6 +12,10 @@ function EventCard(props) {
           <li>
             <strong>Name:</strong> {props.title}
           </li>
+
+          <li>
+            <strong>Description:</strong> {props.description}
+          </li>
           <li>
             {/* <strong>Occupation:</strong> {props.occupation} */}
           </li>
