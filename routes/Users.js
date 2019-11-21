@@ -92,4 +92,21 @@ users.get('/profile', (req, res) => {
     })
 })
 
+users.get('/all', (req, res) => {
+  // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+  db.User.findAll()
+    .then(user => {
+      console.log('USERSJS: ', user);
+      if (user) {
+        res.json(user)
+      } else {
+        res.send('User does not exist')
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+
 module.exports = users
