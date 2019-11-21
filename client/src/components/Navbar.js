@@ -40,7 +40,7 @@ class Landing extends Component {
     )
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+      <nav className="navbar navbar-expand-lg">
         <button
           className="navbar-toggler"
           type="button"
@@ -54,7 +54,7 @@ class Landing extends Component {
         </button>
 
         <div
-          className="collapse navbar-collapse justify-content-md-center"
+          className="collapse navbar-collapse justify-content-md-end"
           id="navbarsExample10"
         >
           <ul className="navbar-nav">

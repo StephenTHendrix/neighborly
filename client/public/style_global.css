@@ -18,6 +18,14 @@ body {
     overflow-x: hidden;
 }
 
+.nav-link {
+    color: #F6C026;
+}
+
+.nav-link:hover {
+    color: #A0D3F9;
+}
+
 .title {
     font-family: 'Atma', cursive;
     font-weight: bolder;
@@ -41,7 +49,7 @@ body {
 
 .img-hero {
     border-radius: .4em;
-    border: 1px solid #F6C026;
+    border: 2px solid #F6C026;
 }
 
 
