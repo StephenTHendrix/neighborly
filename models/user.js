@@ -1,32 +1,41 @@
-const Sequelize = require('sequelize')
-const db = require('../database/db.js')
+// const Sequelize = require('sequelize')
+// const db = require('../database/db.js')
 
-module.exports = db.sequelize.define(
-  'user',
-  {
+
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define("User", {
+    // Giving the Author model a name of type STRING
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     first_name: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     last_name: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     email: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     password: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     created: {
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
     }
   },
   {
     timestamps: false
   }
-)
+  
+  );
+
+  
+
+  return User;
+};
+
+
