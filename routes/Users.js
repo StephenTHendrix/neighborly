@@ -4,8 +4,9 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
-const User = require('../models/User')
+// const User = require('../models/User')
 users.use(cors())
+var db = require("../models");
 
 process.env.SECRET_KEY = 'secret'
 
@@ -19,7 +20,7 @@ users.post('/register', (req, res) => {
     created: today
   }
 console.log("reached 1");
-  User.findOne({
+  db.User.findOne({
     where: {
       email: req.body.email
     }
@@ -31,7 +32,7 @@ console.log("reached 1");
       if (!user) {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           userData.password = hash
-          User.create(userData)
+          db.User.create(userData)
             .then(user => {
               res.json({ status: user.email + 'Registered!' })
             })
@@ -49,7 +50,7 @@ console.log("reached 1");
 })
 
 users.post('/login', (req, res) => {
-  User.findOne({
+  db.User.findOne({
     where: {
       email: req.body.email
     }
@@ -74,7 +75,7 @@ users.post('/login', (req, res) => {
 users.get('/profile', (req, res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
-  User.findOne({
+  db.User.findOne({
     where: {
       id: decoded.id
     }
