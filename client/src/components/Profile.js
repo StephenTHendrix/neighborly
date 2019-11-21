@@ -66,7 +66,7 @@ class Profile extends Component {
           </table>
         </div>
         {this.state.events.map(event => (
-              <EventCard key={event.id} title = {event.title}>
+              <EventCard key={event.id} title = {event.title} description = {event.description}>
                 
                 
                
