@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const User = require('../models/User')
+const Volunteer = require("../models/Volunteer")
+const db = require("../models")
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
@@ -19,35 +21,58 @@ users.post('/register', (req, res) => {
     password: req.body.password,
     created: today
   }
-  console.log("reached 1");
-  User.findOne({
-    where: {
-      email: req.body.email
-    }
-  })
-    //TODO bcrypt
-    .then(user => {
-      console.log("reached in then: " + user);
-      console.log(userData)
-      if (!user) {
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          userData.password = hash
-          User.create(userData)
-            .then(user => {
-              res.json({ status: user.email + 'Registered!' })
-            })
-            .catch(err => {
-              res.send('error: ' + err)
-            })
-        })
-      } else {
-        res.json({ error: 'User already exists' })
+
+  const volunteerData = {
+    city: req.body.city
+  }
+
+  const newUser =
+    // console.log("reached 1");
+    User.findOne({
+      where: {
+        email: req.body.email
       }
+    })
+      //TODO bcrypt
+      .then(user => {
+        console.log("reached in then: " + user);
+        console.log(userData)
+        if (!user) {
+          bcrypt.hash(req.body.password, 10, (err, hash) => {
+            userData.password = hash
+            User.create(userData)
+              .then(user => {
+                res.json({ status: user.email + 'Registered!' })
+              })
+              .catch(err => {
+                res.send('error: ' + err)
+              })
+          })
+        } else {
+          res.json({ error: 'User already exists' })
+        }
+      })
+
+  const newVolunteer = db.Volunteer.create(volunteerData)
+    .then(function (dbVolunteer) {
+      res.json(dbVolunteer)
     })
     .catch(err => {
       res.send('error: ' + err)
     })
-})
+
+  Promise
+    .all([newUser, newVolunteer])
+    .then(responses => {
+      console.log("********** COMPLETE RESULTS ****************")
+      console.log(responses[0])
+      console.log(responses[1])
+    })
+    .catch(err => {
+      console.log("**********ERROR RESULT****************")
+      console.log(err);
+    });
+});
 
 users.post('/login', (req, res) => {
   User.findOne({

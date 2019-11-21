@@ -1,12 +1,19 @@
 module.exports = function (sequelize, DataTypes) {
     const Volunteer = sequelize.define("Volunteer", {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },
+        // first_name: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //         notEmpty: true
+        //     }
+        // },
+        // last_name: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     validate: {
+        //         notEmpty: true
+        //     }
+        // },
         dob: {
             type: DataTypes.DATEONLY,
             validate: {
