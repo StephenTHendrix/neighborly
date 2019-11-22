@@ -17,12 +17,17 @@ class Landing extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/register" className="nav-link">
-            Register
+          <Link to="/volunteer/signup" className="nav-link">
+            Sign Up As Volunteer
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/seeker/signup" className="nav-link">
+            Sign Up As Seeker
           </Link>
         </li>
       </ul>
-    )
+    );
 
     const userLink = (
       <ul className="navbar-nav">
@@ -67,19 +72,6 @@ class Landing extends Component {
             
           </ul>
           {localStorage.usertoken ? userLink : loginRegLink}
-
-          <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/volunteer/signup" className="nav-link">
-            Sign Up As Volunteer
-          </Link>
-        </li>
-        <li className="nav-item">
-        <Link to="/seeker/signup" className="nav-link">
-            Sign Up As Seeker
-          </Link>
-        </li>
-      </ul>
 
         </div>
       </nav>
