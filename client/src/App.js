@@ -27,7 +27,7 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
 
             <Route exact path="/volunteer/signup" component={VolunteerSignUp} />
-            <Route exact path="/volunteer" component={VolunteerDashboard} />
+            <Route exact path="/volunteer/:id" component={VolunteerDashboard} />
             <Route exact path="/volunteer/profile" component={VolunteerProfile} />
             <Route exact path="/seeker/signup" component={SeekerSignUp} />
             <Route exact path="/seeker" component={SeekerDashboard} />

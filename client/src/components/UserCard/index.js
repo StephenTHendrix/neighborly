@@ -9,6 +9,7 @@ function UserCard(props) {
       </div>
       <div className="content">
         <ul>
+          <li>ID: {props.id}</li>
           <li>
             <strong>Name:</strong> {props.first_name}
           </li>
