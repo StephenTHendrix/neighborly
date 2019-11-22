@@ -7,38 +7,38 @@ sky-blue: #A0D3F9
 white: #fff
 */
 
-/* 
-font-family: 'Luckiest Guy', cursive;
-font-family: 'Titan One', cursive;
-font-family: 'Baloo Da', cursive;
-font-family: 'Chicle', cursive;
-font-family: 'Atma', cursive;
-font-family: 'Open Sans', sans-serif; */
-
-/* * {
+* {
     border: 1px dotted yellow;
-} */
+}
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
     overflow-x: hidden;
+    background-color: #f4f4f4;
 }
-
-/* h1 {
-    font-family: 'Atma', cursive;
-    color: #762121;
-} */
 
 .title {
-    font-family: 'Luckiest Guy', cursive;
+    font-family:'Chicle', cursive;
     letter-spacing: 3px;
     font-weight: bolder;
-    font-size: 10em;
-    color: rgb(204, 158, 32);
+    font-size: 8em;
+    color: rgb(238, 181, 26);
     text-shadow: 2px 2px black;
 }
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(238,181,26)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: rgb(238,181,26);
+} 
 
 .nav-link {
     color: #F6C026;
@@ -51,19 +51,60 @@ body {
 .vimeo-wrapper iframe {
    width: 100vw;
    height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
-   min-height: 100vh;
+   min-height: 50vh;
    min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
    position: absolute;
-   top: 50%;
+   /* top: 50%; */
    left: 50%;
    transform: translate(-50%, -50%);
    z-index: -10;
    
 }
 
+.text-block {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bolder;
+    font-size: 2em;
+    color: #762121;
+    margin: 0;
+    padding: 0;
+}
+
+.text-script {
+    font-family: 'Chicle', cursive;
+    font-size: 2.5em;
+    color: #F6C026;
+    text-shadow: 1px 1px black;
+    margin: 0;
+}
+
+.col{
+    padding: 0;
+}
+
+.card {
+    background-color: white;
+}
+
+.card-line {
+    border-right: 3px solid #F6C026;
+}
+
+.card-p {
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: justify;
+}
+
+/* .img-fit{
+    object-fit: cover;
+} */
+
 .img-hero {
     border-radius: .4em;
     border: 2px solid #F6C026;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -86,6 +127,18 @@ body {
 
 .text-lower{
     bottom: 0px;
+}
+
+#card-purpose{
+    margin-top: 12%;
+}
+
+#img-local{
+    background-image: url("./assets/images/local.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
 }
 
     
