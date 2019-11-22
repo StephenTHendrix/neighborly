@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.css";
 
 function EventCard(props) {
   return (
@@ -38,6 +37,7 @@ function EventCard(props) {
           :
           <small className="text-muted">{props.flexible}</small>
         }
+
       </div>
       <button key={props.id} id={props.id}>Nothing Yet (Modal Probably)</button>
     </div>

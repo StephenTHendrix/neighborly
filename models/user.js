@@ -2,7 +2,7 @@
 // const db = require('../database/db.js')
 
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     // Giving the Author model a name of type STRING
     id: {
@@ -27,13 +27,23 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: DataTypes.NOW
     }
   },
-  {
-    timestamps: false
-  }
-  
+    {
+      timestamps: false
+    }
+
   );
 
-  
+  User.associate = function (models) {
+    User.hasOne(models.Volunteer, {
+      onDelete: "cascade"
+    });
+    User.hasOne(models.Seeker, {
+      onDelete: "cascade"
+    });
+    User.hasMany(models.Event, {
+    });
+
+  };
 
   return User;
 };

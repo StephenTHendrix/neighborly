@@ -20,13 +20,7 @@ users.post('/register', (req, res) => {
   }
 
   const volunteerData = {
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    dob: req.body.dob,
-    bio: req.body.bio,
-    gender: req.body.gender,
-    image: req.body.image
+    city: req.body.city
   }
 
   const newUser =
@@ -43,13 +37,24 @@ users.post('/register', (req, res) => {
         if (!user) {
           bcrypt.hash(req.body.password, 10, (err, hash) => {
             userData.password = hash
-            db.User.create(userData).then(newUser => db.Volunteer.create({ ...volunteerData, "UserId": newUser.id }))
+            db.User.create(userData)
+
           })
         } else {
           res.json({ error: 'User already exists' })
         }
       })
 
+  const newVolunteer = db.Volunteer.create(volunteerData)
+
+  Promise
+    .all([newUser, newVolunteer])
+    .then(responses => {
+      console.log("Rows Inserted")
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 users.post('/login', (req, res) => {
