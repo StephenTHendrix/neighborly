@@ -45,24 +45,18 @@ users.post('/register', (req, res) => {
                 if (!user) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
                         userData.password = hash
-                        db.User.create(userData)
+
+                        console.log({ ...seekerData });
+                        db.User.create(userData).then(newUser => db.Seeker.create({ ...seekerData, "UserId": newUser.id }))
 
                     })
+
+
                 } else {
                     res.json({ error: 'User already exists' })
                 }
             })
 
-    const newSeeker = db.Seeker.create(seekerData)
-
-    Promise
-        .all([newUser, newSeeker])
-        .then(responses => {
-            console.log("Rows Inserted")
-        })
-        .catch(err => {
-            console.log(err);
-        });
 });
 
 users.post('/login', (req, res) => {

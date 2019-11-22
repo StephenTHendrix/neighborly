@@ -22,5 +22,13 @@ module.exports = function (sequelize, DataTypes) {
         website: DataTypes.STRING,
         image: DataTypes.STRING
     });
+
+    Seeker.associate = (models) => {
+        Seeker.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        })
+    };
     return Seeker;
 };
