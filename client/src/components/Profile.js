@@ -22,14 +22,14 @@ class Profile extends Component {
 
         {typeof res.data === "string" ? (
         this.setState({
+
           events: [],
         })) : (
           this.setState({
             events: res.data,
           })
         )}
-      
-        
+
         console.log(this.state.events)
       })
       .catch(err => console.log(err));
