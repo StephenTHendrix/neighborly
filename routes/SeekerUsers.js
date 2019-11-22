@@ -20,7 +20,15 @@ users.post('/register', (req, res) => {
     }
 
     const seekerData = {
-        city: req.body.city
+        companyName: req.body.companyName,
+        type: req.body.type,
+        street: req.body.street,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip,
+        bio: req.body.bio,
+        website: req.body.website,
+        image: req.body.image
     }
 
     const newUser =
@@ -37,24 +45,16 @@ users.post('/register', (req, res) => {
                 if (!user) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
                         userData.password = hash
-                        db.User.create(userData)
+                        db.User.create(userData).then(newUser => db.Seeker.create({ ...seekerData, "UserId": newUser.id }))
 
                     })
+
+
                 } else {
                     res.json({ error: 'User already exists' })
                 }
             })
 
-    const newSeeker = db.Seeker.create(seekerData)
-
-    Promise
-        .all([newUser, newSeeker])
-        .then(responses => {
-            console.log("Rows Inserted")
-        })
-        .catch(err => {
-            console.log(err);
-        });
 });
 
 users.post('/login', (req, res) => {

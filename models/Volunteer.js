@@ -1,19 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
     const Volunteer = sequelize.define("Volunteer", {
-        // first_name: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     validate: {
-        //         notEmpty: true
-        //     }
-        // },
-        // last_name: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     validate: {
-        //         notEmpty: true
-        //     }
-        // },
         dob: {
             type: DataTypes.DATEONLY,
             validate: {
@@ -27,5 +13,13 @@ module.exports = function (sequelize, DataTypes) {
         zip: DataTypes.STRING,
         image: DataTypes.STRING
     });
+
+    Volunteer.associate = (models) => {
+        Volunteer.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        })
+    };
     return Volunteer;
 };
