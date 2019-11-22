@@ -53,23 +53,37 @@ class Landing extends Component {
             <span className=" custom-toggler navbar-toggler-icon" />
           </button>
 
-          <div
-            className="collapse navbar-collapse justify-content-md-end"
-            id="navbarNeighborly"
-          >
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  Home
-                </Link>
-              </li>
-            </ul>
-            {localStorage.usertoken ? userLink : loginRegLink}
-          </div>
-        </nav>
 
-        
-    );
+        <div
+          className="collapse navbar-collapse justify-content-md-end"
+          id="navbarNeighborly"
+        >
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/" className="nav-link">
+                Home
+              </Link>
+            </li>
+            
+          </ul>
+          {localStorage.usertoken ? userLink : loginRegLink}
+
+          <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/volunteer/signup" className="nav-link">
+            Sign Up As Volunteer
+          </Link>
+        </li>
+        <li className="nav-item">
+        <Link to="/seeker/signup" className="nav-link">
+            Sign Up As Seeker
+          </Link>
+        </li>
+      </ul>
+
+        </div>
+      </nav>
+    )
   }
 }
 

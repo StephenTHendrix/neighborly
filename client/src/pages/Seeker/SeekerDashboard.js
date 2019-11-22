@@ -14,9 +14,14 @@ loadUsers = () => {
   getUsers().then(res => {
     console.log('SEEKERDASHBOARD: ', res)
     
+    {typeof res.data === "string" ? (
       this.setState({
-        allUsers: res.data,
-      })
+        allUsers: [],
+      })) : (
+        this.setState({
+          allUsers: res.data,
+        })
+      )}
     
       
       console.log(this.state.allUsers)
@@ -29,8 +34,9 @@ componentDidMount() {
 }
 
 render() {
-  return (
-    <div>
+  return (<div>
+    {this.state.allUsers.length ?
+    (<div>
       {this.state.allUsers.map(user => (
               <UserCard key={user.id} first_name = {user.first_name}>
                 
@@ -39,7 +45,7 @@ render() {
                 
               </UserCard>
             ))}
-      </div>
+      </div>) : (<h3>No users found.</h3>)}</div>
   )
 }
 }
