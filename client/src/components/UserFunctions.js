@@ -7,7 +7,14 @@ export const volunteerRegister = (newUser, newVolunteer) => {
       last_name: newUser.last_name,
       email: newUser.email,
       password: newUser.password,
-      city: newVolunteer.city
+      street: newVolunteer.street,
+      city: newVolunteer.city,
+      state: newVolunteer.state,
+      zip: newVolunteer.zip,
+      dob: newVolunteer.dob,
+      bio: newVolunteer.bio,
+      gender: newVolunteer.gender,
+      image: newVolunteer.image
     })
     .then(response => {
       console.log('Registered')

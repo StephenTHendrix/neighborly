@@ -11,9 +11,13 @@ class VolunteerSignUp extends Component {
             email: '',
             password: '',
             errors: {},
-            city: ''
-
-
+            city: '',
+            state: '',
+            zip: '',
+            dob: '',
+            bio: '',
+            gender: '',
+            image: ''
         }
 
         this.onChange = this.onChange.bind(this)
@@ -33,7 +37,13 @@ class VolunteerSignUp extends Component {
             password: this.state.password
         }
         const newVolunteer = {
-            city: this.state.city
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+            dob: this.state.dob,
+            bio: this.state.bio,
+            gender: this.state.gender,
+            image: this.state.image
         }
         volunteerRegister(newUser, newVolunteer).then(res => {
             this.props.history.push(`/login`)
@@ -64,6 +74,72 @@ class VolunteerSignUp extends Component {
                             name="city"
                             placeholder="Enter email"
                             value={this.state.city}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="state">State</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="state"
+                            placeholder="Enter email"
+                            value={this.state.state}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="zip">Zipcode</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="zip"
+                            placeholder="Enter email"
+                            value={this.state.zip}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="dob">Date of Birth</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="dob"
+                            placeholder="Enter email"
+                            value={this.state.dob}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="bio">Biography</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="bio"
+                            placeholder="Enter email"
+                            value={this.state.bio}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="gender">Gender</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="gender"
+                            placeholder="Enter email"
+                            value={this.state.gender}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="image">Image</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="image"
+                            placeholder="Enter email"
+                            value={this.state.image}
                             onChange={this.onChange}
                         />
                     </div>

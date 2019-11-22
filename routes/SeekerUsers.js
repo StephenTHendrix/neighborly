@@ -45,8 +45,6 @@ users.post('/register', (req, res) => {
                 if (!user) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
                         userData.password = hash
-
-                        console.log({ ...seekerData });
                         db.User.create(userData).then(newUser => db.Seeker.create({ ...seekerData, "UserId": newUser.id }))
 
                     })
