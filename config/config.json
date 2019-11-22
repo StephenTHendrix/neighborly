@@ -1,8 +1,5 @@
 {
   "development": {
-    "username": "root",
-    "password": "bootcamp",
-    "database": "neighborly",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false

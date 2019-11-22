@@ -4,6 +4,8 @@ var cors = require('cors')
 var bodyParser = require('body-parser')
 var app = express()
 var PORT = process.env.PORT || 5000
+require('dotenv').config()
+
 
 app.use(bodyParser.json())
 app.use(cors())
