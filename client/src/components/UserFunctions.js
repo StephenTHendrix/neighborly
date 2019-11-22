@@ -13,6 +13,7 @@ export const volunteerRegister = (newUser, newVolunteer) => {
       console.log('Registered')
     })
 }
+
 export const seekerRegister = (newUser, newSeeker) => {
   return axios
     .post('/seeker/register', {
@@ -20,7 +21,15 @@ export const seekerRegister = (newUser, newSeeker) => {
       last_name: newUser.last_name,
       email: newUser.email,
       password: newUser.password,
-      city: newSeeker.city
+      companyName: newSeeker.companyName,
+      type: newSeeker.type,
+      street: newSeeker.street,
+      city: newSeeker.city,
+      state: newSeeker.state,
+      zip: newSeeker.zip,
+      bio: newSeeker.bio,
+      website: newSeeker.website,
+      image: newSeeker.image
     })
     .then(response => {
       console.log('Registered')
@@ -53,7 +62,7 @@ export const getUsers = () => {
 export const getEvents = () => {
   return axios
     .get('users/events')
-    // .then(response => {
-    //   console.log('UserFunctions: ', response)
-    // })
+  // .then(response => {
+  //   console.log('UserFunctions: ', response)
+  // })
 }

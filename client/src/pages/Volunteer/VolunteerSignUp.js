@@ -13,6 +13,7 @@ class VolunteerSignUp extends Component {
             errors: {},
             city: ''
 
+
         }
 
         this.onChange = this.onChange.bind(this)

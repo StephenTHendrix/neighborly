@@ -20,7 +20,15 @@ users.post('/register', (req, res) => {
     }
 
     const seekerData = {
-        city: req.body.city
+        companyName: req.body.companyName,
+        type: req.body.type,
+        street: req.body.street,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip,
+        bio: req.body.bio,
+        website: req.body.website,
+        image: req.body.image
     }
 
     const newUser =

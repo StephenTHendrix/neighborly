@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "bootcamp",
-=======
-    "password": "root",
->>>>>>> master
     "database": "neighborly",
     "host": "127.0.0.1",
     "dialect": "mysql",
