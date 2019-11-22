@@ -19,9 +19,15 @@ class Profile extends Component {
     getEvents().then(res => {
       console.log('Profile: ', res)
       
+
+        {typeof res.data === "string" ? (
         this.setState({
-          events: res.data,
-        })
+          events: [],
+        })) : (
+          this.setState({
+            events: res.data,
+          })
+        )}
       
         
         console.log(this.state.events)
