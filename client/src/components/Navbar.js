@@ -42,20 +42,20 @@ class Landing extends Component {
     return (
       <nav className="navbar navbar-expand-lg">
         <button
-          className="navbar-toggler"
+          className=" custom-toggler navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarsExample10"
-          aria-controls="navbarsExample10"
+          data-target="#navbarNeighborly"
+          aria-controls="navbarNeighborly"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" />
+          <span className=" custom-toggler navbar-toggler-icon" />
         </button>
 
         <div
           className="collapse navbar-collapse justify-content-md-end"
-          id="navbarsExample10"
+          id="navbarNeighborly"
         >
           <ul className="navbar-nav">
             <li className="nav-item">

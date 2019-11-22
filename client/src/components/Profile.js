@@ -19,9 +19,15 @@ class Profile extends Component {
     getEvents().then(res => {
       console.log('Profile: ', res)
       
+
+        {typeof res.data === "string" ? (
         this.setState({
-          events: res.data,
-        })
+          events: [],
+        })) : (
+          this.setState({
+            events: res.data,
+          })
+        )}
       
         
         console.log(this.state.events)
@@ -65,7 +71,9 @@ class Profile extends Component {
             </tbody>
           </table>
         </div>
-        {this.state.events.map(event => (
+        {this.state.events.length ?
+        (
+          <div>{this.state.events.map(event => (
               <EventCard key={event.id} title = {event.title} description = {event.description}>
                 
                 
@@ -73,7 +81,8 @@ class Profile extends Component {
                 
               </EventCard>
             ))}
-      </div>
+            </div>) : (<h3>No events found.</h3>)
+        }</div>
     )
   }
 }
