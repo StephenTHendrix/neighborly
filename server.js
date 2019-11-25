@@ -21,8 +21,8 @@ var SeekerUsers = require('./routes/SeekerUsers')
 app.use('/volunteer/', VolunteerUsers)
 app.use('/seeker/', SeekerUsers)
 
-// var Users = require('./routes/Users')
-// app.use('/users', Users)
+var Users = require('./routes/Users')
+app.use('/users', Users)
 
 const db = require("./models");
 require("./routes/event.js")(app);
