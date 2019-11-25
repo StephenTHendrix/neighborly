@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom"
 import Register from "../../components/Register";
 import { volunteerRegister } from '../../components/UserFunctions'
 
@@ -6,6 +7,8 @@ import { volunteerRegister } from '../../components/UserFunctions'
 
 
 class VolunteerSignUp extends Component {
+
+
     constructor() {
         super()
         this.state = {
@@ -22,24 +25,29 @@ class VolunteerSignUp extends Component {
             gender: '',
             image: ''
         }
-
+        this.BACKSPACE = 8;
+        this.DELETE_KEY = 46;
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+
     }
+
+    componentDidMount() {
+
+        this.node = ReactDOM.findDOMNode(this);
+    }
+
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
-
+        console.log(this.state.gender);
         if (e.target.name === "dob") {
             var numChars = e.target.value.length;
-            if (numChars === 2 || numChars === 5) {
+            if (this.state[e.target.name].length < e.target.value.length && (numChars === 2 || numChars === 5)) {
                 var thisVal = e.target.value;
                 thisVal += '/';
                 e.target.value = thisVal;
-
                 this.setState({ [e.target.name]: thisVal });
-                console.log(thisVal)
-                console.log("Chars: " + numChars)
             }
         }
     }
@@ -71,7 +79,7 @@ class VolunteerSignUp extends Component {
     render() {
 
         return (
-            <div class="container">
+            <div className="container">
                 < div >
                     <Register
                         first_name={this.state.first_name}
@@ -83,16 +91,6 @@ class VolunteerSignUp extends Component {
                     />
 
                     <form>
-                        {/* <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email"></input>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password"></input>
-                            </div>
-                        </div> */}
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label htmlFor="inputCity">City</label>
@@ -212,18 +210,31 @@ class VolunteerSignUp extends Component {
                             </div>
 
 
-                            <fieldset class="form-group ml-5">
+                            <fieldset className="form-group ml-5">
                                 <div className="row">
                                     <legend className="col-form-label col-sm-2 pt-0 mr-3">Gender</legend>
                                     <div className="col-sm-10">
                                         <div className="form-check">
-                                            <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked></input>
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="gender"
+                                                id="gridRadios1"
+                                                value="Male"
+                                                onChange={this.onChange}
+                                            ></input>
                                             <label className="form-check-label" for="gridRadios1">
                                                 Male
                                             </label>
                                         </div>
                                         <div className="form-check">
-                                            <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"></input>
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="gender"
+                                                id="gridRadios2"
+                                                onChange={this.onChange}
+                                                value="Female"></input>
                                             <label className="form-check-label" for="gridRadios2">
                                                 Female
                                         </label>
@@ -232,15 +243,19 @@ class VolunteerSignUp extends Component {
                                             <input
                                                 className="form-check-input"
                                                 type="radio"
-                                                name="gridRadios"
+                                                name="gender"
                                                 id="gridRadios3"
-                                                value="option3"
-                                            ></input>Other<input type="text"
+                                                value="Other"
+                                                onChange={this.onChange}
+                                            ></input>Other
+                                            {this.state.gender !== "Male" && this.state.gender !== "Female" && this.state.gender !== "" || this.node !== undefined && this.node.querySelector("#gridRadios3").checked ? <input type="text"
                                                 className="form-control"
                                                 id="inputGender"
                                                 name="gender"
+                                                placeholder="Other"
                                                 value={this.state.gender}
                                                 onChange={this.onChange}></input>
+                                                : <div> </div>}
 
                                             {/* <label className="form-check-label" for="gridRadios3">
                                                 Other
