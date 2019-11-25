@@ -6,7 +6,6 @@ var app = express()
 var PORT = process.env.PORT || 5000
 require('dotenv').config()
 
-
 app.use(bodyParser.json())
 app.use(cors())
 app.use(

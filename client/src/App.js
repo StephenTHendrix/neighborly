@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-
-
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // Import Components ==========================================================================================
 import Navbar from './components/Navbar'
 import Login from './components/Login'
@@ -22,18 +20,19 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/" component={Landing} />
           <div className="container">
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} />
-
-            <Route exact path="/volunteer/signup" component={VolunteerSignUp} />
-            <Route exact path="/volunteer/" component={VolunteerDashboard} />
-            <Route exact path="/volunteer/profile" component={VolunteerProfile} />
-            <Route exact path="/seeker/signup" component={SeekerSignUp} />
-            <Route exact path="/seeker" component={SeekerDashboard} />
-            <Route exact path="/seeker/profile" component={SeekerProfile} />
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/volunteer/signup" component={VolunteerSignUp} />
+              <Route exact path="/volunteer/:id" component={VolunteerDashboard} />
+              <Route exact path="/volunteer/profile" component={VolunteerProfile} />
+              <Route exact path="/seeker/signup" component={SeekerSignUp} />
+              <Route exact path="/seeker" component={SeekerDashboard} />
+              <Route exact path="/seeker/profile" component={SeekerProfile} />
+            </Switch>
           </div>
         </div>
       </Router>
