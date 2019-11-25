@@ -166,7 +166,7 @@ class VolunteerSignUp extends Component {
                                 </select>
                             </div>
                             <div className="form-group col-md-2">
-                                <label htmlfor="inputZip">Zip</label>
+                                <label htmlFor="inputZip">Zip</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -204,7 +204,7 @@ class VolunteerSignUp extends Component {
                                     name="dob"
                                     id="dob"
                                     placeholder="mm/dd/yyyy"
-                                    maxlength="10"
+                                    maxLength="10"
                                     value={this.state.dob}
                                     onChange={this.onChange} />
                             </div>

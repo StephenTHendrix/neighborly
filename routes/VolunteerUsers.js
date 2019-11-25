@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const db = require("../models")
 users.use(cors())
+require('cookie-parser')
 
 process.env.SECRET_KEY = 'secret'
 
@@ -51,6 +52,29 @@ users.post('/register', (req, res) => {
       })
 
 });
+
+users.get("/data", function (req, res) {
+  const userToken = req.cookies.userToken;
+  // const decoded = jwt_decode(cookie)
+  console.log("reached!")
+  console.log(userToken);
+  // var decoded = jwt.verify(userToken['authorization'], process.env.SECRET_KEY)
+  // console.log(decoded)
+
+
+
+  // db.Volunteer.findOne({
+  //   where: {
+  //     UserId: 
+  //   }
+  // })
+  //   .then(volunteeer => {
+  //     console.log(volunteer)
+  //   })
+  //   .catch(err => {
+  //     res.send('error: ' + err)
+  //   })
+})
 
 users.post('/login', (req, res) => {
   db.User.findOne({
