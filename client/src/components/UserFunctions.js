@@ -47,7 +47,8 @@ export const login = user => {
   return axios
     .post('users/login', {
       email: user.email,
-      password: user.password
+      password: user.password,
+      kind: user.kind
     })
     .then(response => {
       localStorage.setItem('usertoken', response.data)
