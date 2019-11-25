@@ -10,8 +10,6 @@ module.exports = function (app) {
                 ["id", "ASC"],
             ]
         }).then(function (results) {
-            // console.log(results);
-            // results are available to us inside the .then
             res.json(results);
         });
     });
@@ -19,8 +17,8 @@ module.exports = function (app) {
     app.post("/api/event", (req, res) => {
         let location = req.body.location;
         var i = 1;
-        // while (i < 50) {
-            console.log(location);
+        while (i < 50) {
+            // console.log(location);
             axios.get("https://www.volunteermatch.org/search?l=" + location + "&s=" + i).then(function (response) {
                 let $ = cheerio.load(response.data);
                 $("div.searchitem").each(function (i, element) {
@@ -31,7 +29,6 @@ module.exports = function (app) {
                     let city = $(element).find(".rwd_display").find(".opp_address").find(".locality").text().replace(/,/g, "").trim();
                     let state = $(element).find(".rwd_display").find(".opp_address").find(".region").text();
                     let zipCode = $(element).find(".rwd_display").find(".opp_address").find(".postal-code").text();
-                    // let smalldescription = $(element).find(".searchitem_desc ").text().replace(/\r?\n|\r/g, " ").trim();
 
                     fulllink = "https://www.volunteermatch.org" + link;
                     axios.get(fulllink).then((response) => {
@@ -45,6 +42,9 @@ module.exports = function (app) {
                             smalldescription = smalldescription + "...";
                             db.Event.findOrCreate({
                                 where: {
+                                    title: title,
+                                },
+                                defaults: {
                                     title: title,
                                     link: fulllink,
                                     organization: organization,
@@ -63,7 +63,7 @@ module.exports = function (app) {
                     });
                 });
             })
-        //     i = i + 10;
-        // };
+            i = i + 10;
+        };
     });
 };
