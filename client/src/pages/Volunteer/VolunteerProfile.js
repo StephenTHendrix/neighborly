@@ -24,8 +24,6 @@ class VolunteerProfile extends Component {
     loadEvents = () => {
         getEvents().then(res => {
             console.log('Profile: ', res)
-
-
             {
                 typeof res.data === "string" ? (
                     this.setState({
@@ -36,7 +34,6 @@ class VolunteerProfile extends Component {
                         })
                     )
             }
-
             console.log(this.state.events)
         })
             .catch(err => console.log(err));
@@ -54,7 +51,6 @@ class VolunteerProfile extends Component {
             })
         })
     }
-
 
     componentDidMount() {
         this.loadEvents();
@@ -77,35 +73,35 @@ class VolunteerProfile extends Component {
                     </div>
                     <table className="table col-md-6 mx-auto">
                         <tbody>
-                            <tr>
-                                <td>Fist Name</td>
+                            <tr className="profile-item">
+                                <td>First Name</td>
                                 <td>{this.state.first_name}</td>
                             </tr>
-                            <tr>
+                            <tr className="profile-item">
                                 <td>Last Name</td>
                                 <td>{this.state.last_name}</td>
                             </tr>
-                            <tr>
+                            <tr className="profile-item">
                                 <td>Email</td>
                                 <td>{this.state.email}</td>
                             </tr>
-                            <tr>
+                            <tr className="profile-item">
                                 <td>City</td>
                                 <td>{this.state.city}</td>
                             </tr>
-                            <tr>
+                            <tr className="profile-item">
                                 <td>State</td>
                                 <td>{this.state.state}</td>
                             </tr>
-                            <tr>
+                            <tr className="profile-item">
                                 <td>Zip</td>
                                 <td>{this.state.zip}</td>
                             </tr>
-                            <tr>
+                            <tr className="profile-item">
                                 <td>DOB</td>
                                 <td>{this.state.dob}</td>
                             </tr>
-                            <tr>
+                            <tr className="profile-item">
                                 <td>Bio</td>
                                 <td>{this.state.bio}</td>
                             </tr>
@@ -115,8 +111,10 @@ class VolunteerProfile extends Component {
                 {this.state.events.length ?
                     (
                         <div>{this.state.events.map(event => (
-                            <EventCard key={event.id} title={event.title} description={event.description}>
-
+                            <EventCard
+                                key={event.id}
+                                title={event.title}
+                                description={event.description}>
                             </EventCard>
                         ))}
                         </div>) : (<h3>No events found.</h3>)
@@ -124,5 +122,8 @@ class VolunteerProfile extends Component {
         )
     }
 }
+
+document.getElementsByClassName("profile-item")
+
 
 export default VolunteerProfile

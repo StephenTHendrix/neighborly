@@ -96,3 +96,11 @@ export const getSeekerData = () => {
   return axios
     .get('/seeker/data')
 }
+
+export const getSeekerEvents = () => {
+  return axios
+    .get('seeker/events')
+  // .then(response => {
+  //   console.log('UserFunctions: ', response)
+  // })
+}
