@@ -18,12 +18,14 @@ app.use(cookieParser())
 
 var VolunteerUsers = require('./routes/VolunteerUsers')
 var SeekerUsers = require('./routes/SeekerUsers')
+var Users = require('./routes/Users')
+var Events = require('./routes/Events')
 
 app.use('/volunteer/', VolunteerUsers)
 app.use('/seeker/', SeekerUsers)
+app.use('/users/', Users)
+app.use('/event/', Events)
 
-var Users = require('./routes/Users')
-app.use('/users', Users)
 
 const db = require("./models");
 require("./routes/event.js")(app);
