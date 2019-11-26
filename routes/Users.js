@@ -71,7 +71,7 @@ users.post('/login', (req, res) => {
             expiresIn: 1440
           })
           jwt.decode(token, {})
-          res.cookie('userToken', token, { maxAge: 3600000 });
+          res.cookie('userToken', token, { maxAge: 3600000, httpOnly: true });
           console.log()
           res.send(token)
         }

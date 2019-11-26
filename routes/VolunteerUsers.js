@@ -56,25 +56,21 @@ users.post('/register', (req, res) => {
 
 users.get("/data", function (req, res) {
   const userToken = req.cookies.userToken;
-  // const decoded = jwt_decode(cookie)
-  console.log("reached!")
-  console.log(userToken);
-  // var decoded = jwt.verify(userToken['authorization'], process.env.SECRET_KEY)
-  // console.log(decoded)
+  var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+  console.log(decoded)
 
-
-
-  // db.Volunteer.findOne({
-  //   where: {
-  //     UserId: 
-  //   }
-  // })
-  //   .then(volunteeer => {
-  //     console.log(volunteer)
-  //   })
-  //   .catch(err => {
-  //     res.send('error: ' + err)
-  //   })
+  db.Volunteer.findOne({
+    where: {
+      UserId: decoded.id
+    }
+  })
+    .then(volunteer => {
+      console.log(volunteer);
+      res.json(volunteer);
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
 })
 
 users.post('/login', (req, res) => {

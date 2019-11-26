@@ -44,7 +44,7 @@ class VolunteerProfile extends Component {
 
     loadVolunteerData = () => {
         getVolunteerData().then(res => {
-            console.log("VolunteerData")
+            console.log(res)
         })
     }
 
