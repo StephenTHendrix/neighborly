@@ -37,6 +37,7 @@ function EventCard(props) {
           :
           <small className="text-muted">{props.flexible}</small>
         }
+        <buton className="saved btn btn-primary" id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</buton>
 
       </div>
       <button key={props.id} id={props.id}>Nothing Yet (Modal Probably)</button>

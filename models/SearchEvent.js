@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const Event = sequelize.define("Event", {
+    const SearchEvent = sequelize.define("SearchEvent", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -68,15 +68,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
         }
     });
-
-    Event.associate = (models) => {
-        Event.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
-
-    return Event;
+    return SearchEvent;
 };
 

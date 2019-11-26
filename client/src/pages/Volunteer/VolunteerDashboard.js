@@ -1,7 +1,9 @@
 import React from "react";
 import API from "../../utils/API";
 import EventCard from "../../components/EventCard";
+import jwt_decode from 'jwt-decode';
 var _ = require("lodash");
+
 
 // *************************************************************************************************************************************
 // Still need: 
@@ -12,9 +14,10 @@ class VolunteerDashboard extends React.Component {
         events: [],
         location: "",
         volunteerID: "",
+        userId: "",
         loading: false,
         currentPage: 1,
-        displayperPage: 30
+        displayperPage: 20
     };
 
     handleClick = event => {
@@ -24,6 +27,12 @@ class VolunteerDashboard extends React.Component {
     }
 
     componentDidMount() {
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+        console.log('DECODED', decoded)
+        this.setState({
+            userId: decoded.id
+        })
         this.loadEvents();
     };
 
@@ -31,7 +40,7 @@ class VolunteerDashboard extends React.Component {
         const { name, value } = event.target;
         this.setState({
             [name]: value
-        }, () => (console.log(this.state.location)));
+        });
     };
 
     loadEvents = () => {
@@ -42,12 +51,25 @@ class VolunteerDashboard extends React.Component {
         setTimeout(() => {
             API.getevent().then(res => {
                 let unsortedArray = res.data;
-                let filterArray = _.filter(unsortedArray, event => event.city === filterlocation)
-                console.log(filterArray);
-                this.setState({ events: filterArray });
+                // console.log(unsortedArray);
+                let filterArray = _.filter(unsortedArray, event => event.city === filterlocation);
+                // console.log(filterArray);
+                this.setState({ events: filterArray });                
             })
             this.setState({ loading: false })
-        }, 3500)
+        }, 4000)
+    }
+
+    handleEventSignUp  = (id) => {
+        console.log(id)
+        let saved = this.state.events.filter(item => item.id === id);
+        saved[0].UserId = this.state.userId;
+        // console.log(saved[0]);
+        API.savedEvent(id, saved[0]).then(function () {
+            console.log("Added");
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
     render() {
@@ -56,7 +78,6 @@ class VolunteerDashboard extends React.Component {
         const indexOfFirstTodo = indexOfLastTodo - displayperPage;
         let currentEvent = [];
         currentEvent = events.slice(indexOfFirstTodo, indexOfLastTodo);
-        console.log(currentEvent);
         const renderEvents = currentEvent.map(event => {
             return (
                 <EventCard
@@ -68,6 +89,7 @@ class VolunteerDashboard extends React.Component {
                     time={event.time}
                     flexible={event.flexible}
                     key={event.id}
+                    handleEventSignUp ={this.handleEventSignUp }
                 />
             )
         });
@@ -75,6 +97,7 @@ class VolunteerDashboard extends React.Component {
         for (let i = 1; i <= Math.ceil(events.length / displayperPage); i++) {
             pageNumbers.push(i);
         }
+        // show Page number option
         const renderPageNumbers = pageNumbers.map(number => {
             return (
                 <li
@@ -89,6 +112,7 @@ class VolunteerDashboard extends React.Component {
 
         return (
             <div>
+                <p name="id">{this.state.id}</p>
                 <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
                 <input type="submit" id="mysubmit" onClick={this.loadEvents} />
 

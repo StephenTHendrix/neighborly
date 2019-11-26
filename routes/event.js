@@ -1,11 +1,22 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
-
 const db = require('../models');
+
 module.exports = function (app) {
-    app.get("/api/event", (req, res) => {
+    // app.get("/api/:id", (req, res) => {
+    //     db.Volunteer.findOne({
+    //         where: {
+    //             id: req.params.id
+    //         }
+    //     }).then(function (results) {
+    //         res.json(results);
+    //     });
+    // });
+
+    // search events API
+    app.get("/api/searchevent", (req, res) => {
         // let location = req.body.location;
-        db.Event.findAll({
+        db.SearchEvent.findAll({
             order: [
                 ["id", "ASC"],
             ]
@@ -14,7 +25,7 @@ module.exports = function (app) {
         });
     });
 
-    app.post("/api/event", (req, res) => {
+    app.post("/api/searchevent", (req, res) => {
         let location = req.body.location;
         var i = 1;
         while (i < 50) {
@@ -40,7 +51,7 @@ module.exports = function (app) {
                             let flexible = $(element).find(".logistics__section--when").find("p.para").text().trim();
                             let smalldescription = description.substring(0, 100);
                             smalldescription = smalldescription + "...";
-                            db.Event.findOrCreate({
+                            db.SearchEvent.findOrCreate({
                                 where: {
                                     title: title,
                                 },
@@ -66,4 +77,17 @@ module.exports = function (app) {
             i = i + 10;
         };
     });
+
+    //  saved events API
+    app.post("/api/events/:id", (req, res) => {
+        console.log(req.params.id);
+        console.log(req.body);
+        let save = req.body;
+        db.Event_User.create({
+            EventID: req.params.id,
+            UserID: save.UserId
+        }).then(function (save) {
+            res.json(save)
+        })
+    })
 };

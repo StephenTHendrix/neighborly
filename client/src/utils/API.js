@@ -2,12 +2,18 @@ import axios from "axios";
 
 export default {
     getevent: function () {
-        return axios.get("/api/event");
+        return axios.get("/api/searchevent");
     },
     searchevent: function (location) {
-        return axios.post("/api/event", {location});
+        return axios.post("/api/searchevent", { location });
     },
-    saveevent: function (data) {
-        return axios.post("/api/volunteer&event", data);
+    savedEvent: function (id, userId) {
+        return axios.post("/api/events/" + id, userId);
     }
+    // saveevent: function (data) {
+    //     return axios.post("/api/volunteer&event", data);
+    // },
+    // getUserInfo: function (id) {
+    //     return axios.get("/api/" + id);
+    // }
 }
