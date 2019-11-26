@@ -45,6 +45,14 @@ class VolunteerProfile extends Component {
     loadVolunteerData = () => {
         getVolunteerData().then(res => {
             console.log(res)
+            this.setState({
+                city: res.data.city,
+                state: res.data.state,
+                zip: res.data.zip,
+                city: res.data.city,
+                dob: res.data.dob,
+                bio: res.data.bio
+            })
         })
     }
 
@@ -81,6 +89,26 @@ class VolunteerProfile extends Component {
                             <tr>
                                 <td>Email</td>
                                 <td>{this.state.email}</td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td>{this.state.city}</td>
+                            </tr>
+                            <tr>
+                                <td>State</td>
+                                <td>{this.state.state}</td>
+                            </tr>
+                            <tr>
+                                <td>Zip</td>
+                                <td>{this.state.zip}</td>
+                            </tr>
+                            <tr>
+                                <td>DOB</td>
+                                <td>{this.state.dob}</td>
+                            </tr>
+                            <tr>
+                                <td>Bio</td>
+                                <td>{this.state.bio}</td>
                             </tr>
                         </tbody>
                     </table>
