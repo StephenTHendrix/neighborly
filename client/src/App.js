@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import Register from './components/Register'
-import Profile from './components/Profile'
+// import Profile from './components/unusedVolunteerProfile'
 // Import Pages ===============================================================================================
 import Landing from './pages/Landing'
 import VolunteerSignUp from "./pages/Volunteer/VolunteerSignUp"
@@ -25,9 +25,9 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/profile" component={Profile} />
+              {/* <Route exact path="/profile" component={Profile} /> */}
               <Route exact path="/volunteer/signup" component={VolunteerSignUp} />
-              <Route exact path="/volunteer/:id" component={VolunteerDashboard} />
+              <Route exact path="/volunteer" component={VolunteerDashboard} />
               <Route exact path="/volunteer/profile" component={VolunteerProfile} />
               <Route exact path="/seeker/signup" component={SeekerSignUp} />
               <Route exact path="/seeker" component={SeekerDashboard} />

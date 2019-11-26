@@ -166,7 +166,7 @@ class VolunteerSignUp extends Component {
                                 </select>
                             </div>
                             <div className="form-group col-md-2">
-                                <label htmlfor="inputZip">Zip</label>
+                                <label htmlFor="inputZip">Zip</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -204,7 +204,7 @@ class VolunteerSignUp extends Component {
                                     name="dob"
                                     id="dob"
                                     placeholder="mm/dd/yyyy"
-                                    maxlength="10"
+                                    maxLength="10"
                                     value={this.state.dob}
                                     onChange={this.onChange} />
                             </div>
@@ -256,10 +256,6 @@ class VolunteerSignUp extends Component {
                                                 value={this.state.gender}
                                                 onChange={this.onChange}></input>
                                                 : <div> </div>}
-
-                                            {/* <label className="form-check-label" for="gridRadios3">
-                                                Other
-                                            </label> */}
                                         </div>
                                     </div>
                                 </div>
@@ -268,17 +264,7 @@ class VolunteerSignUp extends Component {
                         </div>
                     </form>
 
-                    {/* <div className="form-group">
-                        <label htmlFor="gender">Gender</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="gender"
-                            placeholder="Enter email"
-                            value={this.state.gender}
-                            onChange={this.onChange}
-                        />
-                    </div> */}
+
                     <div className="form-group">
                         <label htmlFor="image">Image</label>
                         <input

@@ -1,10 +1,11 @@
-var express = require('express')
-var path = require('path')
-var cors = require('cors')
-var bodyParser = require('body-parser')
-var app = express()
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var path = require('path');
+var cors = require('cors');
+var bodyParser = require('body-parser');
+var app = express();
 var PORT = process.env.PORT || 5000
-require('dotenv').config()
+require('dotenv').config();
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -13,6 +14,7 @@ app.use(
     extended: false
   })
 )
+app.use(cookieParser())
 
 var VolunteerUsers = require('./routes/VolunteerUsers')
 var SeekerUsers = require('./routes/SeekerUsers')
