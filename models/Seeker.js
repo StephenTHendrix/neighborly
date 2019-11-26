@@ -2,10 +2,6 @@ module.exports = function (sequelize, DataTypes) {
     const Seeker = sequelize.define("Seeker", {
         companyName: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
         },
         type: {
             type: DataTypes.STRING,
@@ -15,7 +11,8 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         bio: DataTypes.STRING,
-        street: DataTypes.STRING,
+        address1: DataTypes.STRING,
+        address2: DataTypes.STRING,
         city: DataTypes.STRING,
         state: DataTypes.STRING,
         zip: DataTypes.STRING,

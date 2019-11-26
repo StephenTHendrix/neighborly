@@ -69,8 +69,9 @@ users.post('/login', (req, res) => {
           let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
             expiresIn: 1440
           })
+          jwt.decode(token, {})
           res.cookie('userToken', token, { maxAge: 3600000 });
-
+          console.log()
           res.send(token)
         }
       } else {
