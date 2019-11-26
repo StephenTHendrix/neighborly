@@ -23,7 +23,8 @@ users.post('/register', (req, res) => {
     const seekerData = {
         companyName: req.body.companyName,
         type: req.body.type,
-        street: req.body.street,
+        address1: req.body.address1,
+        address2: req.body.address2,
         city: req.body.city,
         state: req.body.state,
         zip: req.body.zip,

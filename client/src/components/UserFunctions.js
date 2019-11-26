@@ -1,4 +1,8 @@
 import axios from 'axios'
+// require('express')
+require('cookie-parser')
+
+
 
 export const volunteerRegister = (newUser, newVolunteer) => {
   return axios
@@ -30,7 +34,8 @@ export const seekerRegister = (newUser, newSeeker) => {
       password: newUser.password,
       companyName: newSeeker.companyName,
       type: newSeeker.type,
-      street: newSeeker.street,
+      address1: newSeeker.address1,
+      address2: newSeeker.address2,
       city: newSeeker.city,
       state: newSeeker.state,
       zip: newSeeker.zip,
@@ -52,6 +57,13 @@ export const login = user => {
     })
     .then(response => {
       localStorage.setItem('usertoken', response.data)
+      // console.log("RES DATA: " + response.data)
+
+      // //Clearing the cookie
+      // document.cookie = "userData=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+      // // Store the username as a cookie using "document.cookie"
+      // document.cookie = "userData=" + response.data + ";";
       return response.data
     })
     .catch(err => {
@@ -73,4 +85,9 @@ export const getEvents = () => {
   // .then(response => {
   //   console.log('UserFunctions: ', response)
   // })
+}
+
+export const getVolunteerData = () => {
+  return axios
+    .get('/volunteer/data')
 }
