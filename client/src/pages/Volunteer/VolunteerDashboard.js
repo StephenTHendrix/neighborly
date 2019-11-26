@@ -1,9 +1,10 @@
 import React from "react";
 import API from "../../utils/API";
 import EventCard from "../../components/EventCard";
+import { getVolunteerData } from '../../components/UserFunctions';
 import jwt_decode from 'jwt-decode';
-var _ = require("lodash");
 
+var _ = require("lodash");
 
 // *************************************************************************************************************************************
 // Still need: 
@@ -15,7 +16,8 @@ class VolunteerDashboard extends React.Component {
         location: "",
         volunteerID: "",
         userId: "",
-        loading: false,
+        search: false,
+        loading: true,
         currentPage: 1,
         displayperPage: 20
     };
@@ -33,8 +35,20 @@ class VolunteerDashboard extends React.Component {
         this.setState({
             userId: decoded.id
         })
-        this.loadEvents();
+        this.loadVolunteerData();
+        setTimeout(() => {
+            this.loadEvents();
+        }, 1000)
     };
+
+    loadVolunteerData = () => {
+        getVolunteerData().then(res => {
+            console.log(res)
+            this.setState({
+                location: res.data.city,
+            })
+        })
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -46,21 +60,48 @@ class VolunteerDashboard extends React.Component {
     loadEvents = () => {
         this.setState({ loading: true });
         this.setState({ currentPage: 1 });
-        API.searchevent(this.state.location)
+        // API.searchevent(this.state.location)
+        // let filterlocation = this.state.location;
+        // setTimeout(() => {
+        //     API.getevent().then(res => {
+        //         let unsortedArray = res.data;
+        //         // console.log(unsortedArray);
+        //         let filterArray = _.filter(unsortedArray, event => event.city === filterlocation);
+        //         // console.log(filterArray);
+        //         this.setState({ events: filterArray });
+        //     })
+        //     this.setState({ loading: false })
+        // }, 4000)
+
+
         let filterlocation = this.state.location;
-        setTimeout(() => {
-            API.getevent().then(res => {
-                let unsortedArray = res.data;
-                // console.log(unsortedArray);
-                let filterArray = _.filter(unsortedArray, event => event.city === filterlocation);
-                // console.log(filterArray);
-                this.setState({ events: filterArray });                
-            })
-            this.setState({ loading: false })
-        }, 4000)
+        {
+            this.state.search
+                ?
+                setTimeout(() => {
+                    API.searchevent().then(res => {
+                        let unsortedArray = res.data;
+                        // console.log(unsortedArray);
+                        let filterArray = _.filter(unsortedArray, event => event.city === filterlocation);
+                        // console.log(filterArray);
+                        this.setState({ events: filterArray });
+                    })
+                    this.setState({ loading: false })
+                }, 1000)
+                :
+                API.getsavedEvent(this.state.userId).then(res => {
+                    console.log(res.data);
+                    this.setState({ events: res.data })
+                    // this.setState({ loading: false })
+                })
+        }
     }
 
-    handleEventSignUp  = (id) => {
+    changeState = () => {
+        this.setState({ search: !search })
+    }
+
+    handleEventSignUp = (id) => {
         console.log(id)
         let saved = this.state.events.filter(item => item.id === id);
         saved[0].UserId = this.state.userId;
@@ -89,7 +130,7 @@ class VolunteerDashboard extends React.Component {
                     time={event.time}
                     flexible={event.flexible}
                     key={event.id}
-                    handleEventSignUp ={this.handleEventSignUp }
+                    handleEventSignUp={this.handleEventSignUp}
                 />
             )
         });
@@ -112,17 +153,26 @@ class VolunteerDashboard extends React.Component {
 
         return (
             <div>
-                <p name="id">{this.state.id}</p>
-                <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
-                <input type="submit" id="mysubmit" onClick={this.loadEvents} />
-
-                <div>
-                    {
-                        (this.state.loading)
-                            ? (<img src="https://media1.giphy.com/media/xT9DPldJHzZKtOnEn6/giphy.gif"></img>)
-                            : renderEvents
-                    }
-                </div>
+                <p>{this.state.location}</p>
+                <p name="id">{this.state.userId}</p>
+                <button onClick={this.changeState}>Search for Activity</button>
+                {
+                    (this.state.search)
+                        ?
+                        (<div>
+                            <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
+                            <input type="submit" id="mysubmit" onClick={this.loadEvents} />
+                        </div>
+                        )
+                        : null
+                }
+                {
+                    (this.state.loading)
+                        ?
+                        (<img src="https://media1.giphy.com/media/xT9DPldJHzZKtOnEn6/giphy.gif"></img>)
+                        :
+                        renderEvents
+                }
                 {
                     (this.state.loading)
                         ? (null)

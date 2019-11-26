@@ -117,7 +117,8 @@ class SeekerSignUp extends Component {
                                 value={this.state.companyName}
                                 onChange={this.onChange}
                             />
-                        </div> && this.setState({ [this.state.companyName]: "null" })
+                        </div>
+                        //  && this.setState({ [this.state.companyName]: "null" })
                         : <div></div>}
                 </div>
 
