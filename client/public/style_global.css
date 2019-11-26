@@ -44,6 +44,16 @@ body {
     color: #F6C026;
 }
 
+.dropdown-menu {
+    width: 25em;
+    padding: 1em;
+}
+
+#dropdownMenuButton{
+    color: #F6C026;
+    border: none;
+}
+
 .nav-link:hover {
     color: #A0D3F9;
 }
@@ -68,6 +78,13 @@ body {
     color: #762121;
     margin: 0;
     padding: 0;
+}
+
+.text-block-small {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bolder;
+    font-size: 2em;
+    color: #762121;
 }
 
 .text-script {

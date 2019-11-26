@@ -46,6 +46,28 @@ export const seekerRegister = (newUser, newSeeker) => {
     })
 }
 
+export const eventRegister = newEvent => {
+  return axios
+    .post('/event/register', {
+      title: newEvent.title,
+      link: newEvent.link,
+      description: newEvent.description,
+      organization: newEvent.organization,
+      street: newEvent.street,
+      city: newEvent.city,
+      state: newEvent.state,
+      zip: newEvent.zip,
+      smalldescription: newEvent.smalldescription,
+      image: newEvent.image,
+      needed: newEvent.needed,
+      date: newEvent.date,
+      time: newEvent.time,
+  })
+    .then(response => {
+      console.log('Registered Event')
+    })
+}
+
 export const login = user => {
   return axios
     .post('users/login', {

@@ -107,7 +107,7 @@ class SeekerSignUp extends Component {
 
                     {this.state.type === "Company/Organization" ?
 
-                        < div className="form-group col-md-7">
+                        (< div className="form-group col-md-7">
                             <label htmlFor="companyName">Company Name</label>
                             <input
                                 type="text"
@@ -117,9 +117,8 @@ class SeekerSignUp extends Component {
                                 value={this.state.companyName}
                                 onChange={this.onChange}
                             />
-                        </div>
-                        //  && this.setState({ [this.state.companyName]: "null" })
-                        : <div></div>}
+                        </div>)
+                        : (<div></div>)}
                 </div>
 
                 <div className="form-group">
