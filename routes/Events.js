@@ -1,12 +1,13 @@
 const express = require('express')
 const events = express.Router()
 const cors = require('cors')
-// const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 // const bcrypt = require('bcrypt')
 const db = require("../models")
 events.use(cors())
+require('cookie-parser')
 
-// process.env.SECRET_KEY = 'secret'
+process.env.SECRET_KEY = 'secret'
 
 events.post('/register', (req, res) => {
 //   console.log("Events hit", req)
@@ -27,9 +28,11 @@ events.post('/register', (req, res) => {
     time: req.body.time,
   }
 
-  const newEvent =
+//   const newEvent =
       // console.log("reached 1");
-      db.Event.create(eventData)
+      const userToken = req.cookies.userToken;
+      var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+      db.Event.create({ ...eventData, "UserId": decoded.id })
           //TODO bcrypt
           .then(event => {
               console.log("reached in then: " + event);
