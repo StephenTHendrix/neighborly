@@ -91,3 +91,8 @@ export const getVolunteerData = () => {
   return axios
     .get('/volunteer/data')
 }
+
+export const getSeekerData = () => {
+  return axios
+    .get('/seeker/data')
+}

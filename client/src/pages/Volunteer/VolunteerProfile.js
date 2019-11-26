@@ -49,7 +49,6 @@ class VolunteerProfile extends Component {
                 city: res.data.city,
                 state: res.data.state,
                 zip: res.data.zip,
-                city: res.data.city,
                 dob: res.data.dob,
                 bio: res.data.bio
             })
