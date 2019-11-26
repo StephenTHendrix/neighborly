@@ -14,6 +14,7 @@ users.post('/register', (req, res) => {
     const userData = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
+        kind: 'seeker',
         email: req.body.email,
         password: req.body.password,
         created: today

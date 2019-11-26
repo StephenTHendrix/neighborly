@@ -5,15 +5,26 @@ var _ = require("lodash");
 
 // *************************************************************************************************************************************
 // Still need: 
-// 1. Sent volunteer informations to this page some how!
-// 2. Create volunteer&event table to connect event and volunteer together
-
+// 1. Sent volunteer informations (thier name, and thier current location) to this page some how!
 
 class VolunteerDashboard extends React.Component {
     state = {
         events: [],
-        location: "Dallas",
-        volunteerID: ""        
+        location: "",
+        volunteerID: "",
+        loading: false,
+        currentPage: 1,
+        displayperPage: 30
+    };
+
+    handleClick = event => {
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
+    }
+
+    componentDidMount() {
+        this.loadEvents();
     };
 
     handleInputChange = event => {
@@ -23,48 +34,76 @@ class VolunteerDashboard extends React.Component {
         }, () => (console.log(this.state.location)));
     };
 
-    componentDidMount() {
-        this.loadEvents();
-    };
-
     loadEvents = () => {
-        API.getevent().then(res => {
-            let filterlocation = this.state.location;
-            console.log(filterlocation);
-            let unsortedArray = res.data;
-            console.log(unsortedArray);
-            let filterArray = _.filter(unsortedArray, event => event.city === filterlocation)
-            console.log(filterArray);
-            console.log(this.state.location);
-            this.setState({ location: "" });
-            console.log(this.state.location);
-            // this.setState({ events: res.data });
-            this.setState({ events: filterArray });
-        }).catch(err => console.log(err))
+        this.setState({ loading: true });
+        this.setState({ currentPage: 1 });
+        API.searchevent(this.state.location)
+        let filterlocation = this.state.location;
+        setTimeout(() => {
+            API.getevent().then(res => {
+                let unsortedArray = res.data;
+                let filterArray = _.filter(unsortedArray, event => event.city === filterlocation)
+                console.log(filterArray);
+                this.setState({ events: filterArray });
+            })
+            this.setState({ loading: false })
+        }, 3500)
     }
 
     render() {
+        const { events, currentPage, displayperPage } = this.state;
+        const indexOfLastTodo = currentPage * displayperPage;
+        const indexOfFirstTodo = indexOfLastTodo - displayperPage;
+        let currentEvent = [];
+        currentEvent = events.slice(indexOfFirstTodo, indexOfLastTodo);
+        console.log(currentEvent);
+        const renderEvents = currentEvent.map(event => {
+            return (
+                <EventCard
+                    title={event.title}
+                    id={event.id}
+                    organization={event.organization}
+                    smalldescription={event.smalldescription}
+                    date={event.date}
+                    time={event.time}
+                    flexible={event.flexible}
+                    key={event.id}
+                />
+            )
+        });
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(events.length / displayperPage); i++) {
+            pageNumbers.push(i);
+        }
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li
+                    key={number}
+                    id={number}
+                    onClick={this.handleClick}
+                >
+                    {number}
+                </li>
+            );
+        });
+
         return (
             <div>
-                <form action="/api/event" method="post" target="hiddenFrame">
-                    <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
-                    <input type="submit" id="mysubmit" onClick={this.loadEvents} />
-                </form>
+                <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
+                <input type="submit" id="mysubmit" onClick={this.loadEvents} />
 
-                {this.state.events.map(event => {
-                    return (
-                        <EventCard
-                            title={event.title}
-                            id={event.id}
-                            organization={event.organization}
-                            smalldescription={event.smalldescription}
-                            date={event.date}
-                            time={event.time}
-                            flexible={event.flexible}
-                            key={event.id}
-                        />
-                    )
-                })}
+                <div>
+                    {
+                        (this.state.loading)
+                            ? (<img src="https://media1.giphy.com/media/xT9DPldJHzZKtOnEn6/giphy.gif"></img>)
+                            : renderEvents
+                    }
+                </div>
+                {
+                    (this.state.loading)
+                        ? (null)
+                        : renderPageNumbers
+                }
                 <iframe name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
             </div>
         )
