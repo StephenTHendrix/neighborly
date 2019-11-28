@@ -70,19 +70,21 @@ class VolunteerProfile extends Component {
     }
 
     onChange = (e) => {
-        const editVolunteer = {
-            city: this.state.city,
-            state: this.state.state,
-            zip: this.state.zip,
-            dob: this.state.dob,
-            bio: this.state.bio,
-            gender: this.state.gender,
-            image: this.state.image
+        this.setState({ [e.target.name]: e.target.value }, () => {
+            const editVolunteer = {
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+                dob: this.state.dob,
+                bio: this.state.bio,
+                gender: this.state.gender,
+                image: this.state.image
+            }
+            editVolunteerData(editVolunteer).then(res => {
+                this.loadEvents();
+            })
         }
-        this.setState({ [e.target.name]: e.target.value })
-        editVolunteerData(editVolunteer).then(res => {
-            this.loadEvents();
-        })
+        )
     }
 
 
