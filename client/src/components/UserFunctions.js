@@ -11,7 +11,6 @@ export const volunteerRegister = (newUser, newVolunteer) => {
       last_name: newUser.last_name,
       email: newUser.email,
       password: newUser.password,
-      street: newVolunteer.street,
       city: newVolunteer.city,
       state: newVolunteer.state,
       zip: newVolunteer.zip,
@@ -90,6 +89,19 @@ export const getEvents = () => {
 export const getVolunteerData = () => {
   return axios
     .get('/volunteer/data')
+}
+
+export const editVolunteerData = (editVolunteer) => {
+  console.log("hit userFunctions")
+  return axios
+    .put('/volunteer/data', {
+      city: editVolunteer.city,
+      state: editVolunteer.state,
+      zip: editVolunteer.zip,
+      dob: editVolunteer.dob,
+      bio: editVolunteer.bio,
+      gender: editVolunteer.gender
+    })
 }
 
 export const getSeekerData = () => {

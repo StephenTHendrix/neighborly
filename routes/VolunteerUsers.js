@@ -73,6 +73,32 @@ users.get("/data", function (req, res) {
     })
 })
 
+users.put("/data", function (req, res) {
+  const userToken = req.cookies.userToken;
+  var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+  console.log(decoded)
+
+  db.Volunteer.update({
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    dob: req.body.dob,
+    bio: req.body.bio,
+    gender: req.body.gender
+  }, {
+    where: {
+      UserId: decoded.id
+    }
+  })
+    .then(volunteer => {
+      console.log(volunteer);
+      res.json(volunteer);
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+
 users.post('/login', (req, res) => {
   db.User.findOne({
     where: {

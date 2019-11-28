@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 import EventCard from "../../components/EventCard";
-import { getEvents, getVolunteerData } from '../../components/UserFunctions'
+import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
 class VolunteerProfile extends Component {
@@ -25,7 +25,6 @@ class VolunteerProfile extends Component {
 
     loadEvents = () => {
         getEvents().then(res => {
-            console.log('Profile: ', res)
             {
                 typeof res.data === "string" ? (
                     this.setState({
@@ -36,14 +35,12 @@ class VolunteerProfile extends Component {
                         })
                     )
             }
-            console.log(this.state.events)
         })
             .catch(err => console.log(err));
     }
 
     loadVolunteerData = () => {
         getVolunteerData().then(res => {
-            console.log(res)
             this.setState({
                 city: res.data.city,
                 state: res.data.state,
@@ -67,17 +64,25 @@ class VolunteerProfile extends Component {
     }
 
     editProperty = (e) => {
-        console.log(Object.getPrototypeOf(e.target.parentElement.parentElement))
-
         const indexOfClicked = [...e.target.parentElement.parentElement.parentElement.children].indexOf(e.target.parentElement.parentElement);
-
-        console.log(indexOfClicked);
         this.setState({ toggleIndex: indexOfClicked })
 
     }
 
     onChange = (e) => {
+        const editVolunteer = {
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+            dob: this.state.dob,
+            bio: this.state.bio,
+            gender: this.state.gender,
+            image: this.state.image
+        }
         this.setState({ [e.target.name]: e.target.value })
+        editVolunteerData(editVolunteer).then(res => {
+            this.loadEvents();
+        })
     }
 
 
@@ -92,52 +97,68 @@ class VolunteerProfile extends Component {
                     <table className="table col-md-6 mx-auto">
                         <tbody>
 
-                            <EditableRow property="First Name" value={this.state.first_name} toggle="view"></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>First Name</td>
-                                <td>{this.state.first_name}</td>
-                            </tr> */}
-                            <EditableRow property="Last Name" value={this.state.last_name} toggle="view"></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>Last Name</td>
-                                <td>{this.state.last_name}</td>
-                            </tr> */}
-                            <EditableRow property="Email" value={this.state.email} toggle="view"></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>Email</td>
-                                <td>{this.state.email}</td>
-                            </tr> */}
+                            <EditableRow
+                                property="First Name"
+                                value={this.state.first_name}
+                                toggle="view">
+                            </EditableRow>
+
+                            <EditableRow
+                                property="Last Name"
+                                value={this.state.last_name}
+                                toggle="view">
+                            </EditableRow>
+
+                            <EditableRow
+                                property="Email"
+                                value={this.state.email}
+                                toggle="view">
+                            </EditableRow>
+
                             <EditableRow
                                 property="City"
                                 name="city"
                                 value={this.state.city}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={3 === this.state.toggleIndex ? "edit" : "view"}></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>City</td>
-                                <td>{this.state.city}</td>
-                            </tr> */}
-                            <EditableRow property="State" value={this.state.state} onClick={this.editProperty} toggle={4 === this.state.toggleIndex ? "edit" : "view"}></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>State</td>
-                                <td>{this.state.state}</td>
-                            </tr> */}
-                            <EditableRow property="Zip" value={this.state.zip} onClick={this.editProperty} toggle={5 === this.state.toggleIndex ? "edit" : "view"}></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>Zip</td>
-                                <td>{this.state.zip}</td>
-                            </tr> */}
-                            <EditableRow property="DOB" value={this.state.dob} onClick={this.editProperty} toggle={6 === this.state.toggleIndex ? "edit" : "view"}></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>DOB</td>
-                                <td>{this.state.dob}</td>
-                            </tr> */}
-                            <EditableRow property="Bio" value={this.state.bio} onClick={this.editProperty} toggle={7 === this.state.toggleIndex ? "edit" : "view"}></EditableRow>
-                            {/* <tr className="profile-item">
-                                <td>Bio</td>
-                                <td>{this.state.bio}</td>
-                            </tr> */}
+                                toggle={3 === this.state.toggleIndex ? "edit" : "view"}>
+                            </EditableRow>
+
+                            <EditableRow
+                                property="State"
+                                name="state"
+                                value={this.state.state}
+                                onClick={this.editProperty}
+                                onChange={this.onChange}
+                                toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
+                            </EditableRow>
+
+                            <EditableRow
+                                property="Zip"
+                                name="zip"
+                                value={this.state.zip}
+                                onClick={this.editProperty}
+                                onChange={this.onChange}
+                                toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
+                            </EditableRow>
+
+                            <EditableRow
+                                property="DOB"
+                                namee="dob"
+                                value={this.state.dob}
+                                onClick={this.editProperty}
+                                onChange={this.onChange}
+                                toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
+                            </EditableRow>
+
+                            <EditableRow
+                                property="Bio"
+                                name="bio"
+                                value={this.state.bio}
+                                onClick={this.editProperty}
+                                onChange={this.onChange}
+                                toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
+                            </EditableRow>
                         </tbody>
                     </table>
                 </div>
