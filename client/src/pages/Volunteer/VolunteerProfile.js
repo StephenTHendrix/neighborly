@@ -4,6 +4,8 @@ import EventCard from "../../components/EventCard";
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
+
+
 class VolunteerProfile extends Component {
     constructor() {
         super()
@@ -66,7 +68,6 @@ class VolunteerProfile extends Component {
     editProperty = (e) => {
         const indexOfClicked = [...e.target.parentElement.parentElement.parentElement.children].indexOf(e.target.parentElement.parentElement);
         this.setState({ toggleIndex: indexOfClicked })
-
     }
 
     onChange = (e) => {

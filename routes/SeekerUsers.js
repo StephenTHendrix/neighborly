@@ -78,6 +78,34 @@ users.get("/data", function (req, res) {
         })
 })
 
+users.put("/data", function (req, res) {
+    const userToken = req.cookies.userToken;
+    var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+    console.log(decoded)
+
+    db.Seeker.update({
+        companyName: req.body.companyName,
+        address1: req.body.address1,
+        address2: req.body.address2,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip,
+        bio: req.body.bio,
+        website: req.body.website
+    }, {
+        where: {
+            UserId: decoded.id
+        }
+    })
+        .then(volunteer => {
+            console.log(volunteer);
+            res.json(volunteer);
+        })
+        .catch(err => {
+            res.send('error: ' + err)
+        })
+})
+
 users.get('/events', (req, res) => {
     const userToken = req.cookies.userToken;
     var decoded = jwt.verify(userToken, process.env.SECRET_KEY)

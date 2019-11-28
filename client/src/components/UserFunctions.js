@@ -104,6 +104,23 @@ export const editVolunteerData = (editVolunteer) => {
     })
 }
 
+export const editSeekerData = (editSeeker) => {
+  console.log("hit userFunctions")
+  return axios
+    .put('/volunteer/data', {
+      companyName: editSeeker.companyName,
+      address1: editSeeker.address1,
+      address2: editSeeker.address2,
+      city: editSeeker.city,
+      state: editSeeker.state,
+      zip: editSeeker.zip,
+      bio: editSeeker.bio,
+      website: editSeeker.website
+    })
+}
+
+
+
 export const getSeekerData = () => {
   return axios
     .get('/seeker/data')
