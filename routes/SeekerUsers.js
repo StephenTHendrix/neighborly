@@ -34,7 +34,6 @@ users.post('/register', (req, res) => {
     }
 
     const newUser =
-        // console.log("reached 1");
         db.User.findOne({
             where: {
                 email: req.body.email
@@ -43,7 +42,6 @@ users.post('/register', (req, res) => {
             //TODO bcrypt
             .then(user => {
                 console.log("reached in then: " + user);
-                console.log(userData)
                 if (!user) {
                     bcrypt.hash(req.body.password, 10, (err, hash) => {
                         userData.password = hash
@@ -62,7 +60,6 @@ users.post('/register', (req, res) => {
 users.get("/data", function (req, res) {
     const userToken = req.cookies.userToken;
     var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
-    console.log(decoded)
 
     db.Seeker.findOne({
         where: {
@@ -70,7 +67,6 @@ users.get("/data", function (req, res) {
         }
     })
         .then(seeker => {
-            console.log(seeker);
             res.json(seeker);
         })
         .catch(err => {
@@ -81,7 +77,6 @@ users.get("/data", function (req, res) {
 users.put("/data", function (req, res) {
     const userToken = req.cookies.userToken;
     var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
-    console.log(decoded)
 
     db.Seeker.update({
         companyName: req.body.companyName,
@@ -98,7 +93,6 @@ users.put("/data", function (req, res) {
         }
     })
         .then(volunteer => {
-            console.log(volunteer);
             res.json(volunteer);
         })
         .catch(err => {

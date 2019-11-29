@@ -26,7 +26,6 @@ class SeekerProfile extends Component {
 
     loadSeekerData = () => {
         getSeekerData().then(res => {
-            console.log(res)
             this.setState({
                 companyName: res.data.companyName,
                 address1: res.data.address1,
@@ -70,7 +69,6 @@ class SeekerProfile extends Component {
                 website: this.state.website,
             }
             editSeekerData(editSeeker).then(res => {
-                this.loadEvents();
             })
         }
         )
@@ -122,7 +120,7 @@ class SeekerProfile extends Component {
                                 value={this.state.bio}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -131,7 +129,7 @@ class SeekerProfile extends Component {
                                 value={this.state.address1}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={3 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -140,7 +138,7 @@ class SeekerProfile extends Component {
                                 value={this.state.address2}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={3 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -149,7 +147,7 @@ class SeekerProfile extends Component {
                                 value={this.state.city}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={3 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -158,7 +156,7 @@ class SeekerProfile extends Component {
                                 value={this.state.state}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={8 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -167,7 +165,7 @@ class SeekerProfile extends Component {
                                 value={this.state.zip}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={9 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
                         </tbody>
                     </table>

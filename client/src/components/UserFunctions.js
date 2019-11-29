@@ -107,7 +107,7 @@ export const editVolunteerData = (editVolunteer) => {
 export const editSeekerData = (editSeeker) => {
   console.log("hit userFunctions")
   return axios
-    .put('/volunteer/data', {
+    .put('/seeker/data', {
       companyName: editSeeker.companyName,
       address1: editSeeker.address1,
       address2: editSeeker.address2,
