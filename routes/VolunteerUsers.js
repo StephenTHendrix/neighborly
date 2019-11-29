@@ -94,6 +94,29 @@ users.put("/data", function (req, res) {
     })
 })
 
+users.get('/events', (req, res) => {
+  const userToken = req.cookies.userToken;
+  var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+
+  db.Event.findAll({
+    where: {
+      UserId: decoded.id
+      // above will not work. Where statement must use new events/volunteers table to join and then get the event
+    }
+  })
+    .then(event => {
+      console.log('eventSJS: ', event);
+      if (event) {
+        res.json(event)
+      } else {
+        res.send('event does not exist')
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+
 users.post('/login', (req, res) => {
   db.User.findOne({
     where: {

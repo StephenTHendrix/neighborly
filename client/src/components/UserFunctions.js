@@ -80,10 +80,7 @@ export const getUsers = () => {
 
 export const getEvents = () => {
   return axios
-    .get('users/events')
-  // .then(response => {
-  //   console.log('UserFunctions: ', response)
-  // })
+    .get('volunteer/events')
 }
 
 export const getVolunteerData = () => {
@@ -92,7 +89,6 @@ export const getVolunteerData = () => {
 }
 
 export const editVolunteerData = (editVolunteer) => {
-  console.log("hit userFunctions")
   return axios
     .put('/volunteer/data', {
       city: editVolunteer.city,
@@ -105,7 +101,6 @@ export const editVolunteerData = (editVolunteer) => {
 }
 
 export const editSeekerData = (editSeeker) => {
-  console.log("hit userFunctions")
   return axios
     .put('/seeker/data', {
       companyName: editSeeker.companyName,
