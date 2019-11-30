@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { login } from './UserFunctions'
+// const jwt = require('jsonwebtoken')
+import jwt_decode from 'jwt-decode'
+
 
 class Login extends Component {
   constructor() {
@@ -17,6 +20,7 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
+
   onSubmit(e) {
     e.preventDefault()
 
@@ -26,8 +30,15 @@ class Login extends Component {
     }
 
     login(user).then(res => {
-      if (res) {
-        this.props.history.push(`/profile`)
+      const token = localStorage.usertoken
+      const decoded = jwt_decode(token)
+      console.log(decoded)
+
+      if (res && decoded.kind === "volunteer") {
+        this.props.history.push(`/volunteer/dashboard`)
+      }
+      else if (res && decoded.kind === "seeker") {
+        this.props.history.push(`/seeker/dashboard`)
       }
     })
   }
