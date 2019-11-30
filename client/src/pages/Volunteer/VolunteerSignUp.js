@@ -33,14 +33,12 @@ class VolunteerSignUp extends Component {
     }
 
     componentDidMount() {
-
         this.node = ReactDOM.findDOMNode(this);
     }
 
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
-        console.log(this.state.gender);
         if (e.target.name === "dob") {
             var numChars = e.target.value.length;
             if (this.state[e.target.name].length < e.target.value.length && (numChars === 2 || numChars === 5)) {
@@ -73,11 +71,9 @@ class VolunteerSignUp extends Component {
         volunteerRegister(newUser, newVolunteer).then(res => {
             this.props.history.push(`/login`)
         })
-
     }
 
     render() {
-
         return (
             <div className="container">
                 < div >

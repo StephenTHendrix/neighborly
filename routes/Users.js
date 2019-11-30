@@ -1,4 +1,5 @@
 const express = require('express')
+var sequelize = require("sequelize")
 const users = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -105,9 +106,26 @@ users.post('/login', (req, res) => {
 // })
 
 users.get('/all', (req, res) => {
-  // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+  const userToken = req.cookies.userToken;
+  var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+  console.log(decoded)
 
-  db.User.findAll()
+  db.Seeker.findOne({
+    where: {
+      UserId: decoded.id
+    }
+  }).then(seeker =>
+
+    // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+    db.sequelize.query(
+      `SELECT *
+    FROM Users u
+    INNER JOIN Volunteers v 
+    ON u.id = v.UserId
+    WHERE v.state = ?`,
+      { replacements: [seeker.state], type: sequelize.QueryTypes.SELECT }
+    ))
+    // })
     .then(user => {
       console.log('USERSJS: ', user);
       if (user) {

@@ -35,10 +35,10 @@ class Login extends Component {
       console.log(decoded)
 
       if (res && decoded.kind === "volunteer") {
-        this.props.history.push(`/volunteer/dashboard`)
+        this.props.history.push(`/volunteer`)
       }
       else if (res && decoded.kind === "seeker") {
-        this.props.history.push(`/seeker/dashboard`)
+        this.props.history.push(`/seeker`)
       }
     })
   }
