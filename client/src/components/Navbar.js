@@ -2,35 +2,61 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { login } from "./UserFunctions";
 
+import jwt_decode from 'jwt-decode';
+
+
 class Landing extends Component {
   constructor() {
+    
     super();
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    if (localStorage.usertoken) {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
+      token: token,
+      decoded: decoded,
     };
+  } else {
+    this.state = {
+      email: "",
+      password: "",
+      errors: {},
+      token: false,
+      decoded: false,
+    };
+  }
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     const user = {
       email: this.state.email,
       password: this.state.password
-    };
+    }
 
     login(user).then(res => {
-      if (res) {
-        this.props.history.push(`/profile`);
+      const token = localStorage.usertoken
+      const decoded = jwt_decode(token)
+      console.log(decoded)
+
+      if (res && decoded.kind === "volunteer") {
+        this.props.history.push(`/volunteer`)
       }
-    });
+      else if (res && decoded.kind === "seeker") {
+        this.props.history.push(`/seeker`)
+      }
+    })
   }
 
   logOut(e) {
@@ -42,11 +68,6 @@ class Landing extends Component {
   render() {
     const loginRegLink = (
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
-        </li>
         <li className="nav-item">
           <div className="dropdown">
             <button
@@ -89,7 +110,7 @@ class Landing extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-sub"
               >
                 Sign in
               </button>
@@ -112,9 +133,12 @@ class Landing extends Component {
     const userLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/profile" className="nav-link">
+          <div>
+          {this.state.decoded.kind === "volunteer" ? (<Link to="/volunteer/profile" className="nav-link">
             User
-          </Link>
+          </Link>) : (<Link to="/seeker/profile" className="nav-link">
+            User
+          </Link>)} </div>
         </li>
         <li className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">

@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 
-import SearchEventCard from "../../components/SearchEventCard";
+
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
 
 class VolunteerProfile extends Component {
     constructor() {
+        const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
         super()
         this.state = {
             first_name: '',
@@ -21,7 +23,9 @@ class VolunteerProfile extends Component {
             zip: '',
             errors: {},
             events: [],
-            toggleIndex: undefined
+            toggleIndex: undefined,
+            token: {},
+            decoded: {},
         }
     }
 
@@ -42,14 +46,22 @@ class VolunteerProfile extends Component {
     }
 
     loadVolunteerData = () => {
+        const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
         getVolunteerData().then(res => {
-            this.setState({
-                city: res.data.city,
-                state: res.data.state,
-                zip: res.data.zip,
-                dob: res.data.dob,
-                bio: res.data.bio
-            })
+
+            {
+                decoded.kind === "seeker"
+                  ? (this.state = {})
+                  : this.setState({
+                    city: res.data.city,
+                    state: res.data.state,
+                    zip: res.data.zip,
+                    dob: res.data.dob,
+                    bio: res.data.bio
+                });
+              }
+
         })
     }
 
@@ -91,7 +103,18 @@ class VolunteerProfile extends Component {
 
 
     render() {
+        if (localStorage.usertoken) {
+            this.state.token = localStorage.usertoken;
+            this.state.decoded = jwt_decode(this.state.token);
+          } else {
+            this.state.token = false;
+            this.state.decoded = false;
+          }
         return (
+            <div>
+        {this.state.decoded.kind === "seeker" || !this.state.token ? (
+          <h3>Not for you.</h3>
+        ) : (
             <div className="container">
                 <div className="jumbotron mt-5">
                     <div className="col-sm-8 mx-auto">
@@ -176,6 +199,8 @@ class VolunteerProfile extends Component {
                         ))}
                         </div>) : (<h3>No events found.</h3>)
                 } */}
+            </div>
+            )}
             </div>
         )
     }

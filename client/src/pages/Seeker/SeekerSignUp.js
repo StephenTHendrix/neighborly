@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Register from "../../components/Register";
 import { seekerRegister } from '../../components/UserFunctions'
+import jwt_decode from 'jwt-decode';
 
 class SeekerSignUp extends Component {
     constructor() {
         super()
+        
         this.state = {
             first_name: '',
             last_name: '',
@@ -20,11 +22,25 @@ class SeekerSignUp extends Component {
             zip: '',
             bio: '',
             website: '',
-            image: ''
+            image: '',
+            token: {},
+            decoded: {},
         }
 
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+    }
+
+    componentDidMount() {
+        if (localStorage.usertoken) {
+            const token = localStorage.usertoken
+          const decoded = jwt_decode(token)
+          this.setState({token: token,
+        decoded: decoded})
+            } else {
+                this.setState({token: false,
+                    decoded: false})
+            }
     }
 
     onChange(e) {
@@ -59,8 +75,15 @@ class SeekerSignUp extends Component {
 
 
     render() {
+
         return (
+
+            <div className="container">
+
+            
+                {this.state.decoded.kind ? (<h3>Sign out before continuing!</h3>) : (
             <div>
+
                 <Register
                     first_name={this.state.first_name}
                     last_name={this.state.last_name}
@@ -304,12 +327,12 @@ class SeekerSignUp extends Component {
 
                 <button
                     type="submit"
-                    className="btn btn-lg btn-primary btn-block"
+                    className="btn btn-lg btn-sub mb-5"
                     onClick={this.onSubmit}
                 >
                     Register!
               </button>
-            </div >
+            </div >) } </div>
 
         )
     }

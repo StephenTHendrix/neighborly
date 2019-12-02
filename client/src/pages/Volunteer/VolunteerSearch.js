@@ -10,17 +10,24 @@ var _ = require("lodash");
 // 1. Sent volunteer informations (thier name, and thier current location) to this page some how!
 
 class VolunteerSearch extends React.Component {
-    state = {
-        // all Events after filter out the location;
-        locationEvents: [],
-        // events you already sign up for
-        SignUpEvents: [],
-        // final filterout all Events
-        events: [],
-        location: "",
-        volunteerID: "",
-        userId: "",
-        // loading: true,
+    constructor() {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
+        super();
+        this.state = {
+            // all Events after filter out the location;
+            locationEvents: [],
+            // events you already sign up for
+            SignUpEvents: [],
+            // final filterout all Events
+            events: [],
+            location: "",
+            volunteerID: "",
+            userId: "",
+            token: token,
+            decoded: decoded,
+            // loading: true,
+        };
     };
 
     componentDidMount() {
@@ -46,9 +53,16 @@ class VolunteerSearch extends React.Component {
     loadVolunteerData = () => {
         getVolunteerData().then(res => {
             console.log(res)
-            this.setState({
-                location: res.data.city,
-            })
+            {
+                this.state.decoded.kind === "volunteer"
+                    ? this.setState({
+                        location: res.data.city
+                    })
+                    : this.setState({
+                        location: ""
+                    });
+            }
+
         })
     }
 
@@ -118,8 +132,8 @@ class VolunteerSearch extends React.Component {
                     street={event.street}
                     city={event.city}
                     state={event.state}
-                    needed = {event.needed}
-                    signup = {event.going}
+                    needed={event.needed}
+                    signup={event.going}
                     key={event.id}
                     handleEventSignUp={this.handleEventSignUp}
                 />
@@ -128,14 +142,20 @@ class VolunteerSearch extends React.Component {
 
         return (
             <div>
-                <p>{this.state.location}</p>
-                <p name="id">{this.state.userId}</p>
-                <button onClick={this.myEvents}>My Events Lists</button>
-                <div>
-                    <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
-                    <input type="submit" id="mysubmit" onClick={this.loadEvents} />
-                    {renderEvents}
-                </div>
+                {this.state.decoded.kind === "seeker" || !this.state.token ? (
+                    <h3>Not for you.</h3>
+                ) : (
+                        <div>
+                            <p>{this.state.location}</p>
+                            <p name="id">{this.state.userId}</p>
+                            <button onClick={this.myEvents}>My Events Lists</button>
+                            <div>
+                                <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
+                                <input type="submit" id="mysubmit" onClick={this.loadEvents} />
+                                {renderEvents}
+                            </div>
+                        </div>
+                    )}
             </div>
         )
     }
