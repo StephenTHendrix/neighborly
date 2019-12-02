@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import InterestedEvent from "../../components/InterestedEvents";
+
+import EventCard from "../../components/EventCard";
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
+
 
 class VolunteerProfile extends Component {
     constructor() {
@@ -166,8 +168,11 @@ class VolunteerProfile extends Component {
                 {/* {this.state.events.length ?
                     (
                         <div>{this.state.events.map(event => (
-                            <InterestedEvent key={event.id} title={event.title} description={event.description}>
-                            </InterestedEvent>
+                            <EventCard
+                                key={event.id}
+                                title={event.title}
+                                description={event.description}>
+                            </EventCard>
                         ))}
                         </div>) : (<h3>No events found.</h3>)
                 } */}
@@ -175,4 +180,9 @@ class VolunteerProfile extends Component {
         )
     }
 }
+
+
+
+
+
 export default VolunteerProfile
