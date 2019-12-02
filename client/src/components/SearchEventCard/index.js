@@ -15,11 +15,17 @@ function SearchEventCard(props) {
           :
           <small className="text-muted">{props.flexible}</small>
         }
-        <buton className="saved btn btn-primary" id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</buton>
       </div>
+      {(window.location.pathname === "/volunteer/search") ?
+           
+      <button className="saved btn btn-primary" id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</button>
+           :
+           null
+      }
       <button key={props.id} id={props.id}>Nothing Yet (Modal Probably)</button>
     </div>
   );
 }
+
 
 export default SearchEventCard;
