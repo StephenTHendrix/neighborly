@@ -66,15 +66,6 @@ class SeekerDashboard extends Component {
               </div>) : (<h3>No users found.</h3>)}</div>)}</div>
 
 
-      // <div>
-      //   {this.state.allUsers.length ?
-      //   (<div>
-      //     {this.state.allUsers.map(user => (
-      //             <UserCard key={user.id} first_name = {user.first_name}>
-
-      //             </UserCard>
-      //           ))}
-      //     </div>) : (<h3>No users found.</h3>)}</div>
     )
   }
 }
