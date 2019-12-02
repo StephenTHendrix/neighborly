@@ -1,19 +1,35 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { login } from "./UserFunctions";
-import jwt_decode from 'jwt-decode'
+
+import jwt_decode from 'jwt-decode';
+
 
 class Landing extends Component {
   constructor() {
+    
     super();
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    if (localStorage.usertoken) {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    this.state = {
+      email: "",
+      password: "",
+      errors: {},
+      token: token,
+      decoded: decoded,
+    };
+  } else {
     this.state = {
       email: "",
       password: "",
       errors: {}
     };
+  }
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    
   }
 
   onChange(e) {
@@ -115,9 +131,12 @@ class Landing extends Component {
     const userLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/profile" className="nav-link">
+          <div>
+          {this.state.decoded.kind === "volunteer" ? (<Link to="/volunteer/profile" className="nav-link">
             User
-          </Link>
+          </Link>) : (<Link to="/seeker/profile" className="nav-link">
+            User
+          </Link>)} </div>
         </li>
         <li className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">
