@@ -80,7 +80,7 @@ class SeekerSignUp extends Component {
 
             <div className="container">
 
-            <div>
+            
                 {this.state.decoded.kind ? (<h3>Sign out before continuing!</h3>) : (
             <div>
 
