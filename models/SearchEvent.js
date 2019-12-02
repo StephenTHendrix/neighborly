@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const Event = sequelize.define("Event", {
+    const SearchEvent = sequelize.define("SearchEvent", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -7,9 +7,9 @@ module.exports = function (sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        // link: {
-        //     type: DataTypes.STRING,
-        // },
+        link: {
+            type: DataTypes.STRING,
+        },
         description: {
             type: DataTypes.STRING(10000),
             allowNull: false,
@@ -48,19 +48,15 @@ module.exports = function (sequelize, DataTypes) {
                 notEmpty: true,
             }
         },
-        // smalldescription: {
-        //     type: DataTypes.STRING(1000)
-        // },
+        smalldescription: {
+            type: DataTypes.STRING(1000)
+        },
         image: DataTypes.STRING,
         needed: {
             type: DataTypes.INTEGER,
             validate: {
                 not: ["[a-z]", 'i']
             }
-        },
-        going: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
         },
         date: {
             type: DataTypes.STRING
@@ -73,14 +69,6 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    Event.associate = (models) => {
-        Event.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
-
-    return Event;
+    return SearchEvent;
 };
 

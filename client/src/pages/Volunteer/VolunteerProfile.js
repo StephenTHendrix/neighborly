@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+
 import EventCard from "../../components/EventCard";
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
-
 
 
 class VolunteerProfile extends Component {
@@ -165,7 +165,7 @@ class VolunteerProfile extends Component {
                         </tbody>
                     </table>
                 </div>
-                {this.state.events.length ?
+                {/* {this.state.events.length ?
                     (
                         <div>{this.state.events.map(event => (
                             <EventCard
@@ -175,10 +175,12 @@ class VolunteerProfile extends Component {
                             </EventCard>
                         ))}
                         </div>) : (<h3>No events found.</h3>)
-                }</div>
+                } */}
+            </div>
         )
     }
 }
+
 
 
 

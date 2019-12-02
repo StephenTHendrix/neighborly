@@ -2,8 +2,6 @@ import axios from 'axios'
 // require('express')
 require('cookie-parser')
 
-
-
 export const volunteerRegister = (newUser, newVolunteer) => {
   return axios
     .post('/volunteer/register', {
