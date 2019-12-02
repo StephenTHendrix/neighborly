@@ -176,6 +176,15 @@ body {
     z-index: 1;
 }
 
+.btn-sub {
+    background-color: #762121 !important;
+    color: white;
+}
+
+.btn-sub:hover {
+    background-color: #F6C026 !important;
+}
+
     
 
 

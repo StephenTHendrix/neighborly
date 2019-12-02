@@ -89,7 +89,7 @@ class Landing extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-sub"
               >
                 Sign in
               </button>
