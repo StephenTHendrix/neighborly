@@ -60,7 +60,7 @@ class SeekerSignUp extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <Register
                     first_name={this.state.first_name}
                     last_name={this.state.last_name}
@@ -304,7 +304,7 @@ class SeekerSignUp extends Component {
 
                 <button
                     type="submit"
-                    className="btn btn-lg btn-primary btn-block"
+                    className="btn btn-lg btn-sub mb-5"
                     onClick={this.onSubmit}
                 >
                     Register!

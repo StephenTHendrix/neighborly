@@ -62,7 +62,7 @@ class CreateEvent extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <EventRegister
                     title={this.state.title}
                     link={this.state.link}
@@ -83,7 +83,7 @@ class CreateEvent extends Component {
 
                 <button
                     type="submit"
-                    className="btn btn-lg btn-primary btn-block"
+                    className="btn btn-lg btn-sub"
                     onClick={this.onSubmit}
                 >
                     Register Event!

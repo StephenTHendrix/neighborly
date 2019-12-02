@@ -23,7 +23,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <div className="container">
+          <div>
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/register" component={Register} />
@@ -34,7 +34,7 @@ class App extends Component {
               <Route exact path="/volunteer/profile" component={VolunteerProfile} />
               <Route exact path="/seeker/signup" component={SeekerSignUp} />
               <Route exact path="/seeker" component={SeekerDashboard} />
-              <Route exact path="/seeker/events" component={CreateEvent} />
+              <Route exact path="/seeker/create" component={CreateEvent} />
               <Route exact path="/seeker/profile" component={SeekerProfile} />
               <Route exact path="/seeker/events" component={ViewEvents} />
             </Switch>
