@@ -7,9 +7,9 @@ module.exports = function (sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        // link: {
-        //     type: DataTypes.STRING,
-        // },
+        link: {
+            type: DataTypes.STRING,
+        },
         description: {
             type: DataTypes.STRING(10000),
             allowNull: false,

@@ -14,21 +14,21 @@ class VolunteerSearch extends React.Component {
         const token = localStorage.usertoken;
         const decoded = jwt_decode(token);
         super();
-    this.state = {
-        // all Events after filter out the location;
-        locationEvents: [],
-        // events you already sign up for
-        SignUpEvents: [],
-        // final filterout all Events
-        events: [],
-        location: "",
-        volunteerID: "",
-        userId: "",
-        token: token,
-      decoded: decoded,
-        // loading: true,
+        this.state = {
+            // all Events after filter out the location;
+            locationEvents: [],
+            // events you already sign up for
+            SignUpEvents: [],
+            // final filterout all Events
+            events: [],
+            location: "",
+            volunteerID: "",
+            userId: "",
+            token: token,
+            decoded: decoded,
+            // loading: true,
+        };
     };
-};
 
     componentDidMount() {
         const token = localStorage.usertoken
@@ -55,14 +55,14 @@ class VolunteerSearch extends React.Component {
             console.log(res)
             {
                 this.state.decoded.kind === "volunteer"
-                  ? this.setState({
-                      location: res.data.city
+                    ? this.setState({
+                        location: res.data.city
                     })
-                  : this.setState({
-                      location: ""
+                    : this.setState({
+                        location: ""
                     });
-              }
-            
+            }
+
         })
     }
 
@@ -108,50 +108,55 @@ class VolunteerSearch extends React.Component {
             console.log(error);
         });
         // update the "going" of events
-        setTimeout(() => {
-            API.updateNumber(id, 1).then(function () {
-                console.log("Updated");
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }, 500)
+        // setTimeout(() => {
+        //     API.updateNumber(id, 1).then(function () {
+        //         console.log("Updated");
+        //     }).catch(function (error) {
+        //         console.log(error);
+        //     });
+        // }, 500)
     }
 
     render() {
         const { events } = this.state;
         const renderEvents = events.map(event => {
-            
+            return (
                 <SearchEventCard
                     title={event.title}
                     id={event.id}
                     organization={event.organization}
+                    description={event.description}
                     smalldescription={event.description.substring(0, 100)}
                     date={event.date}
                     time={event.time}
-                    flexible={event.flexible}
+                    street={event.street}
+                    city={event.city}
+                    state={event.state}
+                    needed={event.needed}
+                    signup={event.going}
                     key={event.id}
                     handleEventSignUp={this.handleEventSignUp}
                 />
-            
+            )
         });
 
         return (
             <div>
-        {this.state.decoded.kind === "seeker" || !this.state.token ? (
-          <h3>Not for you.</h3>
-        ) : (
-            <div>
-                <p>{this.state.location}</p>
-                <p name="id">{this.state.userId}</p>
-                <button onClick={this.myEvents}>My Events Lists</button>
-                <div>
-                    <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
-                    <input type="submit" id="mysubmit" onClick={this.loadEvents} />
-                    {renderEvents}
-                </div>
+                {this.state.decoded.kind === "seeker" || !this.state.token ? (
+                    <h3>Not for you.</h3>
+                ) : (
+                        <div>
+                            <p>{this.state.location}</p>
+                            <p name="id">{this.state.userId}</p>
+                            <button onClick={this.myEvents}>My Events Lists</button>
+                            <div>
+                                <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
+                                <input type="submit" id="mysubmit" onClick={this.loadEvents} />
+                                {renderEvents}
+                            </div>
+                        </div>
+                    )}
             </div>
-             )}
-             </div>
         )
     }
 }

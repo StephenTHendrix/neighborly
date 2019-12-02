@@ -179,5 +179,4 @@ class Landing extends Component {
     );
   }
 }
-
 export default withRouter(Landing)
