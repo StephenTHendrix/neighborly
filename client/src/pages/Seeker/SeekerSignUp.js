@@ -118,7 +118,8 @@ class SeekerSignUp extends Component {
                                 onChange={this.onChange}
                             />
                         </div>)
-                        : (<div></div>)}
+                        // && this.setState({ [this.state.companyName]: "null" })
+                        : <div></div>}
                 </div>
 
                 <div className="form-group">

@@ -1,4 +1,5 @@
 const express = require('express')
+var sequelize = require("sequelize")
 const users = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -68,7 +69,7 @@ users.post('/login', (req, res) => {
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-            expiresIn: 1440
+            expiresIn: 3600000
           })
           jwt.decode(token, {})
           res.cookie('userToken', token, { maxAge: 3600000, httpOnly: true });
@@ -84,30 +85,47 @@ users.post('/login', (req, res) => {
     })
 })
 
-users.get('/profile', (req, res) => {
-  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+// users.get('/profile', (req, res) => {
+//   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
-  db.User.findOne({
-    where: {
-      id: decoded.id
-    }
-  })
-    .then(user => {
-      if (user) {
-        res.json(user)
-      } else {
-        res.send('User does not exist')
-      }
-    })
-    .catch(err => {
-      res.send('error: ' + err)
-    })
-})
+//   db.User.findOne({
+//     where: {
+//       id: decoded.id
+//     }
+//   })
+//     .then(user => {
+//       if (user) {
+//         res.json(user)
+//       } else {
+//         res.send('User does not exist')
+//       }
+//     })
+//     .catch(err => {
+//       res.send('error: ' + err)
+//     })
+// })
 
 users.get('/all', (req, res) => {
-  // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+  const userToken = req.cookies.userToken;
+  var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+  console.log(decoded)
 
-  db.User.findAll()
+  db.Seeker.findOne({
+    where: {
+      UserId: decoded.id
+    }
+  }).then(seeker =>
+
+    // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+    db.sequelize.query(
+      `SELECT *
+    FROM Users u
+    INNER JOIN Volunteers v 
+    ON u.id = v.UserId
+    WHERE v.state = ?`,
+      { replacements: [seeker.state], type: sequelize.QueryTypes.SELECT }
+    ))
+    // })
     .then(user => {
       console.log('USERSJS: ', user);
       if (user) {
