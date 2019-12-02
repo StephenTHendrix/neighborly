@@ -8,7 +8,7 @@ white: #fff
 */
 
 /* * {
-    border: 1px dotted yellow;
+    border: 1px dotted blue;
 } */
 
 body {
@@ -28,8 +28,26 @@ body {
     text-shadow: 2px 2px black;
 }
 
+.sub-title {
+    font-family:'Chicle', cursive;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    font-size: 4em;
+    color: rgb(238, 181, 26);
+    text-shadow: 2px 2px black;
+}
+
+.dashboard {
+    font-family:'Chicle', cursive;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    font-size: 8em;
+    color: #A0D3F9;
+    text-shadow: 2px 2px black;
+}
+
 .navbar {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(42, 20, 73);
 }
 
 .custom-toggler .navbar-toggler-icon {
@@ -101,6 +119,12 @@ body {
 
 .card {
     background-color: white;
+    border: 1px solid #F6C026;
+}
+
+.card-header{
+    background-color: #762121;
+    color: white;
 }
 
 .card-horizontal-left {
@@ -124,10 +148,6 @@ body {
     text-align: justify;
 }
 
-/* .img-fit{
-    object-fit: cover;
-} */
-
 .img-hero {
     border-radius: .4em;
     border: 2px solid #F6C026;
@@ -146,6 +166,16 @@ body {
 .img-boxes {
     margin-top: 10%;
     position: relative;
+}
+
+.btn-sub{
+    background-color: #762121 !important;
+    color: white;
+}
+
+.btn-sub:hover{
+    background-color: #F6C026 !important;
+    color: black;
 }
 
 .text-lower, .text-upper{
@@ -174,6 +204,14 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 1;
+}
+
+#seek-header {
+    background-image: url("./assets/images/banner_volunteers.jpg");
+    background-size: cover;
+    background-position: top;
+    height: 300px;
+    width: 100%;
 }
 
     

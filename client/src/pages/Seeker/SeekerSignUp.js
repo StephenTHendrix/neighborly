@@ -77,9 +77,13 @@ class SeekerSignUp extends Component {
     render() {
 
         return (
+
+            <div className="container">
+
             <div>
                 {this.state.decoded.kind ? (<h3>Sign out before continuing!</h3>) : (
             <div>
+
                 <Register
                     first_name={this.state.first_name}
                     last_name={this.state.last_name}
@@ -323,7 +327,7 @@ class SeekerSignUp extends Component {
 
                 <button
                     type="submit"
-                    className="btn btn-lg btn-primary btn-block"
+                    className="btn btn-lg btn-sub mb-5"
                     onClick={this.onSubmit}
                 >
                     Register!

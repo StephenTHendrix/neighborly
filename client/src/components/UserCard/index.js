@@ -3,12 +3,21 @@ import React from "react";
 
 function UserCard(props) {
   return (
-    <div className="card mt-3">
-      <h5 className="card-header">{props.first_name} {props.last_name}</h5>
+    <div className="card col-lg-5 col-md-12 m-1 p-0">
+      <div className="card-header p-3">
+        <h5>
+          {props.first_name} {props.last_name}
+        </h5>
+        <p>
+          {props.city}, {props.state}
+        </p>
+      </div>
+
       <div className="card-body">
-        <h5 className="card-title">{props.city}, {props.state}</h5>
         <p className="card-text">{props.bio}</p>
-        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+        <p>
+          Contact: <a href={"mailto:" + props.email}>{props.email}</a>
+        </p>
       </div>
     </div>
 

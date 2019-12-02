@@ -61,6 +61,7 @@ class CreateEvent extends Component {
     });
   }
 
+
   render() {
     if (localStorage.usertoken) {
         this.state.token = localStorage.usertoken
@@ -92,9 +93,10 @@ class CreateEvent extends Component {
           onSubmit={this.onSubmit}
         />
 
+
         <button
           type="submit"
-          className="btn btn-lg btn-primary btn-block"
+          className="btn btn-lg btn-sub"
           onClick={this.onSubmit}
         >
           Register Event!

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { login } from "./UserFunctions";
+
 import jwt_decode from 'jwt-decode';
+
 
 class Landing extends Component {
   constructor() {
@@ -34,18 +36,25 @@ class Landing extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     const user = {
       email: this.state.email,
       password: this.state.password
-    };
+    }
 
     login(user).then(res => {
-      if (res) {
-        this.props.history.push(`/profile`);
+      const token = localStorage.usertoken
+      const decoded = jwt_decode(token)
+      console.log(decoded)
+
+      if (res && decoded.kind === "volunteer") {
+        this.props.history.push(`/volunteer`)
       }
-    });
+      else if (res && decoded.kind === "seeker") {
+        this.props.history.push(`/seeker`)
+      }
+    })
   }
 
   logOut(e) {
@@ -57,11 +66,6 @@ class Landing extends Component {
   render() {
     const loginRegLink = (
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
-        </li>
         <li className="nav-item">
           <div className="dropdown">
             <button
@@ -104,7 +108,7 @@ class Landing extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-sub"
               >
                 Sign in
               </button>
