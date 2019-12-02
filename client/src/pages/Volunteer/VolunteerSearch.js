@@ -94,13 +94,13 @@ class VolunteerSearch extends React.Component {
             console.log(error);
         });
         // update the "going" of events
-        setTimeout(() => {
-            API.updateNumber(id, 1).then(function () {
-                console.log("Updated");
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }, 500)
+        // setTimeout(() => {
+        //     API.updateNumber(id, 1).then(function () {
+        //         console.log("Updated");
+        //     }).catch(function (error) {
+        //         console.log(error);
+        //     });
+        // }, 500)
     }
 
     render() {
@@ -111,10 +111,15 @@ class VolunteerSearch extends React.Component {
                     title={event.title}
                     id={event.id}
                     organization={event.organization}
+                    description={event.description}
                     smalldescription={event.description.substring(0, 100)}
                     date={event.date}
                     time={event.time}
-                    flexible={event.flexible}
+                    street={event.street}
+                    city={event.city}
+                    state={event.state}
+                    needed = {event.needed}
+                    signup = {event.going}
                     key={event.id}
                     handleEventSignUp={this.handleEventSignUp}
                 />

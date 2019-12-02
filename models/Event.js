@@ -7,9 +7,9 @@ module.exports = function (sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        // link: {
-        //     type: DataTypes.STRING,
-        // },
+        link: {
+            type: DataTypes.STRING,
+        },
         description: {
             type: DataTypes.STRING(10000),
             allowNull: false,
@@ -58,10 +58,10 @@ module.exports = function (sequelize, DataTypes) {
                 not: ["[a-z]", 'i']
             }
         },
-        going: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
-        },
+        // going: {
+        //     type: DataTypes.INTEGER,
+        //     defaultValue: 0
+        // },
         date: {
             type: DataTypes.STRING
         },

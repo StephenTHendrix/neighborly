@@ -47,7 +47,6 @@ class SeekerDashboard extends Component {
       this.state.decoded = false;
     }
     return (
-
       <div>
         {this.state.decoded.kind === "volunteer" || !this.state.token ?
           (<h3>Not for you.</h3>) : (<div>

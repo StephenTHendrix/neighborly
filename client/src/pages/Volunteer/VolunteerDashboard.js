@@ -76,22 +76,39 @@ class VolunteerDashboard extends React.Component {
                     title={event.title}
                     id={event.id}
                     organization={event.organization}
-                    smalldescription={event.smalldescription}
+                    description={event.description}
+                    smalldescription={event.description.substring(0, 100)}
                     date={event.date}
                     time={event.time}
-                    flexible={event.flexible}
+                    street={event.street}
+                    city={event.city}
+                    state={event.state}
+                    needed={event.needed}
+                    signup={event.going}
                     key={event.id}
-                    handleEventSignUp={this.handleEventSignUp}
                 />
             )
         });
 
         return (
             <div>
-                <p>{this.state.location}</p>
-                <p name="id">{this.state.userId}</p>
-                <button onClick={this.search}>Search for Activity</button>
-                {renderEvents}
+                <div>
+                    <p>{this.state.location}</p>
+                    <p name="id">{this.state.userId}</p>
+                    <button onClick={this.search}>Search for Activity</button>
+                    {
+                        (this.state.events.length == 0) ?
+                            (
+                                <div>
+                                    <p>You are currently not Sign Up for any events</p>
+                                    <button onClick={this.search}>Click Here to Start Searching</button>
+                                </div>
+                            )
+                            :
+                            renderEvents
+                    }
+
+                </div>
             </div>
         )
     }
