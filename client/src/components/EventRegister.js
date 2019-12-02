@@ -98,7 +98,7 @@ class EventRegister extends Component {
             onChange={this.props.onChange}
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="smalldescription">Smalldescription</label>
           <input
             type="text"
@@ -108,7 +108,7 @@ class EventRegister extends Component {
             value={this.props.smalldescription}
             onChange={this.props.onChange}
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="image">Image link</label>
           <input

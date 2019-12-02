@@ -9,6 +9,7 @@ import Register from './components/Register'
 import Landing from './pages/Landing'
 import VolunteerSignUp from "./pages/Volunteer/VolunteerSignUp"
 import VolunteerDashboard from "./pages/Volunteer/VolunteerDashboard"
+import VolunteerSearch from "./pages/Volunteer/VolunteerSearch"
 import VolunteerProfile from "./pages/Volunteer/VolunteerProfile"
 import SeekerSignUp from "./pages/Seeker/SeekerSignUp"
 import SeekerDashboard from "./pages/Seeker/SeekerDashboard"
@@ -29,6 +30,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/volunteer/signup" component={VolunteerSignUp} />
               <Route exact path="/volunteer" component={VolunteerDashboard} />
+              <Route exact path="/volunteer/search" component={VolunteerSearch} />
               <Route exact path="/volunteer/profile" component={VolunteerProfile} />
               <Route exact path="/seeker/signup" component={SeekerSignUp} />
               <Route exact path="/seeker" component={SeekerDashboard} />

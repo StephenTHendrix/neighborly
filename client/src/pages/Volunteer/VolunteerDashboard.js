@@ -1,6 +1,9 @@
 import React from "react";
 import API from "../../utils/API";
-import EventCard from "../../components/EventCard";
+import InterestedEvent from "../../components/InterestedEvents";
+import { getVolunteerData } from '../../components/UserFunctions';
+import jwt_decode from 'jwt-decode';
+
 var _ = require("lodash");
 
 // *************************************************************************************************************************************
@@ -12,54 +15,64 @@ class VolunteerDashboard extends React.Component {
         events: [],
         location: "",
         volunteerID: "",
-        loading: false,
-        currentPage: 1,
-        displayperPage: 30
+        userId: "",
+        // search: false,
+        // loading: true,
+        // currentPage: 1,
+        // displayperPage: 20
     };
 
-    handleClick = event => {
-        this.setState({
-            currentPage: Number(event.target.id)
-        });
-    }
+    // handleClick = event => {
+    //     this.setState({
+    //         currentPage: Number(event.target.id)
+    //     });
+    // }
 
     componentDidMount() {
-        this.loadEvents();
+        const token = localStorage.usertoken
+        const decoded = jwt_decode(token)
+        console.log('DECODED', decoded)
+        this.setState({
+            userId: decoded.id
+        })
+        this.loadVolunteerData();
+        setTimeout(() => {
+            this.loadEvents();
+        }, 1000)
     };
+
+    loadVolunteerData = () => {
+        getVolunteerData().then(res => {
+            console.log(res)
+            this.setState({
+                location: res.data.city,
+            })
+        })
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
-        }, () => (console.log(this.state.location)));
+        });
     };
 
     loadEvents = () => {
-        this.setState({ loading: true });
-        this.setState({ currentPage: 1 });
-        API.searchevent(this.state.location)
-        let filterlocation = this.state.location;
-        setTimeout(() => {
-            API.getevent().then(res => {
-                let unsortedArray = res.data;
-                let filterArray = _.filter(unsortedArray, event => event.city === filterlocation)
-                console.log(filterArray);
-                this.setState({ events: filterArray });
-            })
-            this.setState({ loading: false })
-        }, 3500)
+        API.getsavedEvent(this.state.userId).then(res => {
+            console.log(res.data);
+            this.setState({ events: res.data })
+        })
+    }
+
+    search = () => {
+        window.location.href = "/volunteer/search";
     }
 
     render() {
-        const { events, currentPage, displayperPage } = this.state;
-        const indexOfLastTodo = currentPage * displayperPage;
-        const indexOfFirstTodo = indexOfLastTodo - displayperPage;
-        let currentEvent = [];
-        currentEvent = events.slice(indexOfFirstTodo, indexOfLastTodo);
-        console.log(currentEvent);
-        const renderEvents = currentEvent.map(event => {
+        const { events } = this.state;
+        const renderEvents = events.map(event => {
             return (
-                <EventCard
+                <InterestedEvent
                     title={event.title}
                     id={event.id}
                     organization={event.organization}
@@ -68,43 +81,17 @@ class VolunteerDashboard extends React.Component {
                     time={event.time}
                     flexible={event.flexible}
                     key={event.id}
+                    handleEventSignUp={this.handleEventSignUp}
                 />
             )
-        });
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(events.length / displayperPage); i++) {
-            pageNumbers.push(i);
-        }
-        const renderPageNumbers = pageNumbers.map(number => {
-            return (
-                <li
-                    key={number}
-                    id={number}
-                    onClick={this.handleClick}
-                >
-                    {number}
-                </li>
-            );
         });
 
         return (
             <div>
-                <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
-                <input type="submit" id="mysubmit" onClick={this.loadEvents} />
-
-                <div>
-                    {
-                        (this.state.loading)
-                            ? (<img src="https://media1.giphy.com/media/xT9DPldJHzZKtOnEn6/giphy.gif"></img>)
-                            : renderEvents
-                    }
-                </div>
-                {
-                    (this.state.loading)
-                        ? (null)
-                        : renderPageNumbers
-                }
-                <iframe name="hiddenFrame" width="0" height="0" border="0" style={{ display: "none" }}></iframe>
+                <p>{this.state.location}</p>
+                <p name="id">{this.state.userId}</p>
+                <button onClick={this.search}>Search for Activity</button>
+                {renderEvents}
             </div>
         )
     }
