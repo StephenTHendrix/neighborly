@@ -43,11 +43,6 @@ class Landing extends Component {
     const loginRegLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
-        </li>
-        <li className="nav-item">
           <div className="dropdown">
             <button
               class="btn dropdown-toggle"
@@ -89,7 +84,7 @@ class Landing extends Component {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-sub"
               >
                 Sign in
               </button>

@@ -23,7 +23,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <div className="container">
+
+          <div>
             <div>
               {" "}
               {localStorage.usertoken ? (

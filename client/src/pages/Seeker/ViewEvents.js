@@ -1,7 +1,9 @@
+
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
 import SearchEventCard from "../../components/SearchEventCard";
 import { getSeekerEvents, getSeekerData } from "../../components/UserFunctions";
+
 
 class ViewEvents extends Component {
   constructor() {
@@ -96,21 +98,25 @@ class ViewEvents extends Component {
         )}
       </div>
 
-      // <div>
-      //     {this.state.events.length ?
-      //         (
-      //             <div>{this.state.events.map(event => (
-      //                 <SearchEventCard
-      //                     key={event.id}
-      //                     title={event.title}
-      //                     description={event.description}>
-      //                 </SearchEventCard>
-      //             ))}
-      //             </div>) : (<h3>No events found.</h3>)
-      //     }
-      // </div>
-    );
-  }
+
+    render() {
+        return (
+            <div>
+                {this.state.events.length ?
+                    (
+                        <div>{this.state.events.map(event => (
+                            <SeekerEventCard
+                                key={event.id}
+                                title={event.title}
+                                description={event.description}>
+                            </SeekerEventCard>
+                        ))}
+                        </div>) : (<h3>No events found.</h3>)
+                }
+            </div>
+        )
+    }
+
 }
 
 export default ViewEvents;
