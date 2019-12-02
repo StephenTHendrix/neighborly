@@ -41,7 +41,6 @@ users.post('/register', (req, res) => {
       //TODO bcrypt
       .then(user => {
         console.log("reached in then: " + user);
-        console.log(userData)
         if (!user) {
           bcrypt.hash(req.body.password, 10, (err, hash) => {
             userData.password = hash
@@ -57,7 +56,6 @@ users.post('/register', (req, res) => {
 users.get("/data", function (req, res) {
   const userToken = req.cookies.userToken;
   var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
-  console.log(decoded)
 
   db.Volunteer.findOne({
     where: {
@@ -65,7 +63,6 @@ users.get("/data", function (req, res) {
     }
   })
     .then(volunteer => {
-      console.log(volunteer);
       res.json(volunteer);
     })
     .catch(err => {
@@ -73,48 +70,95 @@ users.get("/data", function (req, res) {
     })
 })
 
-users.post('/login', (req, res) => {
-  db.User.findOne({
+users.put("/data", function (req, res) {
+  const userToken = req.cookies.userToken;
+  var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
+
+  db.Volunteer.update({
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    dob: req.body.dob,
+    bio: req.body.bio,
+    gender: req.body.gender
+  }, {
     where: {
-      email: req.body.email
+      UserId: decoded.id
     }
   })
-    .then(user => {
-      if (user) {
-        if (bcrypt.compareSync(req.body.password, user.password)) {
-          let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-            expiresIn: 1440
-          })
-          res.send(token)
-        }
-      } else {
-        res.status(400).json({ error: 'User does not exist' })
-      }
+    .then(volunteer => {
+      res.json(volunteer);
     })
     .catch(err => {
-      res.status(400).json({ error: err })
+      res.send('error: ' + err)
     })
 })
 
-users.get('/profile', (req, res) => {
-  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+users.get('/events', (req, res) => {
+  const userToken = req.cookies.userToken;
+  var decoded = jwt.verify(userToken, process.env.SECRET_KEY)
 
-  db.User.findOne({
+  db.Event.findAll({
     where: {
-      id: decoded.id
+      UserId: decoded.id
+      // above will not work. Where statement must use new events/volunteers table to join and then get the event
     }
   })
-    .then(user => {
-      if (user) {
-        res.json(user)
+    .then(event => {
+      console.log('eventSJS: ', event);
+      if (event) {
+        res.json(event)
       } else {
-        res.send('User does not exist')
+        res.send('event does not exist')
       }
     })
     .catch(err => {
       res.send('error: ' + err)
     })
 })
+
+// users.post('/login', (req, res) => {
+//   db.User.findOne({
+//     where: {
+//       email: req.body.email
+//     }
+//   })
+//     .then(user => {
+//       if (user) {
+//         if (bcrypt.compareSync(req.body.password, user.password)) {
+//           let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
+//             expiresIn: 1440
+//           })
+//           res.send(token)
+//         }
+//       } else {
+//         res.status(400).json({ error: 'User does not exist' })
+//       }
+//     })
+//     .catch(err => {
+//       res.status(400).json({ error: err })
+//     })
+// })
+
+// users.get('/profile', (req, res) => {
+//   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+//   db.User.findOne({
+//     where: {
+//       id: decoded.id
+//     }
+//   })
+//     .then(user => {
+//       if (user) {
+//         res.json(user)
+//       } else {
+//         res.send('User does not exist')
+//       }
+//     })
+//     .catch(err => {
+//       res.send('error: ' + err)
+//     })
+// })
 
 users.get('/all', (req, res) => {
   // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
