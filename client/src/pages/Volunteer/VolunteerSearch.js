@@ -10,7 +10,11 @@ var _ = require("lodash");
 // 1. Sent volunteer informations (thier name, and thier current location) to this page some how!
 
 class VolunteerSearch extends React.Component {
-    state = {
+    constructor() {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
+        super();
+    this.state = {
         // all Events after filter out the location;
         locationEvents: [],
         // events you already sign up for
@@ -20,8 +24,11 @@ class VolunteerSearch extends React.Component {
         location: "",
         volunteerID: "",
         userId: "",
+        token: token,
+      decoded: decoded,
         // loading: true,
     };
+};
 
     componentDidMount() {
         const token = localStorage.usertoken
@@ -46,9 +53,16 @@ class VolunteerSearch extends React.Component {
     loadVolunteerData = () => {
         getVolunteerData().then(res => {
             console.log(res)
-            this.setState({
-                location: res.data.city,
-            })
+            {
+                this.state.decoded.kind === "volunteer"
+                  ? this.setState({
+                      location: res.data.city
+                    })
+                  : this.setState({
+                      location: ""
+                    });
+              }
+            
         })
     }
 
@@ -106,7 +120,7 @@ class VolunteerSearch extends React.Component {
     render() {
         const { events } = this.state;
         const renderEvents = events.map(event => {
-            return (
+            
                 <SearchEventCard
                     title={event.title}
                     id={event.id}
@@ -118,10 +132,14 @@ class VolunteerSearch extends React.Component {
                     key={event.id}
                     handleEventSignUp={this.handleEventSignUp}
                 />
-            )
+            
         });
 
         return (
+            <div>
+        {this.state.decoded.kind === "seeker" || !this.state.token ? (
+          <h3>Not for you.</h3>
+        ) : (
             <div>
                 <p>{this.state.location}</p>
                 <p name="id">{this.state.userId}</p>
@@ -132,6 +150,8 @@ class VolunteerSearch extends React.Component {
                     {renderEvents}
                 </div>
             </div>
+             )}
+             </div>
         )
     }
 }
