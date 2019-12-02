@@ -143,7 +143,7 @@ export const getSeekerData = () => {
 
 export const getSeekerEvents = () => {
   return axios
-    .get('seeker/events')
+    .get('/seeker/events')
   // .then(response => {
   //   console.log('UserFunctions: ', response)
   // })
