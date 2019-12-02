@@ -14,6 +14,7 @@ import VolunteerProfile from "./pages/Volunteer/VolunteerProfile"
 import SeekerSignUp from "./pages/Seeker/SeekerSignUp"
 import SeekerDashboard from "./pages/Seeker/SeekerDashboard"
 import SeekerProfile from "./pages/Seeker/SeekerProfile"
+import ViewEvents from "./pages/Seeker/ViewEvents"
 import CreateEvent from "./pages/Seeker/CreateEvent"
 
 class App extends Component {
@@ -27,7 +28,6 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/profile" component={Profile} /> */}
               <Route exact path="/volunteer/signup" component={VolunteerSignUp} />
               <Route exact path="/volunteer" component={VolunteerDashboard} />
               <Route exact path="/volunteer/search" component={VolunteerSearch} />
@@ -36,6 +36,7 @@ class App extends Component {
               <Route exact path="/seeker" component={SeekerDashboard} />
               <Route exact path="/seeker/events" component={CreateEvent} />
               <Route exact path="/seeker/profile" component={SeekerProfile} />
+              <Route exact path="/seeker/events" component={ViewEvents} />
             </Switch>
           </div>
         </div>

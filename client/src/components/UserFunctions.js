@@ -9,7 +9,6 @@ export const volunteerRegister = (newUser, newVolunteer) => {
       last_name: newUser.last_name,
       email: newUser.email,
       password: newUser.password,
-      street: newVolunteer.street,
       city: newVolunteer.city,
       state: newVolunteer.state,
       zip: newVolunteer.zip,
@@ -101,13 +100,51 @@ export const getUsers = () => {
 
 export const getEvents = () => {
   return axios
-    .get('users/events')
-  // .then(response => {
-  //   console.log('UserFunctions: ', response)
-  // })
+    .get('volunteer/events')
 }
 
 export const getVolunteerData = () => {
   return axios
     .get('/volunteer/data')
+}
+
+export const editVolunteerData = (editVolunteer) => {
+  return axios
+    .put('/volunteer/data', {
+      city: editVolunteer.city,
+      state: editVolunteer.state,
+      zip: editVolunteer.zip,
+      dob: editVolunteer.dob,
+      bio: editVolunteer.bio,
+      gender: editVolunteer.gender
+    })
+}
+
+export const editSeekerData = (editSeeker) => {
+  return axios
+    .put('/seeker/data', {
+      companyName: editSeeker.companyName,
+      address1: editSeeker.address1,
+      address2: editSeeker.address2,
+      city: editSeeker.city,
+      state: editSeeker.state,
+      zip: editSeeker.zip,
+      bio: editSeeker.bio,
+      website: editSeeker.website
+    })
+}
+
+
+
+export const getSeekerData = () => {
+  return axios
+    .get('/seeker/data')
+}
+
+export const getSeekerEvents = () => {
+  return axios
+    .get('seeker/events')
+  // .then(response => {
+  //   console.log('UserFunctions: ', response)
+  // })
 }
