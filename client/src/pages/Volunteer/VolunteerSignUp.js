@@ -3,14 +3,29 @@ import ReactDOM from "react-dom"
 import Register from "../../components/Register";
 import { volunteerRegister } from '../../components/UserFunctions'
 
+// // Import React FilePond
+// import { FilePond, registerPlugin } from 'react-filepond';
+
+// // Import FilePond styles
+// import 'filepond/dist/filepond.min.css';
+
+// // Import the Image EXIF Orientation and Image Preview plugins
+// // Note: These need to be installed separately
+// import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+// import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+// import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+// // Register the plugins
+// registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 
 
 
 class VolunteerSignUp extends Component {
 
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             first_name: '',
             last_name: '',
@@ -23,7 +38,13 @@ class VolunteerSignUp extends Component {
             dob: '',
             bio: '',
             gender: '',
-            image: ''
+            image: '',
+            // files: [{
+            //     source: 'index.html',
+            //     options: {
+            //         type: 'local'
+            //     }
+            // }]
         }
         this.BACKSPACE = 8;
         this.DELETE_KEY = 46;
@@ -34,6 +55,10 @@ class VolunteerSignUp extends Component {
 
     componentDidMount() {
         this.node = ReactDOM.findDOMNode(this);
+    }
+
+    handleInit() {
+        console.log('FilePond instance has initialised', this.pond);
     }
 
 
@@ -259,6 +284,24 @@ class VolunteerSignUp extends Component {
 
                         </div>
                     </form>
+                    <div className="App">
+
+                        {/* Pass FilePond properties as attributes
+                        <FilePond ref={ref => this.pond = ref}
+                            files={this.state.files}
+                            allowMultiple={true}
+                            maxFiles={3}
+                            server="/api"
+                            oninit={() => this.handleInit()}
+                            onupdatefiles={(fileItems) => {
+                                // Set current file objects to this.state
+                                this.setState({
+                                    files: fileItems.map(fileItem => fileItem.file)
+                                });
+                            }}>
+                        </FilePond> */}
+
+                    </div>
 
 
                     <div className="form-group">
