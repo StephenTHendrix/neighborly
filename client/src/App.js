@@ -16,6 +16,8 @@ import SeekerDashboard from "./pages/Seeker/SeekerDashboard";
 import SeekerProfile from "./pages/Seeker/SeekerProfile";
 import ViewEvents from "./pages/Seeker/ViewEvents";
 import CreateEvent from "./pages/Seeker/CreateEvent";
+import BeLoggedIn from "./pages/BeLoggedIn";
+import NoMatch from "./pages/NoMatch";
 
 class App extends Component {
   render() {
@@ -60,6 +62,7 @@ class App extends Component {
                     component={SeekerProfile}
                   />
                   <Route exact path="/seeker/events" component={ViewEvents} />
+                  <Route component={NoMatch} />
                 </Switch>
               ) : (
                 <Switch>
@@ -71,18 +74,19 @@ class App extends Component {
                     path="/volunteer/signup"
                     component={VolunteerSignUp}
                   />
-                  <Route exact path="/volunteer" component={Landing} />
-                  <Route exact path="/volunteer/search" component={Landing} />
-                  <Route exact path="/volunteer/profile" component={Landing} />
+                  <Route exact path="/volunteer" component={BeLoggedIn} />
+                  <Route exact path="/volunteer/search" component={BeLoggedIn} />
+                  <Route exact path="/volunteer/profile" component={BeLoggedIn} />
                   <Route exact path="/seeker/signup" component={SeekerSignUp} />
-                  <Route exact path="/seeker" component={Landing} />
-                  <Route exact path="/seeker/create" component={Landing} />
+                  <Route exact path="/seeker" component={BeLoggedIn} />
+                  <Route exact path="/seeker/create" component={BeLoggedIn} />
                   <Route
                     exact
                     path="/seeker/profile"
-                    component={Landing}
+                    component={BeLoggedIn}
                   />
-                  <Route exact path="/seeker/events" component={Landing} />
+                  <Route exact path="/seeker/events" component={BeLoggedIn} />
+                  <Route component={NoMatch} />
                 </Switch>
               )}{" "}
             </div>
