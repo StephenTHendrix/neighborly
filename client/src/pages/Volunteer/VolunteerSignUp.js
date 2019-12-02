@@ -3,6 +3,8 @@ import ReactDOM from "react-dom"
 import Register from "../../components/Register";
 import { volunteerRegister } from '../../components/UserFunctions'
 
+
+
 // Import React FilePond
 import { FilePond, registerPlugin } from 'react-filepond';
 
@@ -14,6 +16,7 @@ import 'filepond/dist/filepond.min.css';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import jwt_decode from 'jwt-decode';
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
@@ -44,7 +47,9 @@ class VolunteerSignUp extends Component {
                 options: {
                     type: 'local'
                 }
-            }]
+            }],
+            token: {},
+            decoded: {},
         }
         this.BACKSPACE = 8;
         this.DELETE_KEY = 46;
@@ -55,6 +60,15 @@ class VolunteerSignUp extends Component {
 
     componentDidMount() {
         this.node = ReactDOM.findDOMNode(this);
+        if (localStorage.usertoken) {
+            const token = localStorage.usertoken
+          const decoded = jwt_decode(token)
+          this.setState({token: token,
+        decoded: decoded})
+            } else {
+                this.setState({token: false,
+                    decoded: false})
+            }
     }
 
     handleInit() {
@@ -99,7 +113,10 @@ class VolunteerSignUp extends Component {
     }
 
     render() {
+        
         return (
+            <div>
+            {this.state.decoded.kind ? (<h3>Sign out before continuing!</h3>) : (
             <div className="container">
                 < div >
                     <Register
@@ -323,7 +340,7 @@ class VolunteerSignUp extends Component {
                         Register!
               </button>
                 </div >
-            </div >
+            </div >)}</div>
         )
     }
 }

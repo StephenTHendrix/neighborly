@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import EventCard from "./EventCard";
+import SearchEventCard from "./SearchEventCard";
 import { getEvents } from './UserFunctions.js'
 
 class Profile extends Component {
@@ -77,12 +77,12 @@ class Profile extends Component {
         {this.state.events.length ?
           (
             <div>{this.state.events.map(event => (
-              <EventCard key={event.id} title={event.title} description={event.description}>
+              <SearchEventCard key={event.id} title={event.title} description={event.description}>
 
 
 
 
-              </EventCard>
+              </SearchEventCard>
             ))}
             </div>) : (<h3>No events found.</h3>)
         }</div>

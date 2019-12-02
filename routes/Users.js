@@ -10,7 +10,7 @@ users.use(cors())
 process.env.SECRET_KEY = 'secret'
 
 users.post('/register', (req, res) => {
-  console.log("Volunteer Users hit")
+  console.log("Users hit")
   const today = new Date()
   const userData = {
     first_name: req.body.first_name,
