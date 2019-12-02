@@ -8,7 +8,7 @@ export default {
     //     return axios.post("/api/searchevent", { location });
     // },
     searchevent: function () {
-        return axios.get("/api/searchevent");
+        return axios.get("/api/events");
     },
 
     savedEvent: function (id, userId) {
@@ -17,6 +17,9 @@ export default {
     
     getsavedEvent: function (id) {
         return axios.get("/api/userevents/" + id)
-    }
+    },
 
+    updateNumber: function (id, addone) {
+        return axios.put("/api/events/" + id, addone);
+    }
 }

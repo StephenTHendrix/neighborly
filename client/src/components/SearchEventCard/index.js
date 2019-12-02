@@ -1,29 +1,7 @@
 import React from "react";
 
-function EventCard(props) {
+function SearchEventCard(props) {
   return (
-    // <div className="card">
-    //   <div className="img-container">
-    //     {/* <img alt={props.name} src={props.image} /> */}
-    //   </div>
-    //   <div className="content">
-    //     <ul>
-    //       <li>
-    //         <strong>Name:</strong> {props.title}
-    //       </li>
-
-    //       <li>
-    //         <strong>Description:</strong> {props.shortdescription}
-    //       </li>
-    //       <li>
-    //         {/* <strong>Occupation:</strong> {props.occupation} */}
-    //       </li>
-    //       <li>
-    //         {/* <strong>Location:</strong> {props.location} */}
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </div>
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">{props.title} {props.id}</h5>
@@ -38,11 +16,10 @@ function EventCard(props) {
           <small className="text-muted">{props.flexible}</small>
         }
         <buton className="saved btn btn-primary" id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</buton>
-
       </div>
       <button key={props.id} id={props.id}>Nothing Yet (Modal Probably)</button>
     </div>
   );
 }
 
-export default EventCard;
+export default SearchEventCard;
