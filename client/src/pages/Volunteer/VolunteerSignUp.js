@@ -3,20 +3,20 @@ import ReactDOM from "react-dom"
 import Register from "../../components/Register";
 import { volunteerRegister } from '../../components/UserFunctions'
 
-// // Import React FilePond
-// import { FilePond, registerPlugin } from 'react-filepond';
+// Import React FilePond
+import { FilePond, registerPlugin } from 'react-filepond';
 
-// // Import FilePond styles
-// import 'filepond/dist/filepond.min.css';
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css';
 
-// // Import the Image EXIF Orientation and Image Preview plugins
-// // Note: These need to be installed separately
-// import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
-// import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-// import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
-// // Register the plugins
-// registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 
 
@@ -39,12 +39,12 @@ class VolunteerSignUp extends Component {
             bio: '',
             gender: '',
             image: '',
-            // files: [{
-            //     source: 'index.html',
-            //     options: {
-            //         type: 'local'
-            //     }
-            // }]
+            files: [{
+                source: 'index.html',
+                options: {
+                    type: 'local'
+                }
+            }]
         }
         this.BACKSPACE = 8;
         this.DELETE_KEY = 46;
@@ -286,7 +286,7 @@ class VolunteerSignUp extends Component {
                     </form>
                     <div className="App">
 
-                        {/* Pass FilePond properties as attributes
+                        {/* Pass FilePond properties as attributes */}
                         <FilePond ref={ref => this.pond = ref}
                             files={this.state.files}
                             allowMultiple={true}
@@ -299,7 +299,7 @@ class VolunteerSignUp extends Component {
                                     files: fileItems.map(fileItem => fileItem.file)
                                 });
                             }}>
-                        </FilePond> */}
+                        </FilePond>
 
                     </div>
 
