@@ -36,6 +36,7 @@ events.post('/register', (req, res) => {
           //TODO bcrypt
           .then(event => {
               console.log("reached in then: " + event);
+              
               console.log(eventData)
           })
 

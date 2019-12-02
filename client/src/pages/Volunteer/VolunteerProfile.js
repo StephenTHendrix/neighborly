@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
 
-import EventCard from "../../components/EventCard";
+import SearchEventCard from "../../components/SearchEventCard";
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
@@ -168,11 +168,11 @@ class VolunteerProfile extends Component {
                 {/* {this.state.events.length ?
                     (
                         <div>{this.state.events.map(event => (
-                            <EventCard
+                            <SearchEventCard
                                 key={event.id}
                                 title={event.title}
                                 description={event.description}>
-                            </EventCard>
+                            </SearchEventCard>
                         ))}
                         </div>) : (<h3>No events found.</h3>)
                 } */}

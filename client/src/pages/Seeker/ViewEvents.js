@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import EventCard from "../../components/EventCard";
+import SearchEventCard from "../../components/SearchEventCard";
 import { getSeekerEvents, getSeekerData } from '../../components/UserFunctions'
 
 class ViewEvents extends Component {
@@ -74,11 +74,11 @@ class ViewEvents extends Component {
                 {this.state.events.length ?
                     (
                         <div>{this.state.events.map(event => (
-                            <EventCard
+                            <SearchEventCard
                                 key={event.id}
                                 title={event.title}
                                 description={event.description}>
-                            </EventCard>
+                            </SearchEventCard>
                         ))}
                         </div>) : (<h3>No events found.</h3>)
                 }
