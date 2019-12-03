@@ -140,23 +140,29 @@ class VolunteerSearch extends React.Component {
         });
 
         return (
-            <div>
-                {this.state.decoded.kind === "seeker" || !this.state.token ? (
-                    <h3>Not for you.</h3>
-                ) : (
-                        <div>
-                            <p>{this.state.location}</p>
-                            <p name="id">{this.state.userId}</p>
-                            <div className="btn btn-sub" onClick={this.myEvents}>My Events Lists</div>
-                            <div>
-                                <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
-                                <input type="submit" id="mysubmit" onClick={this.loadEvents} />
-                                {renderEvents}
-                            </div>
-                        </div>
-                    )}
-            </div>
-        )
+          <div>
+            {this.state.decoded.kind === "seeker" || !this.state.token ? (
+              <h3>Not for you.</h3>
+            ) : (
+              <div>
+                <div>
+                  <input
+                    type="text"
+                    name="location"
+                    id="mytext"
+                    onChange={this.handleInputChange}
+                  />
+                  <div
+                    className="btn btn-sub"
+                    id="mysubmit"
+                    onClick={this.loadEvents}>Submit
+                  </div>
+                  {renderEvents}
+                </div>
+              </div>
+            )}
+          </div>
+        );
     }
 }
 export default VolunteerSearch;
