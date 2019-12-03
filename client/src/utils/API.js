@@ -21,5 +21,8 @@ export default {
 
     updateNumber: function (id, addone) {
         return axios.put("/api/events/" + id, addone);
+    },
+    seekerEventVolunteerList: function (id, UserId) {
+        return axios.get("/api/seekerEvent/" + id + "/" +  UserId)
     }
 }

@@ -59,80 +59,76 @@ class Landing extends Component {
           </div>
 
           <div className="row">
-            <div className="col-md-12 col-lg-6 mt-3">
-              <div className="card shadow">
-                <div className="card-horizontal-left">
-                  <div className="img-square-wrapper">
-                    <img
-                      className="img-fluid img-high"
-                      src="./assets/images/local.jpg"
-                      alt="volunteer with puppy"
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h4 className="card-title text-block">Local Community</h4>
-                    <p className="card-text">
-                      You can find local volunteer opportunies close to you.
-                      This can be helping non-profits or organizations with
-                      different events they have going on, or helping
-                      individuals in need within your community on an individual
-                      basis.
+
+            <div className="row d-flex justify-content-center">
+              <div class="card col-sm-12 shadow mb-5">
+                <div class="card-body">
+                  <div className="row">
+                    <div className="col-sm-12 col-md-4 d-flex flex-column justify-content-end p-0" id="img-puppy">
+                       
+                    </div>
+                    <div className="col-sm-12 col-md-8">
+                      <h4 className="card-title text-block">Local Community</h4>
+                      <p className="card-text">
+                        When ready, you can find opportunies around the globe,
+                        step out into the world on a bigger scale by traveling the
+                        world conquering world hunger, disease, disaster recovery,
+                        humanitarian missions.
                     </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="col-md-12 col-lg-6 mt-3">
-              <div className="card shadow">
-                <div className="card-horizontal-right">
-                  <div className="img-square-wrapper">
-                    <img
-                      className="img-fluid img-high"
-                      src="./assets/images/global.jpg"
-                      alt="volunteer with child"
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h4 className="card-title text-block">Global Outreach</h4>
-                    <p className="card-text">
-                      When ready, you can find opportunies around the globe,
-                      step out into the world on a bigger scale by traveling the
-                      world conquering world hunger, disease, disaster recovery,
-                      humanitarian missions.
+            <div className="row d-flex justify-content-center">
+              <div class="card col-sm-12 shadow mb-5">
+                <div class="card-body">
+                  <div className="row">
+                    
+                    <div className="col-sm-12 col-md-8">
+                      <h4 className="card-title text-block">Global Outreach</h4>
+                      <p className="card-text">
+                        When ready, you can find opportunies around the globe,
+                        step out into the world on a bigger scale by traveling the
+                        world conquering world hunger, disease, disaster recovery,
+                        humanitarian missions.
                     </p>
+                    </div>
+                    <div className="col-sm-12 col-md-4 d-flex flex-column justify-content-end p-0" id="img-global">
+
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div className="row d-flex justify-content-center mb-5">
+              <div class="card col-sm-12 shadow">
+                <div class="card-body">
+                  <div className="row">
+                    <div className="col-sm-12 col-md-4 d-flex flex-column justify-content-end p-0" id="img-env">
+
+                    </div>
+
+                    <div className="col-sm-12 col-md-8">
+                      <h4 className="card-title text-block">Environmental Conservation</h4>
+                      <p className="card-text">
+                        The planet could always use more help. Find local or
+                        global opportunies to do your part. Help endangered
+                        species, communities in extreme poverty, etc. by
+                        protecting or cleaning up their.
+                    </p>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
 
-          <div className="row">
-            <div className="col-12 mt-3">
-              <div className="card shadow">
-                <div className="card-horizontal-left">
-                  <div className="img-square-wrapper">
-                    <img
-                      className="img-fluid img-high"
-                      src="./assets/images/cleanup.jpg"
-                      alt="cleanup of oil spill"
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h4 className="card-title text-block">
-                      Environmental Conservation
-                    </h4>
-                    <p className="card-text">
-                      The planet could always use more help. Find local or
-                      global opportunies to do your part. Help endangered
-                      species, communities in extreme poverty, etc. by
-                      protecting or cleaning up their.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     );

@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
+
+
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
 class VolunteerProfile extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
+        super()
         this.state = {
             first_name: '',
             last_name: '',
@@ -19,7 +23,9 @@ class VolunteerProfile extends Component {
             image: '',
             errors: {},
             events: [],
-            toggleIndex: undefined
+            toggleIndex: undefined,
+            token: {},
+            decoded: {},
         }
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -42,15 +48,23 @@ class VolunteerProfile extends Component {
     }
 
     loadVolunteerData = () => {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
         getVolunteerData().then(res => {
-            this.setState({
-                city: res.data.city,
-                state: res.data.state,
-                zip: res.data.zip,
-                dob: res.data.dob,
-                bio: res.data.bio,
-                image: res.data.image
-            })
+
+            {
+                decoded.kind === "seeker"
+                    ? (this.state = {})
+                    : this.setState({
+                        city: res.data.city,
+                        state: res.data.state,
+                        zip: res.data.zip,
+                        dob: res.data.dob,
+                        bio: res.data.bio,
+                        image: res.data.image
+                    });
+            }
+
         })
     }
 
@@ -107,80 +121,94 @@ class VolunteerProfile extends Component {
     }
 
     render() {
+        if (localStorage.usertoken) {
+            this.state.token = localStorage.usertoken;
+            this.state.decoded = jwt_decode(this.state.token);
+        } else {
+            this.state.token = false;
+            this.state.decoded = false;
+        }
         return (
-            <div className="container">
-                <div className="jumbotron mt-5">
-                    <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center">PROFILE</h1>
-                    </div>
-                    <table className="table col-md-6 mx-auto">
-                        <tbody ref={this.setWrapperRef}>
-                            <img src={"../images/" + this.state.image} />
-                            <EditableRow
-                                property="First Name"
-                                value={this.state.first_name}
-                                toggle="view">
-                            </EditableRow>
+            <div>
+                {this.state.decoded.kind === "seeker" || !this.state.token ? (
+                    <h3>Not for you.</h3>
+                ) : (
+                        <div className="container">
+                            <div className="jumbotron mt-5">
+                                <div className="col-sm-8 mx-auto">
+                                    <h1 className="text-center sub-title">PROFILE</h1>
+                                </div>
+                                <table className="table col-md-6 mx-auto">
+                                    <tbody ref={this.setWrapperRef}>
+                                        <img src={"../images/" + this.state.image} />
+                                        <EditableRow
+                                            property="First Name"
+                                            value={this.state.first_name}
+                                            toggle="view">
+                                        </EditableRow>
 
-                            <EditableRow
-                                property="Last Name"
-                                value={this.state.last_name}
-                                toggle="view">
-                            </EditableRow>
+                                        <EditableRow
+                                            property="Last Name"
+                                            value={this.state.last_name}
+                                            toggle="view">
+                                        </EditableRow>
 
-                            <EditableRow
-                                property="Email"
-                                value={this.state.email}
-                                toggle="view">
-                            </EditableRow>
+                                        <EditableRow
+                                            property="Email"
+                                            value={this.state.email}
+                                            toggle="view">
+                                        </EditableRow>
 
-                            <EditableRow
-                                property="City"
-                                name="city"
-                                value={this.state.city}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
+                                        <EditableRow
+                                            property="City"
+                                            name="city"
+                                            value={this.state.city}
+                                            onClick={this.editProperty}
+                                            onChange={this.onChange}
+                                            toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
+                                        </EditableRow>
 
-                            <EditableRow
-                                property="State"
-                                name="state"
-                                value={this.state.state}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
+                                        <EditableRow
+                                            property="State"
+                                            name="state"
+                                            value={this.state.state}
+                                            onClick={this.editProperty}
+                                            onChange={this.onChange}
+                                            toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
+                                        </EditableRow>
 
-                            <EditableRow
-                                property="Zip"
-                                name="zip"
-                                value={this.state.zip}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
+                                        <EditableRow
+                                            property="Zip"
+                                            name="zip"
+                                            value={this.state.zip}
+                                            onClick={this.editProperty}
+                                            onChange={this.onChange}
+                                            toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
+                                        </EditableRow>
 
-                            <EditableRow
-                                property="DOB"
-                                namee="dob"
-                                value={this.state.dob}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
+                                        <EditableRow
+                                            property="DOB"
+                                            namee="dob"
+                                            value={this.state.dob}
+                                            onClick={this.editProperty}
+                                            onChange={this.onChange}
+                                            toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
+                                        </EditableRow>
 
-                            <EditableRow
-                                property="Bio"
-                                name="bio"
-                                value={this.state.bio}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={8 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
-                        </tbody>
-                    </table>
-                </div>
+                                        <EditableRow
+                                            property="Bio"
+                                            name="bio"
+                                            value={this.state.bio}
+                                            onClick={this.editProperty}
+                                            onChange={this.onChange}
+                                            toggle={8 === this.state.toggleIndex ? "edit" : "view"}>
+                                        </EditableRow>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div >
+                    )
+                }
             </div>
         )
     }

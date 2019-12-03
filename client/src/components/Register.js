@@ -10,7 +10,7 @@ class Register extends Component {
 
       // <div className="container">
       <form>
-        <h1 className="h3 mb-3 font-weight-normal text-center title">Register</h1>
+        <h1 className="h3 mb-3 font-weight-normal text-center sub-title">Register</h1>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="name">First name</label>

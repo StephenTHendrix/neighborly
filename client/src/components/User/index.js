@@ -1,22 +1,18 @@
 import React from "react";
 
 
-function UserCard(props) {
+function User(props) {
   return (
-    <div className="card col-lg-5 col-md-12 m-1 p-0">
+    <div className="card col-lg-6 col-md-12 m-1 p-0">
       <div className="card-header p-3">
         <h5>
           {props.first_name} {props.last_name}
         </h5>
-        <p>
-          {props.city}, {props.state}
-        </p>
       </div>
 
       <div className="card-body">
-        <p className="card-text">{props.bio}</p>
         <p>
-          Contact: <a href={"mailto:" + props.email}>{props.email}</a>
+          Contact: {props.email}
         </p>
       </div>
     </div>
@@ -43,4 +39,4 @@ function UserCard(props) {
   );
 }
 
-export default UserCard;
+export default User;

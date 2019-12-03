@@ -7,10 +7,9 @@ class EventRegister extends Component {
     return (
       
       <form>
-        <h1 className="h3 mb-3 font-weight-normal text-center title">Register Event</h1>
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="title">Event title</label>
+            <label htmlFor="sub-title">Event title</label>
             <input
               type="text"
               className="form-control"
