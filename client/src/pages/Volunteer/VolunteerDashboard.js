@@ -24,7 +24,9 @@ class VolunteerDashboard extends React.Component {
         volunteerID: "",
         userId: "",
         token: token,
-        decoded: decoded
+        decoded: decoded,
+        first_name: "",
+        last_name: ""
         // search: false,
         // loading: true,
         // currentPage: 1,
@@ -58,7 +60,9 @@ class VolunteerDashboard extends React.Component {
       // const decoded = jwt_decode(token);
       // console.log("DECODED", this.state.decoded);
       this.setState({
-        userId: this.state.decoded.id
+        userId: this.state.decoded.id,
+        first_name: this.state.decoded.first_name,
+        last_name: this.state.decoded.last_name
       });
       this.loadVolunteerData();
       setTimeout(
@@ -128,7 +132,7 @@ class VolunteerDashboard extends React.Component {
     return (
       <div>
         <div className="mb-5" id="vol-header">
-          <h3 className="ml-5 pt-5 sub-title">Dashboard</h3>
+    <h3 className="ml-5 pt-5 sub-title">Hello, {this.state.first_name} {this.state.last_name}</h3>
         </div>
 
         <div className="mx-5">
@@ -138,7 +142,24 @@ class VolunteerDashboard extends React.Component {
                 <h3 className="text-center sub-title ml-5">Local Events</h3>
               </div>
 
-              <div className="row"></div>
+              <div className="row">
+                <div>
+                  {this.state.decoded.kind === "seeker" ||
+                  !localStorage.usertoken ? (
+                    <h3>Not for you.</h3>
+                  ) : this.state.events.length == 0 ? (
+                    <div>
+                      <p>You are currently not Signed Up for any events</p>
+
+                      <div className="col text-right mr-3"></div>
+                    </div>
+                  ) : (
+                    <div className="ml-5">
+                      <VolunteerSearch />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
             <div className="col">
               <div className="row">
@@ -164,43 +185,10 @@ class VolunteerDashboard extends React.Component {
                     <div>
                       <p>You are currently not Signed Up for any events</p>
 
-                      <div className="col text-right mr-3">
-                        {/* <div
-                          className="btn btn-sub"
-                          onClick={this.search}
-                          data-toggle="modal"
-                          data-target="#searchModalCenter"
-                        >
-                          Click Here to Start Searching
-                        </div> */}
-                        <div
-                          className="btn btn-sub"
-                          data-toggle="modal"
-                          data-target="#searchModalCenter"
-                        >
-                          Click Here to Start Searching
-                        </div>
-                      </div>
+                      <div className="col text-right mr-3"></div>
                     </div>
                   ) : (
-                    <div>
-                      {/* <div
-                        className="btn btn-sub"
-                        onClick={this.search}
-                        data-toggle="modal"
-                        data-target="#searchModalCenter"
-                      >
-                        Search for Activity
-                      </div> */}
-                      <div
-                        className="btn btn-sub"
-                        data-toggle="modal"
-                        data-target="#searchModalCenter"
-                      >
-                        Search for Activity
-                      </div>
-                      {renderEvents}
-                    </div>
+                    <div>{renderEvents}</div>
                   )}
                 </div>
               </div>

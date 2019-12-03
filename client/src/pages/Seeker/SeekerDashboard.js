@@ -19,6 +19,7 @@ class SeekerDashboard extends Component {
     allUsers: [],
     token: {},
     decoded: {},
+
     title: "",
       link: "",
       description: "",
@@ -32,6 +33,9 @@ class SeekerDashboard extends Component {
       needed: "",
       date: "",
       time: "",
+    first_name: "",
+    last_name: ""
+
   };
 
   this.onChange = this.onChange.bind(this);
@@ -60,6 +64,10 @@ class SeekerDashboard extends Component {
 
   componentDidMount() {
     this.loadUsers();
+    this.setState({
+      first_name: this.state.decoded.first_name,
+      last_name: this.state.decoded.last_name
+    })
   }
 
   onChange(e) {
@@ -104,7 +112,9 @@ class SeekerDashboard extends Component {
     return (
       <div>
         <div className="mb-5" id="seek-header">
-          <h3 className="ml-5 pt-5 sub-title">Dashboard</h3>
+          <h3 className="ml-5 pt-5 sub-title">
+            Hello, {this.state.first_name} {this.state.last_name}
+          </h3>
         </div>
         <div className="mx-5">
           <div className="row ">
