@@ -214,6 +214,39 @@ body {
     width: 100%;
 }
 
+#img-global {
+    background-image: url(./assets/images/global.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 25vh;
+}
+
+#img-puppy {
+    background-image: url(./assets/images/local.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 25vh;
+}
+
+#img-env {
+    background-image: url(./assets/images/cleanup.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 25vh;
+}
+
     
 
 

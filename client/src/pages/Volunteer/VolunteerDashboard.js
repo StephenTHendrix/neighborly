@@ -134,13 +134,13 @@ class VolunteerDashboard extends React.Component {
                   (
                     <div>
                       <p>You are currently not Sign Up for any events</p>
-                      <button onClick={this.search}>Click Here to Start Searching</button>
+                      <div className="btn btn-sub" onClick={this.search}>Click Here to Start Searching</div>
                     </div>
                   )
                   :
                   (
                     <div>
-                      <button onClick={this.search}>Search for Activity</button>
+                      <div className="btn btn-sub" onClick={this.search}>Search for Activity</div>
                       {renderEvents}
                     </div>
                   )
