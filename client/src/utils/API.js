@@ -19,7 +19,10 @@ export default {
         return axios.get("/api/userevents/" + id)
     },
 
-    updateNumber: function (id, addone) {
-        return axios.put("/api/events/" + id, addone);
+    // updateNumber: function (id, addone) {
+    //     return axios.put("/api/events/" + id, addone);
+    // }
+    seekerEventVolunteerList: function (id, UserId) {
+        return axios.get("/api/seekerEvent/" + id + "/" +  UserId)
     }
 }
