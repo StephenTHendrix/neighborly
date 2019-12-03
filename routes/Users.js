@@ -69,10 +69,10 @@ users.post('/login', (req, res) => {
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-            expiresIn: 3600000
+            expiresIn: 900000000
           })
           jwt.decode(token, {})
-          res.cookie('userToken', token, { maxAge: 3600000, httpOnly: true });
+          res.cookie('userToken', token, { maxAge: 900000000, httpOnly: true });
           console.log()
           res.send(token)
         }

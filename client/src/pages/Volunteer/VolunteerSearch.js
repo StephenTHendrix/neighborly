@@ -148,7 +148,7 @@ class VolunteerSearch extends React.Component {
                         <div>
                             <p>{this.state.location}</p>
                             <p name="id">{this.state.userId}</p>
-                            <button onClick={this.myEvents}>My Events Lists</button>
+                            <div className="btn btn-sub" onClick={this.myEvents}>My Events Lists</div>
                             <div>
                                 <input type="text" name="location" id="mytext" onChange={this.handleInputChange} />
                                 <input type="submit" id="mysubmit" onClick={this.loadEvents} />
