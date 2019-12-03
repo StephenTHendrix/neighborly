@@ -5,7 +5,6 @@ import { getVolunteerData } from "../../components/UserFunctions";
 import jwt_decode from "jwt-decode";
 import VolunteerProfile from "../Volunteer/VolunteerProfile.js";
 import VolunteerSearch from "./VolunteerSearch.js";
-import { Redirect } from 'react-router-dom'
 
 var _ = require("lodash");
 
@@ -182,7 +181,7 @@ class VolunteerDashboard extends React.Component {
                   {this.state.decoded.kind === "seeker" ||
                   !localStorage.usertoken ? (
                     <h3>Not for you.</h3>
-                  ) : this.state.events.length == 0 ? (
+                  ) : this.state.events.length === 0 ? (
                     <div>
                       <p>You are currently not Signed Up for any events</p>
 

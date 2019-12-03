@@ -107,9 +107,10 @@ class VolunteerSignUp extends Component {
             gender: this.state.gender,
             image: this.state.image
         }
-        volunteerRegister(newUser, newVolunteer).then(res => {
+        volunteerRegister(newUser, newVolunteer)
+        // .then(res => {
             this.props.history.push(`/login`)
-        })
+        // })
     }
 
     render() {
