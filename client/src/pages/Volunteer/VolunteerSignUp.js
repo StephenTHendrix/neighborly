@@ -52,6 +52,7 @@ class VolunteerSignUp extends Component {
 
     componentDidMount() {
         this.node = ReactDOM.findDOMNode(this);
+        document.cookie = "imageUpload= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
         if (localStorage.usertoken) {
             const token = localStorage.usertoken
             const decoded = jwt_decode(token)
@@ -108,9 +109,8 @@ class VolunteerSignUp extends Component {
                 gender: this.state.gender,
                 image: this.state.image
             }
-            volunteerRegister(newUser, newVolunteer).then(res => {
-                this.props.history.push(`/login`)
-            })
+            volunteerRegister(newUser, newVolunteer)
+            this.props.history.push(`/login`)
         }, 1000)
     }
 
