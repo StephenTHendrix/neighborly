@@ -115,11 +115,14 @@ class VolunteerProfile extends Component {
             this.state.decoded = false;
           }
 
-        if (this.state.gender === "Female"){
+    this.state.gender = female;
+          if(this.state.image === null){
+            profileImage = "../assets/images/profile_female.png";
+        } else if(this.state.gender === "Female"){
             profileImage = "../assets/images/profile_female.png";
         }
         
-          
+
         return (
           <div>
             {this.state.decoded.kind === "seeker" || !this.state.token ? (
