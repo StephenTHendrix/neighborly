@@ -5,6 +5,9 @@ import jwt_decode from 'jwt-decode'
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
+let profileImage = "../assets/images/profile_male.png";
+        
+
 
 class VolunteerProfile extends Component {
     constructor() {
@@ -58,7 +61,8 @@ class VolunteerProfile extends Component {
                     state: res.data.state,
                     zip: res.data.zip,
                     dob: res.data.dob,
-                    bio: res.data.bio
+                    bio: res.data.bio,
+                    gender: res.data.gender
                 });
               }
 
@@ -110,83 +114,92 @@ class VolunteerProfile extends Component {
             this.state.token = false;
             this.state.decoded = false;
           }
+
+        if (this.state.gender === "Female"){
+            profileImage = "../assets/images/profile_female.png";
+        }
+        
+          
         return (
-            <div>
-        {this.state.decoded.kind === "seeker" || !this.state.token ? (
-          <h3>Not for you.</h3>
-        ) : (
-            <div className="container">
-                <div className="jumbotron mt-5">
-                    <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center sub-title">PROFILE</h1>
-                    </div>
-                    <table className="table col-md-6 mx-auto">
-                        <tbody>
+          <div>
+            {this.state.decoded.kind === "seeker" || !this.state.token ? (
+              <h3>Not for you.</h3>
+            ) : (
+              <div className="container">
+                <div className="jumbotron">
+                  <div className="col-sm-8 mx-auto">
+                    <img
+                      className="img-fluid mb-3"
+                      id="profile-image"
+                      src={profileImage}
+                    ></img>
+                  </div>
+                  <table className="table col-md-6 mx-auto">
+                    <tbody>
+                      <EditableRow
+                        property="First Name"
+                        value={this.state.first_name}
+                        toggle="view"
+                      ></EditableRow>
 
-                            <EditableRow
-                                property="First Name"
-                                value={this.state.first_name}
-                                toggle="view">
-                            </EditableRow>
+                      <EditableRow
+                        property="Last Name"
+                        value={this.state.last_name}
+                        toggle="view"
+                      ></EditableRow>
 
-                            <EditableRow
-                                property="Last Name"
-                                value={this.state.last_name}
-                                toggle="view">
-                            </EditableRow>
+                      <EditableRow
+                        property="Email"
+                        value={this.state.email}
+                        toggle="view"
+                      ></EditableRow>
 
-                            <EditableRow
-                                property="Email"
-                                value={this.state.email}
-                                toggle="view">
-                            </EditableRow>
+                      <EditableRow
+                        property="City"
+                        name="city"
+                        value={this.state.city}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={3 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                            <EditableRow
-                                property="City"
-                                name="city"
-                                value={this.state.city}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={3 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
+                      <EditableRow
+                        property="State"
+                        name="state"
+                        value={this.state.state}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={4 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                            <EditableRow
-                                property="State"
-                                name="state"
-                                value={this.state.state}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
+                      <EditableRow
+                        property="Zip"
+                        name="zip"
+                        value={this.state.zip}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={5 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                            <EditableRow
-                                property="Zip"
-                                name="zip"
-                                value={this.state.zip}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
+                      <EditableRow
+                        property="DOB"
+                        namee="dob"
+                        value={this.state.dob}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={6 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                            <EditableRow
-                                property="DOB"
-                                namee="dob"
-                                value={this.state.dob}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
-
-                            <EditableRow
-                                property="Bio"
-                                name="bio"
-                                value={this.state.bio}
-                                onClick={this.editProperty}
-                                onChange={this.onChange}
-                                toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
-                            </EditableRow>
-                        </tbody>
-                    </table>
+                      <EditableRow
+                        property="Bio"
+                        name="bio"
+                        value={this.state.bio}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={7 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
+                    </tbody>
+                  </table>
                 </div>
                 {/* {this.state.events.length ?
                     (
@@ -199,10 +212,10 @@ class VolunteerProfile extends Component {
                         ))}
                         </div>) : (<h3>No events found.</h3>)
                 } */}
-            </div>
+              </div>
             )}
-            </div>
-        )
+          </div>
+        );
     }
 }
 
