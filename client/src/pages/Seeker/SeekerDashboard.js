@@ -8,6 +8,7 @@ import { getSeekerData, editSeekerData } from "../../components/UserFunctions";
 import jwt_decode from 'jwt-decode';
 import ViewEvents from "../Seeker/ViewEvents.js";
 import SeekerProfile from "../Seeker/SeekerProfile.js";
+import CreateEvent from "./CreateEvent.js";
 
 class SeekerDashboard extends Component {
   state = {
@@ -93,6 +94,15 @@ class SeekerDashboard extends Component {
             <div className="col">
               <div className="row">
                 <h3 className="col text-left sub-title ml-3">Events</h3>
+                <div className="col text-left">
+                  <div
+                    class="btn btn-sub"
+                    data-toggle="modal"
+                    data-target="#createEventModalCenter"
+                  >
+                    Create Event
+                  </div>
+                </div>
                 <div className="col text-right mr-3">
                   <div
                     class="btn btn-sub"
@@ -125,7 +135,37 @@ class SeekerDashboard extends Component {
                   Seeker Profile
                 </h5>
 
-                  
+                <button
+                  type="button"
+                  class="close text-white"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <SeekerProfile />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <!-- Modal --> */}
+        <div
+          class="modal fade"
+          id="createEventModalCenter"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="createEventModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="createEventModalLongTitle">
+                  Create Event
+                </h5>
 
                 <button
                   type="button"
@@ -137,14 +177,11 @@ class SeekerDashboard extends Component {
                 </button>
               </div>
               <div class="modal-body">
-
-                <SeekerProfile />
-
+                <CreateEvent />
               </div>
             </div>
           </div>
         </div>
-        
       </div>
     );
   }
