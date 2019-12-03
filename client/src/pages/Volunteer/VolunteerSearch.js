@@ -97,23 +97,30 @@ class VolunteerSearch extends React.Component {
     }
 
     handleEventSignUp = (id) => {
-        console.log(id)
+        
+        console.log(id);
         let saved = this.state.events.filter(item => item.id === id);
         saved[0].UserId = this.state.userId;
         // console.log(saved[0]);
-        API.savedEvent(id, saved[0]).then(function () {
+        API.savedEvent(id, saved[0])
+          .then(function() {
             console.log("Added");
-        }).catch(function (error) {
+          })
+          .catch(function(error) {
             console.log(error);
-        });
+          });
         // update the "going" of events
+        API.updateNumber(id, 1)
+          .then(function() {
+            console.log("Updated");
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
         setTimeout(() => {
-            API.updateNumber(id, 1).then(function () {
-                console.log("Updated");
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }, 500)
+          window.location.reload();
+        }, 500);
+        
     }
 
     render() {

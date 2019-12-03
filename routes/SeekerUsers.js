@@ -109,11 +109,10 @@ users.get('/events', (req, res) => {
         }
     })
         .then(event => {
-            console.log('eventSJS: ', event);
             if (event) {
                 res.json(event)
             } else {
-                res.send('event does not exist')
+                res.send('You have not created any events. Post a new event to get started!')
             }
         })
         .catch(err => {

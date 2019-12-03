@@ -125,8 +125,9 @@ class ViewEvents extends Component {
               ) : (
                   <h3>No events found.</h3>
                 )}
-            </div>
-          )}
+            </div >
+          )
+        }
       </div>
     )
   }

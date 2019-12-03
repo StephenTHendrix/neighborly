@@ -66,30 +66,30 @@ class App extends Component {
                   <Route component={NoMatch} />
                 </Switch>
               ) : (
-                <Switch>
-                  <Route exact path="/" component={Landing} />
-                  <Route exact path="/register" component={Register} />
-                  <Route exact path="/login" component={Login} />
-                  <Route
-                    exact
-                    path="/volunteer/signup"
-                    component={VolunteerSignUp}
-                  />
-                  <Route exact path="/volunteer" component={BeLoggedIn} />
-                  <Route exact path="/volunteer/search" component={BeLoggedIn} />
-                  <Route exact path="/volunteer/profile" component={BeLoggedIn} />
-                  <Route exact path="/seeker/signup" component={SeekerSignUp} />
-                  <Route exact path="/seeker" component={BeLoggedIn} />
-                  <Route exact path="/seeker/create" component={BeLoggedIn} />
-                  <Route
-                    exact
-                    path="/seeker/profile"
-                    component={BeLoggedIn}
-                  />
-                  <Route exact path="/seeker/events" component={BeLoggedIn} />
-                  <Route component={NoMatch} />
-                </Switch>
-              )}{" "}
+                  <Switch>
+                    <Route exact path="/" component={Landing} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/login" component={Login} />
+                    <Route
+                      exact
+                      path="/volunteer/signup"
+                      component={VolunteerSignUp}
+                    />
+                    <Route exact path="/volunteer" component={BeLoggedIn} />
+                    <Route exact path="/volunteer/search" component={BeLoggedIn} />
+                    <Route exact path="/volunteer/profile" component={BeLoggedIn} />
+                    <Route exact path="/seeker/signup" component={SeekerSignUp} />
+                    <Route exact path="/seeker" component={BeLoggedIn} />
+                    <Route exact path="/seeker/create" component={BeLoggedIn} />
+                    <Route
+                      exact
+                      path="/seeker/profile"
+                      component={BeLoggedIn}
+                    />
+                    <Route exact path="/seeker/events" component={BeLoggedIn} />
+                    <Route component={NoMatch} />
+                  </Switch>
+                )}{" "}
             </div>
           </div>
         </div>

@@ -67,9 +67,9 @@ class VolunteerDashboard extends React.Component {
       this.loadVolunteerData();
       setTimeout(
         () => {
-        this.loadEvents();
-      }
-      , 1000);
+          this.loadEvents();
+        }
+        , 1000);
     } else {
       return
     }
@@ -154,19 +154,15 @@ class VolunteerDashboard extends React.Component {
               <div className="row">
                 <div>
                   {this.state.decoded.kind === "seeker" ||
-                  !localStorage.usertoken ? (
-                    <h3>Not for you.</h3>
-                  ) : this.state.events.length == 0 ? (
-                    <div>
-                      
-
-                      <div className="col text-right mr-3"></div>
-                    </div>
-                  ) : (
-                    <div className="ml-5">
-                      <VolunteerSearch />
-                    </div>
-                  )}
+                    !localStorage.usertoken ? (
+                      <h3>Not for you.</h3>
+                    ) :
+                     (
+                        <div className="ml-5">
+                          <VolunteerSearch />
+                        </div>
+                      )
+                  }
                 </div>
               </div>
             </div>
@@ -174,7 +170,7 @@ class VolunteerDashboard extends React.Component {
               <div className="row">
                 <h3 className="col text-left sub-title ml-3">My Events</h3>
                 <div className="col text-right mr-3">
-                  
+
                 </div>
               </div>
               <div className="row">
@@ -182,17 +178,17 @@ class VolunteerDashboard extends React.Component {
                 <p name="id">{this.state.userId}</p> */}
                 <div>
                   {this.state.decoded.kind === "seeker" ||
-                  !localStorage.usertoken ? (
-                    <h3>Not for you.</h3>
-                  ) : this.state.events.length === 0 ? (
-                    <div>
-                      <p>You are currently not Signed Up for any events</p>
+                    !localStorage.usertoken ? (
+                      <h3>Not for you.</h3>
+                    ) : this.state.events.length === 0 ? (
+                      <div>
+                        <p>You are currently not Signed Up for any events</p>
 
-                      <div className="col text-right mr-3"></div>
-                    </div>
-                  ) : (
-                    <div>{renderEvents}</div>
-                  )}
+                        <div className="col text-right mr-3"></div>
+                      </div>
+                    ) : (
+                        <div>{renderEvents}</div>
+                      )}
                 </div>
               </div>
             </div>

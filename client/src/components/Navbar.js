@@ -1,37 +1,35 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { login } from "./UserFunctions";
-
 import jwt_decode from 'jwt-decode';
-
 
 class Landing extends Component {
   constructor() {
-    
+
     super();
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     if (localStorage.usertoken) {
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
-    this.state = {
-      email: "",
-      password: "",
-      errors: {},
-      token: token,
-      decoded: decoded,
-    };
-  } else {
-    this.state = {
-      email: "",
-      password: "",
-      errors: {},
-      token: false,
-      decoded: false,
-    };
-  }
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token);
+      this.state = {
+        email: "",
+        password: "",
+        errors: {},
+        token: token,
+        decoded: decoded,
+      };
+    } else {
+      this.state = {
+        email: "",
+        password: "",
+        errors: {},
+        token: false,
+        decoded: false,
+      };
+    }
 
-    
+
   }
 
   onChange(e) {
@@ -134,10 +132,10 @@ class Landing extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <div>
-          {this.state.decoded.kind === "volunteer" ? (<Link to="/volunteer" className="nav-link">
-            Dashboard
+            {this.state.decoded.kind === "volunteer" ? (<Link to="/volunteer" className="nav-link">
+              Dashboard
           </Link>) : (<Link to="/seeker" className="nav-link">
-            Dashboard
+                Dashboard
           </Link>)} </div>
         </li>
         <li className="nav-item">
