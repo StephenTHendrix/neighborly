@@ -132,7 +132,16 @@ class VolunteerDashboard extends React.Component {
     return (
       <div>
         <div className="mb-5" id="vol-header">
-    <h3 className="ml-5 pt-5 sub-title">Hello, {this.state.first_name} {this.state.last_name}</h3>
+          <h3 className="ml-5 pt-5 sub-title">
+            Hello, {this.state.first_name} {this.state.last_name}
+          </h3>
+          <div
+            class="btn btn-sub ml-5"
+            data-toggle="modal"
+            data-target="#volProfileModalCenter"
+          >
+            Profile
+          </div>
         </div>
 
         <div className="mx-5">
@@ -149,7 +158,7 @@ class VolunteerDashboard extends React.Component {
                     <h3>Not for you.</h3>
                   ) : this.state.events.length == 0 ? (
                     <div>
-                      <p>You are currently not Signed Up for any events</p>
+                      
 
                       <div className="col text-right mr-3"></div>
                     </div>
@@ -165,13 +174,7 @@ class VolunteerDashboard extends React.Component {
               <div className="row">
                 <h3 className="col text-left sub-title ml-3">My Events</h3>
                 <div className="col text-right mr-3">
-                  <div
-                    class="btn btn-sub"
-                    data-toggle="modal"
-                    data-target="#volProfileModalCenter"
-                  >
-                    Profile
-                  </div>
+                  
                 </div>
               </div>
               <div className="row">
