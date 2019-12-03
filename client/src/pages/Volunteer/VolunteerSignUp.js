@@ -39,12 +39,7 @@ class VolunteerSignUp extends Component {
             bio: '',
             gender: '',
             image: '',
-            files: [{
-                source: 'index.html',
-                options: {
-                    type: 'local'
-                }
-            }],
+            files: [],
             token: {},
             decoded: {},
         }
