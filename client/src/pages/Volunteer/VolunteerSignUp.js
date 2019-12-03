@@ -305,7 +305,7 @@ class VolunteerSignUp extends Component {
 
                             <FilePond ref={ref => this.pond = ref}
                                 files={this.state.files}
-                                name="client/public/images"
+                                name="./client/public/images"
                                 allowMultiple={false}
                                 maxFiles={1}
                                 server="/api"
