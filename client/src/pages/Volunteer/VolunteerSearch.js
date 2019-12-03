@@ -107,13 +107,13 @@ class VolunteerSearch extends React.Component {
             console.log(error);
         });
         // update the "going" of events
-        // setTimeout(() => {
-        //     API.updateNumber(id, 1).then(function () {
-        //         console.log("Updated");
-        //     }).catch(function (error) {
-        //         console.log(error);
-        //     });
-        // }, 500)
+        setTimeout(() => {
+            API.updateNumber(id, 1).then(function () {
+                console.log("Updated");
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }, 500)
     }
 
     render() {

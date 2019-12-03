@@ -32,20 +32,6 @@ class ViewEvents extends Component {
   loadEvents = () => {
     getSeekerEvents()
       .then(res => {
-        //   console.log("Profile: ", res);
-        //   {
-        //     typeof res.data === "string"
-        //       ? this.setState({
-        //         events: []
-        //       })
-        //       : this.setState({
-        //         events: res.data
-        //       });
-        //   }
-        //   console.log(this.state.events);
-        // })
-        // .catch(err => console.log(err));
-        // console.log(res.data)
         const Events = [];
         const each = res.data;
         each.forEach(element => {

@@ -39,18 +39,18 @@ module.exports = function (app) {
     })
 
     // update events's required people
-    // app.put("/api/events/:id", (req, res) => {
-    //     console.log(req.params.id);
-    //     console.log(req.body);
-    //     db.Event.increment(
-    //         { going: 1 },
-    //         {
-    //             where: { id: req.params.id }
-    //         }
-    //     ).then(function (updated) {
-    //         res.json(updated)
-    //     })
-    // })
+    app.put("/api/events/:id", (req, res) => {
+        console.log(req.params.id);
+        console.log(req.body);
+        db.Event.increment(
+            { going: 1 },
+            {
+                where: { id: req.params.id }
+            }
+        ).then(function (updated) {
+            res.json(updated)
+        })
+    })
 
     app.get("/api/seekerEvent/:id/:seekerID", (req, res) => {
         // console.log(req.params.id);

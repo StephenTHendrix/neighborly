@@ -38,11 +38,7 @@ function SearchEventCard(props) {
               <small className="text-muted">{props.date}  {props.time}</small>
             </div>
             <div className="modal-footer">
-              {(window.location.pathname === "/volunteer/search") ?
-                <button className="saved btn btn-primary" key={props.id} id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</button>
-                :
-                null
-              }
+              <button className="saved btn btn-primary" key={props.id} id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</button>
             </div>
           </div>
         </div>
