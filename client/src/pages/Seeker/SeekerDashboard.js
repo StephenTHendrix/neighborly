@@ -115,6 +115,13 @@ class SeekerDashboard extends Component {
           <h3 className="ml-5 pt-5 sub-title">
             Hello, {this.state.first_name} {this.state.last_name}
           </h3>
+          <div
+            className="btn btn-sub ml-5"
+            data-toggle="modal"
+            data-target="#seekProfileModalCenter"
+          >
+            Profile
+          </div>
         </div>
         <div className="mx-5">
           <div className="row ">
@@ -163,15 +170,7 @@ class SeekerDashboard extends Component {
                     Create Event
                   </div>
                 </div>
-                <div className="col text-right mr-3">
-                  <div
-                    class="btn btn-sub"
-                    data-toggle="modal"
-                    data-target="#seekProfileModalCenter"
-                  >
-                    Profile
-                  </div>
-                </div>
+                
               </div>
 
               <ViewEvents className="row col-sm-12" />
