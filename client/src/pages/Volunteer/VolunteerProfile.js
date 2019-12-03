@@ -5,6 +5,10 @@ import jwt_decode from 'jwt-decode'
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
+let profileImage = "../assets/images/profile_male.png";
+        
+
+
 class VolunteerProfile extends Component {
     constructor() {
         const token = localStorage.usertoken;
@@ -54,6 +58,8 @@ class VolunteerProfile extends Component {
 
             {
                 decoded.kind === "seeker"
+
+
                     ? (this.state = {})
                     : this.setState({
                         city: res.data.city,
@@ -61,9 +67,11 @@ class VolunteerProfile extends Component {
                         zip: res.data.zip,
                         dob: res.data.dob,
                         bio: res.data.bio,
+                        gender: res.data.gender,
                         image: res.data.image
                     });
             }
+
 
         })
     }
@@ -128,6 +136,7 @@ class VolunteerProfile extends Component {
             this.state.token = false;
             this.state.decoded = false;
         }
+
         return (
             <div>
                 {this.state.decoded.kind === "seeker" || !this.state.token ? (
