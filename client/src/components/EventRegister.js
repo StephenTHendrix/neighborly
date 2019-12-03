@@ -7,7 +7,6 @@ class EventRegister extends Component {
     return (
       
       <form>
-        <h1 className=" mb-3 font-weight-normal text-center sub-title">Register Event</h1>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="sub-title">Event title</label>

@@ -134,10 +134,10 @@ class Landing extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <div>
-          {this.state.decoded.kind === "volunteer" ? (<Link to="/volunteer/profile" className="nav-link">
-            User
-          </Link>) : (<Link to="/seeker/profile" className="nav-link">
-            User
+          {this.state.decoded.kind === "volunteer" ? (<Link to="/volunteer" className="nav-link">
+            Dashboard
+          </Link>) : (<Link to="/seeker" className="nav-link">
+            Dashboard
           </Link>)} </div>
         </li>
         <li className="nav-item">

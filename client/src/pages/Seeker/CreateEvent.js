@@ -99,7 +99,7 @@ class CreateEvent extends Component {
           className="btn btn-lg btn-sub"
           onClick={this.onSubmit}
         >
-          Register Event!
+          Create Event!
         </button>
       </div>)}
       </div>

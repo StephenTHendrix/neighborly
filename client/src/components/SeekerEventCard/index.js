@@ -14,7 +14,7 @@ function SeekerEventCard(props) {
         </div>
         <div className="card-footer">
           <p className="card-text">Current Registered: {props.registered} / {props.needed}</p>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target={"#" + props.id}>
+          <button type="button" class="btn btn-sub" data-toggle="modal" data-target={"#" + props.id}>
             List of Registered Volunteer</button>
         </div>
       </div>
@@ -24,7 +24,7 @@ function SeekerEventCard(props) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">Current Registered: {props.registered} / {props.needed} </h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" className="close text-white" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
