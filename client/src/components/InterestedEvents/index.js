@@ -25,24 +25,11 @@ function InterestedEvent(props) {
           <small className="text-muted">{props.flexible}</small>
         } */}
         </div>
-        <button
-          type="button"
-          class="btn btn-sub"
-          data-toggle="modal"
-          data-target="#ModalInformation"
-        >
-          More Information
-        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target={"#" + props.id}>
+          More Information</button>
       </div>
 
-      <div
-        class="modal fade"
-        id="ModalInformation"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id={props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

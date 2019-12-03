@@ -62,7 +62,6 @@ class VolunteerSearch extends React.Component {
                         location: ""
                     });
             }
-
         })
     }
 

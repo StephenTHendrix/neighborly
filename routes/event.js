@@ -57,7 +57,7 @@ module.exports = function (app) {
         console.log(req.body);
         let save = req.body.UserId;
         db.sequelize.query(
-            `select events.title, users.first_name, users.last_name, users.email from events
+            `select users.first_name, users.last_name, users.email from events
             left join event_users on event_users.EventID = events.id
             left join users on event_users.UserID = users.id where events.id = ? and events.UserId = ?`,
             {

@@ -5,6 +5,7 @@ import { getVolunteerData } from "../../components/UserFunctions";
 import jwt_decode from "jwt-decode";
 import VolunteerProfile from "../Volunteer/VolunteerProfile.js";
 import VolunteerSearch from "./VolunteerSearch.js";
+import { Redirect } from 'react-router-dom'
 
 var _ = require("lodash");
 
@@ -54,16 +55,18 @@ class VolunteerDashboard extends React.Component {
 
   componentDidMount() {
     if (localStorage.usertoken) {
-      const token = localStorage.usertoken;
-      const decoded = jwt_decode(token);
-      console.log("DECODED", this.state.decoded);
+      // const token = localStorage.usertoken;
+      // const decoded = jwt_decode(token);
+      // console.log("DECODED", this.state.decoded);
       this.setState({
-        userId: decoded.id
+        userId: this.state.decoded.id
       });
       this.loadVolunteerData();
-      setTimeout(() => {
+      setTimeout(
+        () => {
         this.loadEvents();
-      }, 1000);
+      }
+      , 1000);
     } else {
       return
     }
