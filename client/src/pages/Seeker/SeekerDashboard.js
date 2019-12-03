@@ -7,6 +7,7 @@ import { getSeekerData, editSeekerData } from "../../components/UserFunctions";
 // import User from "../models";
 import jwt_decode from 'jwt-decode';
 import ViewEvents from "../Seeker/ViewEvents.js";
+import SeekerProfile from "../Seeker/SeekerProfile.js";
 
 class SeekerDashboard extends Component {
   state = {
@@ -51,7 +52,6 @@ class SeekerDashboard extends Component {
     }
     return (
       <div>
-
         <div className="mb-5" id="seek-header">
           <h3 className="ml-5 pt-5 sub-title">Dashboard</h3>
         </div>
@@ -91,11 +91,60 @@ class SeekerDashboard extends Component {
               </div>
             </div>
             <div className="col">
-              <h3 className=" row text-center sub-title ml-4">Events</h3>
+              <div className="row">
+                <h3 className="col text-left sub-title ml-3">Events</h3>
+                <div className="col text-right mr-3">
+                  <div
+                    class="btn btn-sub"
+                    data-toggle="modal"
+                    data-target="#seekProfileModalCenter"
+                  >
+                    Profile
+                  </div>
+                </div>
+              </div>
+
               <ViewEvents className="row col-sm-12" />
             </div>
           </div>
         </div>
+
+        {/* <!-- Modal --> */}
+        <div
+          class="modal fade"
+          id="seekProfileModalCenter"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="seekProfileModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="seekProfileModalLongTitle">
+                  Seeker Profile
+                </h5>
+
+                  
+
+                <button
+                  type="button"
+                  class="close text-white"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <SeekerProfile />
+
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     );
   }

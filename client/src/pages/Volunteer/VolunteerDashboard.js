@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import InterestedEvent from "../../components/InterestedEvents";
 import { getVolunteerData } from "../../components/UserFunctions";
 import jwt_decode from "jwt-decode";
+import VolunteerProfile from "../Volunteer/VolunteerProfile.js";
 
 var _ = require("lodash");
 
@@ -123,32 +124,96 @@ class VolunteerDashboard extends React.Component {
 
     return (
       <div>
-        <div>
-          <p>{this.state.location}</p>
-          <p name="id">{this.state.userId}</p>
-          <div>
-            {this.state.decoded.kind === "seeker" || !localStorage.usertoken ? (
-              <h3>Not for you.</h3>
-            ) : (
-                (this.state.events.length == 0) ?
-                  (
+        <div className="mb-5" id="vol-header">
+          <h3 className="ml-5 pt-5 sub-title">Dashboard</h3>
+        </div>
+
+        <div className="mx-5">
+          <div className="row ">
+            <div className="col">
+              <div className="row d-flex flex-justify-center">
+                <h3 className="text-center sub-title ml-5">Local Events</h3>
+              </div>
+
+              <div className="row">
+
+                
+              </div>
+            </div>
+            <div className="col">
+              <div className="row">
+                <h3 className="col text-left sub-title ml-3">My Events</h3>
+                <div className="col text-right mr-3">
+                  <div
+                    class="btn btn-sub"
+                    data-toggle="modal"
+                    data-target="#volProfileModalCenter"
+                  >
+                    Profile
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                {/* <p>{this.state.location}</p>
+                <p name="id">{this.state.userId}</p> */}
+                <div>
+                  {this.state.decoded.kind === "seeker" ||
+                  !localStorage.usertoken ? (
+                    <h3>Not for you.</h3>
+                  ) : this.state.events.length == 0 ? (
                     <div>
-                      <p>You are currently not Sign Up for any events</p>
-                      <div className="btn btn-sub" onClick={this.search}>Click Here to Start Searching</div>
+                      <p>You are currently not Signed Up for any events</p>
+                      <div className="btn btn-sub" onClick={this.search}>
+                        Click Here to Start Searching
+                      </div>
                     </div>
-                  )
-                  :
-                  (
+                  ) : (
                     <div>
-                      <div className="btn btn-sub" onClick={this.search}>Search for Activity</div>
+                      <div className="btn btn-sub" onClick={this.search}>
+                        Search for Activity
+                      </div>
                       {renderEvents}
                     </div>
-                  )
-              )}
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <!-- Modal --> */}
+        <div
+          class="modal fade"
+          id="volProfileModalCenter"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="volProfileModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="volProfileModalLongTitle">
+                  Volunteer Profile
+                </h5>
+
+                <button
+                  type="button"
+                  class="close text-white"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <VolunteerProfile />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 export default VolunteerDashboard;
