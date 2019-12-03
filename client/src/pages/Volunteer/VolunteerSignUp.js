@@ -68,25 +68,32 @@ class VolunteerSignUp extends Component {
 
     onSubmit(e) {
         e.preventDefault()
+        this.setState({ image: document.cookie.split('=')[1] })
+        const imgCookie = document.cookie.split('=')[1]
+        console.log("Img cookie: " + imgCookie)
 
-        const newUser = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
-            password: this.state.password
-        }
-        const newVolunteer = {
-            city: this.state.city,
-            state: this.state.state,
-            zip: this.state.zip,
-            dob: this.state.dob,
-            bio: this.state.bio,
-            gender: this.state.gender,
-            image: this.state.files
-        }
-        volunteerRegister(newUser, newVolunteer).then(res => {
-            this.props.history.push(`/`)
-        })
+        setTimeout(() => {
+            console.log(this.state.image)
+
+            const newUser = {
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
+                email: this.state.email,
+                password: this.state.password
+            }
+            const newVolunteer = {
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+                dob: this.state.dob,
+                bio: this.state.bio,
+                gender: this.state.gender,
+                image: this.state.image
+            }
+            volunteerRegister(newUser, newVolunteer).then(res => {
+                this.props.history.push(`/`)
+            })
+        }, 1000)
     }
 
     render() {
@@ -101,7 +108,6 @@ class VolunteerSignUp extends Component {
                         onChange={this.onChange}
                         onSubmit={this.onSubmit}
                     />
-
                     <form>
                         <div className="form-row">
                             <div className="form-group col-md-6">
@@ -278,33 +284,26 @@ class VolunteerSignUp extends Component {
 
                     <FilePond ref={ref => this.pond = ref}
                         files={this.state.files}
-                        name="uploadImages"
+                        name="client/public/images"
                         allowMultiple={false}
                         maxFiles={1}
-                        server="/users/api"
+                        server="/api"
                         oninit={() => this.handleInit()}
-                        onload={(fileName) => console.log(JSON.parse(fileName))}
+                        onload={(fileName) => {
+                            console.log("This is the onload trigger!")
+                            console.log(JSON.parse(fileName))
+                        }}
                         onupdatefiles={(fileItems) => {
+                            console.log("This is on update files")
                             // Set current file objects to this.state
                             this.setState({
                                 files: fileItems.map(fileItem => {
                                     return fileItem.file
-                                })
+                                }),
                             });
                         }}>
                     </FilePond>
 
-                    <div className="form-group">
-                        <label htmlFor="image">Image</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="image"
-                            placeholder="Enter email"
-                            value={this.state.image}
-                            onChange={this.onChange}
-                        />
-                    </div>
                     <button
                         type="submit"
                         className="btn btn-lg btn-primary btn-block"

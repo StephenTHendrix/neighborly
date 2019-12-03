@@ -6,8 +6,9 @@ var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 5000
 const multer = require("multer");
-const upload = multer({ dest: "./uploadImages" })
+const upload = multer({ dest: "client/public/images" })
 const FilePond = require("filepond")
+const fs = require('fs');
 
 require('dotenv').config();
 
@@ -38,20 +39,33 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-FilePond.setOptions({
-  server: {
-    process: './process',
-    revert: './revert',
-    restore: './restore/',
-    load: './load/',
-    fetch: './fetch/'
-  }
-});
+// FilePond.setOptions({
+//   server: {
+//     process: './process',
+//     revert: './revert',
+//     restore: './restore/',
+//     load: './load/',
+//     fetch: './fetch/'
+//   }
+// });
 
-// app.post("/api", upload.single("uploadImages", 12), function (req, res) {
-//   console.log(req.file);
-//   res.send(req.file.filename)
-// })
+app.post("/api", upload.single("client/public/images", 12), function (req, res) {
+  const originalName = req.file.originalname;
+  const newArr = originalName.split(".");
+  const fileExt = newArr[newArr.length - 1];
+  const origPath = req.file.path;
+  const newPath = origPath + "." + fileExt
+  console.log(newPath);
+  res.cookie('imageUpload', req.file.filename + "." + fileExt, { maxAge: 180000 });
+
+
+  fs.rename(origPath, newPath, (err) => {
+    if (err) throw err;
+    console.log('Rename complete!');
+  });
+
+  res.send(newPath)
+})
 
 app.get('*', (request, response) => {
   response.sendFile(path.join(__dirname, 'client/build', 'index.html'));

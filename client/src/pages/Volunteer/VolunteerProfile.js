@@ -3,7 +3,6 @@ import jwt_decode from 'jwt-decode'
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
-
 class VolunteerProfile extends Component {
     constructor(props) {
         super(props)
@@ -49,7 +48,8 @@ class VolunteerProfile extends Component {
                 state: res.data.state,
                 zip: res.data.zip,
                 dob: res.data.dob,
-                bio: res.data.bio
+                bio: res.data.bio,
+                image: res.data.image
             })
         })
     }
@@ -115,7 +115,7 @@ class VolunteerProfile extends Component {
                     </div>
                     <table className="table col-md-6 mx-auto">
                         <tbody ref={this.setWrapperRef}>
-                            <img src={this.state.image} ></img>
+                            <img src={"../images/" + this.state.image} />
                             <EditableRow
                                 property="First Name"
                                 value={this.state.first_name}

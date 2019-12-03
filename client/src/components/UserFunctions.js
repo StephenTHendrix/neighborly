@@ -76,13 +76,6 @@ export const login = user => {
     })
     .then(response => {
       localStorage.setItem('usertoken', response.data)
-      // console.log("RES DATA: " + response.data)
-
-      // //Clearing the cookie
-      // document.cookie = "userData=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-
-      // // Store the username as a cookie using "document.cookie"
-      // document.cookie = "userData=" + response.data + ";";
       return response.data
     })
     .catch(err => {
@@ -93,9 +86,6 @@ export const login = user => {
 export const getUsers = () => {
   return axios
     .get('users/all')
-  // .then(response => {
-  //   console.log('UserFunctions: ', response)
-  // })
 }
 
 export const getEvents = () => {

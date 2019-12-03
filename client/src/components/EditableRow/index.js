@@ -14,7 +14,6 @@ function EditableRow(props) {
                     (<tr>
                         <td>{props.property}</td>
                         <td><input
-
                             type="text"
                             name={props.name}
                             value={props.value}

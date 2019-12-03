@@ -5,8 +5,9 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const db = require("../models")
-const multer = require("multer");
-const upload = multer({ dest: "../client/public/images" });
+// const multer = require("multer");
+// const upload = multer({ dest: "../client/public/images" });
+// const FilePond = require("filepond")
 
 users.use(cors())
 
@@ -159,10 +160,20 @@ users.get('/events', (req, res) => {
     })
 })
 
-users.post("/api", upload.single("uploadImages", 12), function (req, res) {
-  console.log(req.file);
-  res.send(req.file.filename);
-  // res.cookie('userToken', token, { maxAge: 3600000, httpOnly: true });
-})
+// FilePond.setOptions({
+//   server: {
+//     process: './process',
+//     revert: './revert',
+//     restore: './restore/',
+//     load: './load/',
+//     fetch: './fetch/'
+//   }
+// });
+
+// users.post("/api", upload.single("uploadImages", 12), function (req, res) {
+//   console.log(req.file);
+//   res.cookie('imageUpload', req.file.filename, { maxAge: 180000 });
+//   res.send(req.file.filename);
+// })
 
 module.exports = users
