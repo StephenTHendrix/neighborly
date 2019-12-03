@@ -3,9 +3,11 @@ import React from "react";
 function SearchEventCard(props) {
   return (
     <div>
-      <div className="card">
+      <div className="card mt-2">
+        <div className="card-header p-3">
+          <h5>{props.title}</h5>
+        </div>
         <div className="card-body">
-          <h5 className="card-title">{props.title} {props.id}</h5>
           <h6 className="card-subtitle mb-2 text-muted">{props.organization}</h6>
           <p className="card-text">{props.smalldescription}</p>
 
@@ -17,7 +19,7 @@ function SearchEventCard(props) {
           <small className="text-muted">{props.flexible}</small>
         } */}
         </div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target={"#" + props.id}>
+        <button type="button" className="btn btn-sub" data-toggle="modal" data-target={"#" + props.id}>
           More Information</button>
       </div>
 
@@ -26,7 +28,7 @@ function SearchEventCard(props) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">{props.title}</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" className="close text-white" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -38,11 +40,7 @@ function SearchEventCard(props) {
               <small className="text-muted">{props.date}  {props.time}</small>
             </div>
             <div className="modal-footer">
-              {(window.location.pathname === "/volunteer/search") ?
-                <button className="saved btn btn-primary" key={props.id} id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</button>
-                :
-                null
-              }
+                <button className="saved btn btn-sub" key={props.id} id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</button>
             </div>
           </div>
         </div>
