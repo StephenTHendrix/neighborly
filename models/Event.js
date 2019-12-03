@@ -48,9 +48,10 @@ module.exports = function (sequelize, DataTypes) {
                 notEmpty: true,
             }
         },
-        // smalldescription: {
-        //     type: DataTypes.STRING(1000)
-        // },
+        going: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
         image: DataTypes.STRING,
         needed: {
             type: DataTypes.INTEGER,
