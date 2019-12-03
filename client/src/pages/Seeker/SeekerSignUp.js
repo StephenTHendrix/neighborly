@@ -67,9 +67,10 @@ class SeekerSignUp extends Component {
             website: this.state.website,
             image: this.state.image
         }
-        seekerRegister(newUser, newSeeker).then(res => {
+        seekerRegister(newUser, newSeeker)
+        // .then(res => {
             this.props.history.push(`/login`)
-        })
+        // })
     }
 
 

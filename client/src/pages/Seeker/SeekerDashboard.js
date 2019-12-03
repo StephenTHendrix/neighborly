@@ -1,23 +1,42 @@
 import React, { Component } from "react";
-import { getUsers } from '../../components/UserFunctions.js'
+import { getUsers } from "../../components/UserFunctions.js";
 // import API from "../../utils/API";
 // import axios from "axios";
 import UserCard from "../../components/UserCard";
 import { getSeekerData, editSeekerData } from "../../components/UserFunctions";
 // import User from "../models";
-import jwt_decode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 import ViewEvents from "../Seeker/ViewEvents.js";
 import SeekerProfile from "../Seeker/SeekerProfile.js";
-import CreateEvent from "./CreateEvent.js";
+import EventRegister from "../../components/EventRegister";
+import { eventRegister } from "../../components/UserFunctions";
+
 
 class SeekerDashboard extends Component {
-  state = {
+  constructor() {
+  super()
+  this.state = {
     allUsers: [],
     token: {},
-    decoded: {}
+    decoded: {},
+    title: "",
+      link: "",
+      description: "",
+      organization: "",
+      street: "",
+      city: "",
+      state: "",
+      zip: "",
+      smalldescription: "",
+      image: "",
+      needed: "",
+      date: "",
+      time: "",
   };
 
-  
+  this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+}
 
   loadUsers = () => {
     getUsers()
@@ -41,6 +60,37 @@ class SeekerDashboard extends Component {
 
   componentDidMount() {
     this.loadUsers();
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state);
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newEvent = {
+      title: this.state.title,
+      link: this.state.link,
+      description: this.state.description,
+      organization: this.state.organization,
+      street: this.state.street,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip,
+      smalldescription: this.state.smalldescription,
+      image: this.state.image,
+      needed: this.state.needed,
+      date: this.state.date,
+      time: this.state.time
+    };
+
+    eventRegister(newEvent)
+    // .then(res => {
+      window.location.reload()
+      // console.log("STATE", this.state);
+    // });
   }
 
   render() {
@@ -177,7 +227,33 @@ class SeekerDashboard extends Component {
                 </button>
               </div>
               <div class="modal-body">
-                <CreateEvent />
+              <EventRegister
+          title={this.state.title}
+          link={this.state.link}
+          description={this.state.description}
+          organization={this.state.organization}
+          street={this.state.street}
+          city={this.state.city}
+          state={this.state.state}
+          zip={this.state.zip}
+          smalldescription={this.state.smalldescription}
+          image={this.state.image}
+          needed={this.state.needed}
+          date={this.state.date}
+          time={this.state.time}
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+          
+        />
+                {/* <CreateEvent  /> */}
+                <button
+                  type="submit"
+                  className="btn btn-lg btn-sub"
+                  onClick={this.onSubmit}
+                  data-dismiss="modal"
+                >
+                  Create Event!
+                </button>
               </div>
             </div>
           </div>
