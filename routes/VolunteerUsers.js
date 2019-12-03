@@ -194,4 +194,5 @@ users.get('/events', (req, res) => {
     })
 })
 
+
 module.exports = users

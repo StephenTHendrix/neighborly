@@ -5,6 +5,11 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const db = require("../models")
+// const multer = require("multer");
+// const upload = multer({ dest: "../client/public/images" })
+// const FilePond = require("filepond")
+// const fs = require('fs');
+
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
@@ -155,5 +160,23 @@ users.get('/events', (req, res) => {
       res.send('error: ' + err)
     })
 })
+
+// users.post("/api", upload.single("../client/public/images", 12), function (req, res) {
+//   const originalName = req.file.originalname;
+//   const newArr = originalName.split(".");
+//   const fileExt = newArr[newArr.length - 1];
+//   const origPath = req.file.path;
+//   const newPath = origPath + "." + fileExt
+//   console.log(newPath);
+//   res.cookie('imageUpload', req.file.filename + "." + fileExt, { maxAge: 180000 });
+
+
+//   fs.rename(origPath, newPath, (err) => {
+//     if (err) throw err;
+//     console.log('Rename complete!');
+//   });
+
+//   res.send(newPath)
+// })
 
 module.exports = users

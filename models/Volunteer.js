@@ -1,10 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
     const Volunteer = sequelize.define("Volunteer", {
         dob: {
-            type: DataTypes.DATEONLY,
-            validate: {
-                isDate: true,
-            }
+            type: DataTypes.STRING,
+            // validate: {
+            //     isDate: true,
+            // }
         },
         bio: DataTypes.STRING,
         gender: DataTypes.STRING,

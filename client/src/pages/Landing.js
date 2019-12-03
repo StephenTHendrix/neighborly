@@ -8,9 +8,9 @@ class Landing extends Component {
           <iframe
             title="spinning earth"
             src="https://player.vimeo.com/video/374576663?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0"
-            frameborder="0"
+            frameBorder="0"
             allow="autoplay"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
         <script src="https://player.vimeo.com/api/player.js"></script>
@@ -23,8 +23,8 @@ class Landing extends Component {
           </div>
           <div className="row spacer my-5"></div>
           <div className="row d-flex justify-content-center">
-            <div class="card col-sm-12 shadow mb-5">
-              <div class="card-body">
+            <div className="card col-sm-12 shadow mb-5">
+              <div className="card-body">
                 <div className="row">
                   <div className="col-sm-12 col-md-4 d-flex flex-column justify-content-center card-line">
                     <div className="row">
