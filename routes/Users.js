@@ -5,6 +5,9 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const db = require("../models")
+const multer = require("multer");
+const upload = multer({ dest: "../client/public/images" });
+
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
@@ -154,6 +157,12 @@ users.get('/events', (req, res) => {
     .catch(err => {
       res.send('error: ' + err)
     })
+})
+
+users.post("/api", upload.single("uploadImages", 12), function (req, res) {
+  console.log(req.file);
+  res.send(req.file.filename);
+  // res.cookie('userToken', token, { maxAge: 3600000, httpOnly: true });
 })
 
 module.exports = users

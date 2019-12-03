@@ -5,6 +5,10 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var app = express();
 var PORT = process.env.PORT || 5000
+const multer = require("multer");
+const upload = multer({ dest: "./uploadImages" })
+const FilePond = require("filepond")
+
 require('dotenv').config();
 
 app.use(bodyParser.json())
@@ -34,6 +38,21 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
+FilePond.setOptions({
+  server: {
+    process: './process',
+    revert: './revert',
+    restore: './restore/',
+    load: './load/',
+    fetch: './fetch/'
+  }
+});
+
+// app.post("/api", upload.single("uploadImages", 12), function (req, res) {
+//   console.log(req.file);
+//   res.send(req.file.filename)
+// })
+
 app.get('*', (request, response) => {
   response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
@@ -46,5 +65,3 @@ db.sequelize.sync().then(() => {
     console.log(`App listening on PORT ${PORT}`);
   });
 });
-
-

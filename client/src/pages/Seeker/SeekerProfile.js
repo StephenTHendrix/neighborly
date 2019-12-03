@@ -19,8 +19,11 @@ class SeekerProfile extends Component {
             zip: '',
             website: '',
             errors: {},
-            events: []
+            events: [],
+            toggleIndex: undefined
         }
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
 
@@ -49,7 +52,24 @@ class SeekerProfile extends Component {
             last_name: decoded.last_name,
             email: decoded.email
         })
+        document.addEventListener('mousedown', this.handleClickOutside);
     }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
+    // Alert if clicked on outside of element
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.setState({ toggleIndex: -1 })
+        }
+    }
+
 
     editProperty = (e) => {
         const indexOfClicked = [...e.target.parentElement.parentElement.parentElement.children].indexOf(e.target.parentElement.parentElement);
@@ -83,7 +103,7 @@ class SeekerProfile extends Component {
                         <h1 className="text-center">PROFILE</h1>
                     </div>
                     <table className="table col-md-6 mx-auto">
-                        <tbody>
+                        <tbody ref={this.setWrapperRef}>
                             <EditableRow
                                 property="First Name"
                                 value={this.state.first_name}

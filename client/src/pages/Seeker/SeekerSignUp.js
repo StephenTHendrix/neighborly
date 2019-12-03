@@ -52,7 +52,7 @@ class SeekerSignUp extends Component {
             image: this.state.image
         }
         seekerRegister(newUser, newSeeker).then(res => {
-            this.props.history.push(`/login`)
+            this.props.history.push(`/`)
         })
     }
 
@@ -228,40 +228,6 @@ class SeekerSignUp extends Component {
                             onChange={this.onChange}></input>
                     </div>
                 </div>
-
-                {/* <div className="form-group">
-                    <label htmlFor="city">City</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="city"
-                        placeholder="Enter email"
-                        value={this.state.city}
-                        onChange={this.onChange}
-                    />
-                </div> */}
-                {/* <div className="form-group">
-                    <label htmlFor="state">State</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="state"
-                        placeholder="State"
-                        value={this.state.state}
-                        onChange={this.onChange}
-                    />
-                </div> */}
-                {/* <div className="form-group">
-                    <label htmlFor="zip">Zipcode</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="zip"
-                        placeholder="zip"
-                        value={this.state.zip}
-                        onChange={this.onChange}
-                    />
-                </div> */}
                 <div className="form-row">
                     <div className="form-group col-12">
                         <label htmlFor="exampleFormControlTextarea1">Biography</label>

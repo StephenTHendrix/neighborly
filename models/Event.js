@@ -58,10 +58,10 @@ module.exports = function (sequelize, DataTypes) {
                 not: ["[a-z]", 'i']
             }
         },
-        going: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
-        },
+        // going: {
+        //     type: DataTypes.INTEGER,
+        //     defaultValue: 0
+        // },
         date: {
             type: DataTypes.STRING
         },

@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-
-import EventCard from "../../components/EventCard";
 import { getEvents, getVolunteerData, editVolunteerData } from '../../components/UserFunctions'
 import EditableRow from "../../components/EditableRow"
 
 
 class VolunteerProfile extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             first_name: '',
             last_name: '',
@@ -19,10 +17,13 @@ class VolunteerProfile extends Component {
             city: '',
             state: '',
             zip: '',
+            image: '',
             errors: {},
             events: [],
             toggleIndex: undefined
         }
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     loadEvents = () => {
@@ -63,6 +64,23 @@ class VolunteerProfile extends Component {
             last_name: decoded.last_name,
             email: decoded.email
         })
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
+
+    // Alert if clicked on outside of element
+    handleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+            this.setState({ toggleIndex: undefined })
+        }
     }
 
     editProperty = (e) => {
@@ -88,8 +106,6 @@ class VolunteerProfile extends Component {
         )
     }
 
-
-
     render() {
         return (
             <div className="container">
@@ -98,8 +114,8 @@ class VolunteerProfile extends Component {
                         <h1 className="text-center">PROFILE</h1>
                     </div>
                     <table className="table col-md-6 mx-auto">
-                        <tbody>
-
+                        <tbody ref={this.setWrapperRef}>
+                            <img src={this.state.image} ></img>
                             <EditableRow
                                 property="First Name"
                                 value={this.state.first_name}
@@ -124,7 +140,7 @@ class VolunteerProfile extends Component {
                                 value={this.state.city}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={3 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -133,7 +149,7 @@ class VolunteerProfile extends Component {
                                 value={this.state.state}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -142,7 +158,7 @@ class VolunteerProfile extends Component {
                                 value={this.state.zip}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -151,7 +167,7 @@ class VolunteerProfile extends Component {
                                 value={this.state.dob}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
 
                             <EditableRow
@@ -160,29 +176,19 @@ class VolunteerProfile extends Component {
                                 value={this.state.bio}
                                 onClick={this.editProperty}
                                 onChange={this.onChange}
-                                toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
+                                toggle={8 === this.state.toggleIndex ? "edit" : "view"}>
                             </EditableRow>
                         </tbody>
                     </table>
                 </div>
-                {/* {this.state.events.length ?
-                    (
-                        <div>{this.state.events.map(event => (
-                            <EventCard
-                                key={event.id}
-                                title={event.title}
-                                description={event.description}>
-                            </EventCard>
-                        ))}
-                        </div>) : (<h3>No events found.</h3>)
-                } */}
             </div>
         )
     }
+
 }
 
 
-
-
-
 export default VolunteerProfile
+
+
+

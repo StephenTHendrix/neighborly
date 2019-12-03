@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { login } from "./UserFunctions";
+import jwt_decode from 'jwt-decode';
 
 class Landing extends Component {
   constructor() {
@@ -27,8 +28,15 @@ class Landing extends Component {
     };
 
     login(user).then(res => {
-      if (res) {
-        this.props.history.push(`/profile`);
+      const token = localStorage.usertoken
+      const decoded = jwt_decode(token)
+      console.log(decoded)
+
+      if (res && decoded.kind === "volunteer") {
+        this.props.history.push(`/volunteer`)
+      }
+      else if (res && decoded.kind === "seeker") {
+        this.props.history.push(`/seeker`)
       }
     });
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode'
-import EventCard from "../../components/EventCard";
+import SeekerEventCard from "../../components/SeekerEventCard";
 import { getSeekerEvents, getSeekerData } from '../../components/UserFunctions'
 
 class ViewEvents extends Component {
@@ -10,12 +10,6 @@ class ViewEvents extends Component {
             first_name: '',
             last_name: '',
             email: '',
-            // dob: '',
-            // bio: '',
-            // gender: '',
-            // city: '',
-            // state: '',
-            // zip: '',
             errors: {},
             events: []
         }
@@ -23,7 +17,6 @@ class ViewEvents extends Component {
 
     loadEvents = () => {
         getSeekerEvents().then(res => {
-            console.log('Profile: ', res)
             {
                 typeof res.data === "string" ? (
                     this.setState({
@@ -34,7 +27,6 @@ class ViewEvents extends Component {
                         })
                     )
             }
-            console.log(this.state.events)
         })
             .catch(err => console.log(err));
     }
@@ -74,11 +66,14 @@ class ViewEvents extends Component {
                 {this.state.events.length ?
                     (
                         <div>{this.state.events.map(event => (
-                            <EventCard
+                            <SeekerEventCard
                                 key={event.id}
                                 title={event.title}
-                                description={event.description}>
-                            </EventCard>
+                                description={event.description}
+                                date={event.date}
+                                time={event.time}
+                                needed={event.needed}>
+                            </SeekerEventCard>
                         ))}
                         </div>) : (<h3>No events found.</h3>)
                 }

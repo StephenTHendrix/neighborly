@@ -4,22 +4,19 @@ import Register from "../../components/Register";
 import { volunteerRegister } from '../../components/UserFunctions'
 
 // Import React FilePond
-import { FilePond, registerPlugin } from 'react-filepond';
+import { FilePond, registerPlugin } from "react-filepond";
 
 // Import FilePond styles
-import 'filepond/dist/filepond.min.css';
+import "filepond/dist/filepond.min.css";
 
 // Import the Image EXIF Orientation and Image Preview plugins
 // Note: These need to be installed separately
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
-
-
-
 
 class VolunteerSignUp extends Component {
 
@@ -39,19 +36,14 @@ class VolunteerSignUp extends Component {
             bio: '',
             gender: '',
             image: '',
-            files: [{
-                source: 'index.html',
-                options: {
-                    type: 'local'
-                }
-            }]
+            files: []
         }
         this.BACKSPACE = 8;
         this.DELETE_KEY = 46;
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
-
     }
+
 
     componentDidMount() {
         this.node = ReactDOM.findDOMNode(this);
@@ -60,7 +52,6 @@ class VolunteerSignUp extends Component {
     handleInit() {
         console.log('FilePond instance has initialised', this.pond);
     }
-
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value })
@@ -91,10 +82,10 @@ class VolunteerSignUp extends Component {
             dob: this.state.dob,
             bio: this.state.bio,
             gender: this.state.gender,
-            image: this.state.image
+            image: this.state.files
         }
         volunteerRegister(newUser, newVolunteer).then(res => {
-            this.props.history.push(`/login`)
+            this.props.history.push(`/`)
         })
     }
 
@@ -133,7 +124,7 @@ class VolunteerSignUp extends Component {
                                     name="state"
                                     value={this.state.state}
                                     onChange={this.onChange}>
-                                    <option selected>Choose...</option>
+                                    <option defaultValue>Choose...</option>
                                     <option>Alabama - AL</option>
                                     <option>Alaska - AK</option>
                                     <option>Arizona - AZ</option>
@@ -244,7 +235,7 @@ class VolunteerSignUp extends Component {
                                                 value="Male"
                                                 onChange={this.onChange}
                                             ></input>
-                                            <label className="form-check-label" for="gridRadios1">
+                                            <label className="form-check-label" htmlFor="gridRadios1">
                                                 Male
                                             </label>
                                         </div>
@@ -256,7 +247,7 @@ class VolunteerSignUp extends Component {
                                                 id="gridRadios2"
                                                 onChange={this.onChange}
                                                 value="Female"></input>
-                                            <label className="form-check-label" for="gridRadios2">
+                                            <label className="form-check-label" htmlFor="gridRadios2">
                                                 Female
                                         </label>
                                         </div>
@@ -284,25 +275,24 @@ class VolunteerSignUp extends Component {
 
                         </div>
                     </form>
-                    <div className="App">
 
-                        {/* Pass FilePond properties as attributes */}
-                        <FilePond ref={ref => this.pond = ref}
-                            files={this.state.files}
-                            allowMultiple={true}
-                            maxFiles={3}
-                            server="/api"
-                            oninit={() => this.handleInit()}
-                            onupdatefiles={(fileItems) => {
-                                // Set current file objects to this.state
-                                this.setState({
-                                    files: fileItems.map(fileItem => fileItem.file)
-                                });
-                            }}>
-                        </FilePond>
-
-                    </div>
-
+                    <FilePond ref={ref => this.pond = ref}
+                        files={this.state.files}
+                        name="uploadImages"
+                        allowMultiple={false}
+                        maxFiles={1}
+                        server="/users/api"
+                        oninit={() => this.handleInit()}
+                        onload={(fileName) => console.log(JSON.parse(fileName))}
+                        onupdatefiles={(fileItems) => {
+                            // Set current file objects to this.state
+                            this.setState({
+                                files: fileItems.map(fileItem => {
+                                    return fileItem.file
+                                })
+                            });
+                        }}>
+                    </FilePond>
 
                     <div className="form-group">
                         <label htmlFor="image">Image</label>
@@ -327,11 +317,6 @@ class VolunteerSignUp extends Component {
         )
     }
 }
-
-{/* <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script> */}
 
 export default VolunteerSignUp;
 

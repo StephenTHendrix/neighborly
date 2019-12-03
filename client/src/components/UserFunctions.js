@@ -61,7 +61,7 @@ export const eventRegister = newEvent => {
       needed: newEvent.needed,
       date: newEvent.date,
       time: newEvent.time,
-  })
+    })
     .then(response => {
       console.log('Registered Event')
     })
@@ -143,7 +143,7 @@ export const getSeekerData = () => {
 
 export const getSeekerEvents = () => {
   return axios
-    .get('seeker/events')
+    .get('/seeker/events')
   // .then(response => {
   //   console.log('UserFunctions: ', response)
   // })
