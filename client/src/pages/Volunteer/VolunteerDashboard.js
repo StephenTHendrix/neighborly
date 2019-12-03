@@ -4,6 +4,7 @@ import InterestedEvent from "../../components/InterestedEvents";
 import { getVolunteerData } from "../../components/UserFunctions";
 import jwt_decode from "jwt-decode";
 import VolunteerProfile from "../Volunteer/VolunteerProfile.js";
+import VolunteerSearch from "./VolunteerSearch.js";
 
 var _ = require("lodash");
 
@@ -135,10 +136,7 @@ class VolunteerDashboard extends React.Component {
                 <h3 className="text-center sub-title ml-5">Local Events</h3>
               </div>
 
-              <div className="row">
-
-                
-              </div>
+              <div className="row"></div>
             </div>
             <div className="col">
               <div className="row">
@@ -163,13 +161,40 @@ class VolunteerDashboard extends React.Component {
                   ) : this.state.events.length == 0 ? (
                     <div>
                       <p>You are currently not Signed Up for any events</p>
-                      <div className="btn btn-sub" onClick={this.search}>
-                        Click Here to Start Searching
+
+                      <div className="col text-right mr-3">
+                        {/* <div
+                          className="btn btn-sub"
+                          onClick={this.search}
+                          data-toggle="modal"
+                          data-target="#searchModalCenter"
+                        >
+                          Click Here to Start Searching
+                        </div> */}
+                        <div
+                          className="btn btn-sub"
+                          data-toggle="modal"
+                          data-target="#searchModalCenter"
+                        >
+                          Click Here to Start Searching
+                        </div>
                       </div>
                     </div>
                   ) : (
                     <div>
-                      <div className="btn btn-sub" onClick={this.search}>
+                      {/* <div
+                        className="btn btn-sub"
+                        onClick={this.search}
+                        data-toggle="modal"
+                        data-target="#searchModalCenter"
+                      >
+                        Search for Activity
+                      </div> */}
+                      <div
+                        className="btn btn-sub"
+                        data-toggle="modal"
+                        data-target="#searchModalCenter"
+                      >
                         Search for Activity
                       </div>
                       {renderEvents}
@@ -183,31 +208,63 @@ class VolunteerDashboard extends React.Component {
 
         {/* <!-- Modal --> */}
         <div
-          class="modal fade"
+          className="modal fade"
           id="volProfileModalCenter"
           tabindex="-1"
           role="dialog"
           aria-labelledby="volProfileModalCenterTitle"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="volProfileModalLongTitle">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="volProfileModalLongTitle">
                   Volunteer Profile
                 </h5>
 
                 <button
                   type="button"
-                  class="close text-white"
+                  className="close text-white"
                   data-dismiss="modal"
                   aria-label="Close"
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <VolunteerProfile />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <!-- Modal --> */}
+        <div
+          className="modal fade"
+          id="searchModalCenter"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="searchModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="searchModalLongTitle">
+                  Volunteer Profile
+                </h5>
+
+                <button
+                  type="button"
+                  className="close text-white"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <VolunteerSearch />
               </div>
             </div>
           </div>
