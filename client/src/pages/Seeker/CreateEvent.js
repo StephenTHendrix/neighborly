@@ -55,10 +55,11 @@ class CreateEvent extends Component {
       time: this.state.time
     };
 
-    eventRegister(newEvent).then(res => {
+    eventRegister(newEvent)
+    // .then(res => {
       this.props.history.push(`/login`);
-      console.log("STATE", this.state);
-    });
+      // console.log("STATE", this.state);
+    // });
   }
 
 
@@ -94,13 +95,13 @@ class CreateEvent extends Component {
         />
 
 
-        <button
+        {/* <button
           type="submit"
           className="btn btn-lg btn-sub"
           onClick={this.onSubmit}
         >
           Create Event!
-        </button>
+        </button> */}
       </div>)}
       </div>
     );
