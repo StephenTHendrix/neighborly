@@ -7,7 +7,6 @@ var app = express();
 var PORT = process.env.PORT || 5000
 const multer = require("multer");
 const upload = multer({ dest: "client/public/images" })
-const FilePond = require("filepond")
 const fs = require('fs');
 
 require('dotenv').config();
@@ -39,15 +38,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-// FilePond.setOptions({
-//   server: {
-//     process: './process',
-//     revert: './revert',
-//     restore: './restore/',
-//     load: './load/',
-//     fetch: './fetch/'
-//   }
-// });
 
 app.post("/api", upload.single("./client/public/images", 12), function (req, res) {
   const originalName = req.file.originalname;

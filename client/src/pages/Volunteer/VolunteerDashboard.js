@@ -157,11 +157,11 @@ class VolunteerDashboard extends React.Component {
                     !localStorage.usertoken ? (
                       <h3>Not for you.</h3>
                     ) :
-                     (
-                        <div className="ml-5">
-                          <VolunteerSearch />
-                        </div>
-                      )
+                    (
+                      <div className="ml-5">
+                        <VolunteerSearch />
+                      </div>
+                    )
                   }
                 </div>
               </div>

@@ -3,6 +3,7 @@ import EventRegister from "../../components/EventRegister";
 import { eventRegister } from "../../components/UserFunctions";
 import jwt_decode from 'jwt-decode';
 
+
 class CreateEvent extends Component {
   constructor() {
     super();
@@ -30,6 +31,11 @@ class CreateEvent extends Component {
 
   componentDidMount() {
     console.log(this.state);
+    document.cookie = "imageUpload= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+  }
+
+  handleInit() {
+    console.log('FilePond instance has initialised', this.pond);
   }
 
   onChange(e) {
@@ -39,28 +45,37 @@ class CreateEvent extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const newEvent = {
-      title: this.state.title,
-      link: this.state.link,
-      description: this.state.description,
-      organization: this.state.organization,
-      street: this.state.street,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      smalldescription: this.state.smalldescription,
-      image: this.state.image,
-      needed: this.state.needed,
-      date: this.state.date,
-      time: this.state.time
-    };
+    this.setState({ image: document.cookie.split('=')[1] })
+    const imgCookie = document.cookie.split('=')[1]
+    console.log("Img cookie: " + imgCookie)
 
-    eventRegister(newEvent)
-    // .then(res => {
-    this.props.history.push(`/login`);
-    // console.log("STATE", this.state);
-    // });
+    setTimeout(() => {
+      console.log(this.state.image)
+
+      const newEvent = {
+        title: this.state.title,
+        link: this.state.link,
+        description: this.state.description,
+        organization: this.state.organization,
+        street: this.state.street,
+        city: this.state.city,
+        state: this.state.state,
+        zip: this.state.zip,
+        smalldescription: this.state.smalldescription,
+        image: this.state.image,
+        needed: this.state.needed,
+        date: this.state.date,
+        time: this.state.time
+      };
+
+      eventRegister(newEvent)
+      // .then(res => {
+      this.props.history.push(`/login`);
+      // console.log("STATE", this.state);
+      // });
+    }, 1000)
   }
+
 
 
   render() {
@@ -75,7 +90,9 @@ class CreateEvent extends Component {
     return (
       <div>
         {this.state.decoded.kind === "volunteer" || !this.state.token ?
-          (<h3>Not for you.</h3>) : (<div>
+          (<h3>Not for you.</h3>) :
+
+          (<div>
             <EventRegister
               title={this.state.title}
               link={this.state.link}
@@ -87,13 +104,13 @@ class CreateEvent extends Component {
               zip={this.state.zip}
               smalldescription={this.state.smalldescription}
               image={this.state.image}
+              files={this.state.files}
               needed={this.state.needed}
               date={this.state.date}
               time={this.state.time}
               onChange={this.onChange}
               onSubmit={this.onSubmit}
             />
-
 
             {/* <button
           type="submit"

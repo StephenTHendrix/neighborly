@@ -11,16 +11,31 @@ import SeekerProfile from "../Seeker/SeekerProfile.js";
 import EventRegister from "../../components/EventRegister";
 import { eventRegister } from "../../components/UserFunctions";
 
+// Import React FilePond
+import { FilePond, registerPlugin } from "react-filepond";
+
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 
 class SeekerDashboard extends Component {
   constructor() {
-  super()
-  this.state = {
-    allUsers: [],
-    token: {},
-    decoded: {},
+    super()
+    this.state = {
+      allUsers: [],
+      token: {},
+      decoded: {},
 
-    title: "",
+      title: "",
       link: "",
       description: "",
       organization: "",
@@ -30,17 +45,18 @@ class SeekerDashboard extends Component {
       zip: "",
       smalldescription: "",
       image: "",
+      files: [],
       needed: "",
       date: "",
       time: "",
-    first_name: "",
-    last_name: ""
+      first_name: "",
+      last_name: ""
 
-  };
+    };
 
-  this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-}
+  }
 
   loadUsers = () => {
     getUsers()
@@ -50,11 +66,11 @@ class SeekerDashboard extends Component {
         {
           typeof res.data === "string"
             ? this.setState({
-                allUsers: []
-              })
+              allUsers: []
+            })
             : this.setState({
-                allUsers: res.data
-              });
+              allUsers: res.data
+            });
         }
 
         console.log(this.state.allUsers);
@@ -63,6 +79,7 @@ class SeekerDashboard extends Component {
   };
 
   componentDidMount() {
+    document.cookie = "imageUpload= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
     this.loadUsers();
     this.setState({
       first_name: this.state.decoded.first_name,
@@ -75,30 +92,44 @@ class SeekerDashboard extends Component {
     console.log(this.state);
   }
 
+  handleInit() {
+    console.log('FilePond instance has initialised', this.pond);
+  }
+
+
   onSubmit(e) {
     e.preventDefault();
 
-    const newEvent = {
-      title: this.state.title,
-      link: this.state.link,
-      description: this.state.description,
-      organization: this.state.organization,
-      street: this.state.street,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      smalldescription: this.state.smalldescription,
-      image: this.state.image,
-      needed: this.state.needed,
-      date: this.state.date,
-      time: this.state.time
-    };
+    this.setState({ image: document.cookie.split('=')[1] })
+    const imgCookie = document.cookie.split('=')[1]
+    console.log("Img cookie: " + imgCookie)
 
-    eventRegister(newEvent)
-    // .then(res => {
+    setTimeout(() => {
+      console.log(this.state.image)
+
+      const newEvent = {
+        title: this.state.title,
+        link: this.state.link,
+        description: this.state.description,
+        organization: this.state.organization,
+        street: this.state.street,
+        city: this.state.city,
+        state: this.state.state,
+        zip: this.state.zip,
+        smalldescription: this.state.smalldescription,
+        image: this.state.image,
+        needed: this.state.needed,
+        date: this.state.date,
+        time: this.state.time
+
+      };
+
+      eventRegister(newEvent)
+      // .then(res => {
       window.location.reload()
       // console.log("STATE", this.state);
-    // });
+      // });
+    }, 1000)
   }
 
   render() {
@@ -132,29 +163,29 @@ class SeekerDashboard extends Component {
               <div className="col">
                 <div>
                   {this.state.decoded.kind === "volunteer" ||
-                  !this.state.token ? (
-                    <h3>Not for you.</h3>
-                  ) : (
-                    <div>
-                      {this.state.allUsers.length ? (
-                        <div className="d-flex flex-row flex-wrap">
-                          {this.state.allUsers.map(user => (
-                            <UserCard
-                              key={user.id}
-                              first_name={user.first_name}
-                              last_name={user.last_name}
-                              city={user.city}
-                              state={user.state}
-                              bio={user.bio}
-                              email={user.email}
-                            ></UserCard>
-                          ))}
-                        </div>
-                      ) : (
-                        <h3>No users found.</h3>
-                      )}
-                    </div>
-                  )}
+                    !this.state.token ? (
+                      <h3>Not for you.</h3>
+                    ) : (
+                      <div>
+                        {this.state.allUsers.length ? (
+                          <div className="d-flex flex-row flex-wrap">
+                            {this.state.allUsers.map(user => (
+                              <UserCard
+                                key={user.id}
+                                first_name={user.first_name}
+                                last_name={user.last_name}
+                                city={user.city}
+                                state={user.state}
+                                bio={user.bio}
+                                email={user.email}
+                              ></UserCard>
+                            ))}
+                          </div>
+                        ) : (
+                            <h3>No users found.</h3>
+                          )}
+                      </div>
+                    )}
                 </div>
               </div>
             </div>
@@ -170,7 +201,7 @@ class SeekerDashboard extends Component {
                     Create Event
                   </div>
                 </div>
-                
+
               </div>
 
               <ViewEvents className="row col-sm-12" />
@@ -236,24 +267,46 @@ class SeekerDashboard extends Component {
                 </button>
               </div>
               <div class="modal-body">
-              <EventRegister
-          title={this.state.title}
-          link={this.state.link}
-          description={this.state.description}
-          organization={this.state.organization}
-          street={this.state.street}
-          city={this.state.city}
-          state={this.state.state}
-          zip={this.state.zip}
-          smalldescription={this.state.smalldescription}
-          image={this.state.image}
-          needed={this.state.needed}
-          date={this.state.date}
-          time={this.state.time}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          
-        />
+                <EventRegister
+                  title={this.state.title}
+                  link={this.state.link}
+                  description={this.state.description}
+                  organization={this.state.organization}
+                  street={this.state.street}
+                  city={this.state.city}
+                  state={this.state.state}
+                  zip={this.state.zip}
+                  smalldescription={this.state.smalldescription}
+                  image={this.state.image}
+                  needed={this.state.needed}
+                  date={this.state.date}
+                  time={this.state.time}
+                  onChange={this.onChange}
+                  onSubmit={this.onSubmit}
+
+                />
+
+                <FilePond ref={ref => this.pond = ref}
+                  files={this.state.files}
+                  name="./client/public/images"
+                  allowMultiple={false}
+                  maxFiles={1}
+                  server="/api"
+                  oninit={() => this.handleInit()}
+                  onload={(fileName) => {
+                    console.log("This is the onload trigger!")
+                    console.log(JSON.parse(fileName))
+                  }}
+                  onupdatefiles={(fileItems) => {
+                    console.log("This is on update files")
+                    // Set current file objects to this.state
+                    this.setState({
+                      files: fileItems.map(fileItem => {
+                        return fileItem.file
+                      }),
+                    });
+                  }}>
+                </FilePond>
                 {/* <CreateEvent  /> */}
                 <button
                   type="submit"
