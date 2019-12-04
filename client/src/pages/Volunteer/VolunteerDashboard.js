@@ -156,17 +156,11 @@ class VolunteerDashboard extends React.Component {
                   {this.state.decoded.kind === "seeker" ||
                     !localStorage.usertoken ? (
                       <h3>Not for you.</h3>
-                    ) : this.state.events.length == 0 ? (
-                      <div>
+                    ) :
+                    <div className="ml-5">
+                      <VolunteerSearch />
+                    </div>
 
-
-                        <div className="col text-right mr-3"></div>
-                      </div>
-                    ) : (
-                        <div className="ml-5">
-                          <VolunteerSearch />
-                        </div>
-                      )
                   }
                 </div>
               </div>

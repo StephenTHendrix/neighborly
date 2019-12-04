@@ -5,7 +5,7 @@ class EventRegister extends Component {
 
   render(props) {
     return (
-      
+
       <form>
         <div className="form-row">
           <div className="form-group col-md-6">
@@ -108,17 +108,7 @@ class EventRegister extends Component {
             onChange={this.props.onChange}
           />
         </div> */}
-        <div className="form-group">
-          <label htmlFor="image">Image link</label>
-          <input
-            type="text"
-            className="form-control"
-            name="image"
-            placeholder="image link"
-            value={this.props.image}
-            onChange={this.props.onChange}
-          />
-        </div>
+
         <div className="form-group">
           <label htmlFor="needed">Number needed</label>
           <input

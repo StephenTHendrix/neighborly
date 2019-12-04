@@ -40,7 +40,7 @@ function SearchEventCard(props) {
               <small className="text-muted">{props.date}  {props.time}</small>
             </div>
             <div className="modal-footer">
-                <button className="saved btn btn-sub" key={props.id} id={props.id} onClick={() => props.handleEventSignUp(props.id)}> I'm interest</button>
+              <button className="saved btn btn-sub" key={props.id} id={props.id} onClick={() => props.handleEventSignUp(props.id)}>Sign Up</button>
             </div>
           </div>
         </div>
