@@ -159,7 +159,7 @@ class VolunteerDashboard extends React.Component {
                       <h3>Not for you.</h3>
                     ) :
                     (
-                      <div className="ml-2">
+                      <div className="col ml-2">
                         <VolunteerSearch  />
                       </div>
                     )
@@ -186,7 +186,7 @@ class VolunteerDashboard extends React.Component {
                         <div className="col text-right"></div>
                       </div>
                     ) : (
-                        <div className="col-xs-12">{renderEvents}</div>
+                        <div className="col-xs-12 mt-5">{renderEvents}</div>
                       )}
                 </div>
               </div>
