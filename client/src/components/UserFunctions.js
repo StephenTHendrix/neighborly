@@ -69,7 +69,7 @@ export const eventRegister = newEvent => {
 
 export const login = user => {
   return axios
-    .post('users/login', {
+    .post('/users/login', {
       email: user.email,
       password: user.password,
       kind: user.kind
