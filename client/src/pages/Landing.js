@@ -65,15 +65,12 @@ class Landing extends Component {
                 <div class="card-body">
                   <div className="row">
                     <div className="col-sm-12 col-md-4 d-flex flex-column justify-content-end p-0" id="img-puppy">
-                       
+
                     </div>
                     <div className="col-sm-12 col-md-8">
                       <h4 className="card-title text-block">Local Community</h4>
                       <p className="card-text">
-                        When ready, you can find opportunies around the globe,
-                        step out into the world on a bigger scale by traveling the
-                        world conquering world hunger, disease, disaster recovery,
-                        humanitarian missions.
+                        Support your local community by engaging in events throughout your neighborhood. Sign up for a shift at a food bank, register your company for a volunteer day, or help a neighbor in need.
                     </p>
                     </div>
                   </div>
@@ -85,7 +82,7 @@ class Landing extends Component {
               <div class="card col-sm-12 shadow mb-5">
                 <div class="card-body">
                   <div className="row">
-                    
+
                     <div className="col-sm-12 col-md-8">
                       <h4 className="card-title text-block">Global Outreach</h4>
                       <p className="card-text">
@@ -120,15 +117,15 @@ class Landing extends Component {
                         protecting or cleaning up their.
                     </p>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
-            
+
           </div>
 
-          
+
         </div>
       </div>
     );
