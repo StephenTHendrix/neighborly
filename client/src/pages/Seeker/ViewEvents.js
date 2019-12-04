@@ -15,6 +15,7 @@ class ViewEvents extends Component {
       userID: "",
       first_name: "",
       last_name: "",
+      image: "",
       // email: "",
       // dob: '',
       // bio: '',
@@ -95,7 +96,8 @@ class ViewEvents extends Component {
       userID: decoded.id,
       first_name: decoded.first_name,
       last_name: decoded.last_name,
-      email: decoded.email
+      email: decoded.email,
+      image: decoded.image
     });
   }
 
@@ -119,6 +121,7 @@ class ViewEvents extends Component {
                       date={event.date}
                       time={event.time}
                       userVolunteer={event.registeredUser}
+                      image={event.image}
                     ></SeekerEventCard>
                   ))}
                 </div>

@@ -1,16 +1,33 @@
 import React from "react";
 
-
 function UserCard(props) {
+
+
   return (
     <div className="card col-lg-5 col-md-12 m-1 p-0">
       <div className="card-header p-3">
-        <h5>
-          {props.first_name} {props.last_name}
-        </h5>
-        <p>
-          {props.city}, {props.state}
-        </p>
+        <div className="row">
+          <div className="col-md-8 col-sm-12">
+            <h5>
+              {props.first_name} {props.last_name}
+            </h5>
+            <p>
+              {props.city}, {props.state}
+            </p>
+          </div>
+          <div className="col-md-4">
+            <img
+              className="img-fluid rounded-circle"
+              src={
+                props.image === null
+                  ? props.gender === "Male"
+                    ? "../assets/images/profile_male.png"
+                    : "../assets/images/profile_female.png"
+                  : "../images/" + props.image
+              }
+            />
+          </div>
+        </div>
       </div>
 
       <div className="card-body">
@@ -20,26 +37,6 @@ function UserCard(props) {
         </p>
       </div>
     </div>
-
-    // <div className="card">
-    //   <div className="img-container">
-    //     {/* <img alt={props.name} src={props.image} /> */}
-    //   </div>
-    //   <div className="content">
-    //     <ul>
-    //       <li>ID: {props.id}</li>
-    //       <li>
-    //         <strong>Name:</strong> {props.first_name}
-    //       </li>
-    //       <li>
-    //         {/* <strong>Occupation:</strong> {props.occupation} */}
-    //       </li>
-    //       <li>
-    //         {/* <strong>Location:</strong> {props.location} */}
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </div>
   );
 }
 

@@ -142,11 +142,9 @@ body {
     border-right: 3px solid #F6C026;
 }
 
-/* .card-p {
-    padding-left: 2em;
-    padding-right: 2em;
-    text-align: justify;
-} */
+.event-info {
+    background-color: rgba(0,0,0,0.6);
+}
 
 .img-hero {
     border-radius: .4em;
@@ -171,6 +169,7 @@ body {
 .btn-sub{
     background-color: #762121 !important;
     color: white;
+    position: relative;
 }
 
 .btn-sub:hover{

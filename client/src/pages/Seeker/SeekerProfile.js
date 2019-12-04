@@ -119,9 +119,7 @@ class SeekerProfile extends Component {
       return (
         <div className="container">
           <div className="jumbotron mt-5">
-            <div className="col-sm-8 mx-auto">
-              <h1 className="text-center">PROFILE</h1>
-            </div>
+            
             <table className="table col-md-6 mx-auto">
               <tbody ref={this.setWrapperRef}>
                 <EditableRow
@@ -221,9 +219,7 @@ class SeekerProfile extends Component {
         ) : (
             <div className="container">
               <div className="jumbotron mt-5">
-                <div className="col-sm-8 mx-auto">
-                  <h1 className="text-center">PROFILE</h1>
-                </div>
+                
                 <table className="table col-md-6 mx-auto">
                   <tbody>
                     <EditableRow
