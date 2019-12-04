@@ -20,7 +20,7 @@ function SeekerEventCard(props) {
         </div>
         <div className="card-footer">
           <p className="card-text">
-            Current Registered: {props.registered} / {props.needed}
+            Currently Registered: {props.registered} / {props.needed}
           </p>
           <button
             type="button"
@@ -64,6 +64,11 @@ function SeekerEventCard(props) {
                       first_name={user.first_name}
                       last_name={user.last_name}
                       email={user.email}
+                      gender={user.gender}
+                      image={user.image}
+                      city={user.city}
+                      state={user.state}
+                      state={user.bio}
                     ></User>
                   );
                 })
