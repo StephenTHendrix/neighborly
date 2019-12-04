@@ -46,7 +46,7 @@ class Landing extends Component {
     login(user).then(res => {
       const token = localStorage.usertoken
       const decoded = jwt_decode(token)
-      console.log(decoded)
+      this.setState({token: token, decoded: decoded})
 
       if (res && decoded.kind === "volunteer") {
         this.props.history.push(`/volunteer`)
