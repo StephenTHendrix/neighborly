@@ -209,7 +209,8 @@ class EventRegister extends Component {
               name="ampm"
               value={this.props.ampm}
               onChange={this.props.onChange}>
-              <option defaultValue>AM</option>
+              <option defaultValue>Choose...</option>
+              <option>AM</option>
               <option>PM</option>
             </select>
           </div>
