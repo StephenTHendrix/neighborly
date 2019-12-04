@@ -3,24 +3,28 @@ import React from "react";
 function SearchEventCard(props) {
   return (
     <div>
-      <div className="card mt-2">
-        <div className="card-header p-3">
-          <h5>{props.title}</h5>
-        </div>
-        <div className="card-body">
-          <h6 className="card-subtitle mb-2 text-muted">{props.organization}</h6>
-          <p className="card-text">{props.smalldescription}</p>
-
+        <div class="card bg-dark text-white col-xs-12 mt-2">
+        <img
+          class="card-img"
+          src={"../images/" + props.image}
+          alt="Card image"
+        />
+        <div class="card-img-overlay p-0">
+          <h5 class="card-header">{props.title}</h5>
+          <div className="event-info">
+            <h6 className="card-text pl-3 pt-2">
+              {props.date} {props.time}
+            </h6>
+            <p class="card-text pl-3">{props.smalldescription}</p>
+          </div>
         </div>
         <div className="card-footer">
-          {/* {(props.date || props.time) ? */}
-          <small className="text-muted">{props.date}   {props.time}</small>
-          {/* :
-          <small className="text-muted">{props.flexible}</small>
-        } */}
-        </div>
+          <p className="card-text">
+            Current Registered: {props.registered} / {props.needed}
+          </p>
         <button type="button" className="btn btn-sub" data-toggle="modal" data-target={"#" + props.id}>
           More Information</button>
+      </div>
       </div>
 
       <div className="modal fade" id={props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

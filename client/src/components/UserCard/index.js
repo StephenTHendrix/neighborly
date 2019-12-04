@@ -7,7 +7,7 @@ function UserCard(props) {
     <div className="card col-lg-5 col-md-12 m-1 p-0">
       <div className="card-header p-3">
         <div className="row">
-          <div className="col-sm-8">
+          <div className="col-md-8 col-sm-12">
             <h5>
               {props.first_name} {props.last_name}
             </h5>
@@ -15,7 +15,7 @@ function UserCard(props) {
               {props.city}, {props.state}
             </p>
           </div>
-          <div className="col-sm-4">
+          <div className="col-md-4">
             <img
               className="img-fluid rounded-circle"
               src={

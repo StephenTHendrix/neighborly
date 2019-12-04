@@ -142,6 +142,7 @@ class VolunteerSearch extends React.Component {
                     signup={event.going}
                     key={event.id}
                     handleEventSignUp={this.handleEventSignUp}
+                    image={event.image}
                 />
             )
         });

@@ -156,7 +156,7 @@ class SeekerDashboard extends Component {
         </div>
         <div className="mx-5">
           <div className="row ">
-            <div className="col">
+            <div className="col-lg-6 col-md-12">
               <div className="row d-flex flex-justify-center">
                 <h3 className="text-center sub-title ml-5">Volunteers</h3>
               </div>
@@ -168,7 +168,7 @@ class SeekerDashboard extends Component {
                     ) : (
                       <div>
                         {this.state.allUsers.length ? (
-                          <div className="d-flex flex-row flex-wrap">
+                          <div className="ml-3 d-flex flex-row flex-wrap">
                             {this.state.allUsers.map(user => (
                               <UserCard
                                 key={user.id}
