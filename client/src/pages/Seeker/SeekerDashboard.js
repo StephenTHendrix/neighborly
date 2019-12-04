@@ -147,6 +147,8 @@ class SeekerDashboard extends Component {
                               state={user.state}
                               bio={user.bio}
                               email={user.email}
+                              gender={user.gender}
+                              image={user.image}
                             ></UserCard>
                           ))}
                         </div>
@@ -170,9 +172,7 @@ class SeekerDashboard extends Component {
                     Create Event
                   </div>
                 </div>
-                
               </div>
-
               <ViewEvents className="row col-sm-12" />
             </div>
           </div>
@@ -236,24 +236,23 @@ class SeekerDashboard extends Component {
                 </button>
               </div>
               <div class="modal-body">
-              <EventRegister
-          title={this.state.title}
-          link={this.state.link}
-          description={this.state.description}
-          organization={this.state.organization}
-          street={this.state.street}
-          city={this.state.city}
-          state={this.state.state}
-          zip={this.state.zip}
-          smalldescription={this.state.smalldescription}
-          image={this.state.image}
-          needed={this.state.needed}
-          date={this.state.date}
-          time={this.state.time}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          
-        />
+                <EventRegister
+                  title={this.state.title}
+                  link={this.state.link}
+                  description={this.state.description}
+                  organization={this.state.organization}
+                  street={this.state.street}
+                  city={this.state.city}
+                  state={this.state.state}
+                  zip={this.state.zip}
+                  smalldescription={this.state.smalldescription}
+                  image={this.state.image}
+                  needed={this.state.needed}
+                  date={this.state.date}
+                  time={this.state.time}
+                  onChange={this.onChange}
+                  onSubmit={this.onSubmit}
+                />
                 {/* <CreateEvent  /> */}
                 <button
                   type="submit"
