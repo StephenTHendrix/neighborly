@@ -72,6 +72,8 @@ function InterestedEvent(props) {
               <p className="text-muted">
                 {props.date} {props.time}
               </p>
+
+              <button className="saved btn btn-sub" key={props.id} id={props.id} onClick={() => props.deleteEvent(props.id)}>I won't be able to go</button>
             </div>
           </div>
         </div>
