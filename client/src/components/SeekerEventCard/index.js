@@ -6,7 +6,12 @@ function SeekerEventCard(props) {
       <div class="card bg-dark text-white col-xs-12 mt-2">
         <img
           class="card-img"
-          src={"../images/" + props.image}
+          src={
+            props.image === null
+              ? "../assets/images/placeholder_event.jpg"
+              : "../images/" + props.image
+          }
+          // src={"../images/" + props.image}
           alt="Card image"
         />
         <div class="card-img-overlay p-0">
@@ -64,12 +69,17 @@ function SeekerEventCard(props) {
                       first_name={user.first_name}
                       last_name={user.last_name}
                       email={user.email}
+                      gender={user.gender}
+                      image={user.image}
+                      city={user.city}
+                      state={user.state}
+                      state={user.bio}
                     ></User>
                   );
                 })
               ) : (
-                  <p> No One Registered Yet</p>
-                )}
+                <p> No One Registered Yet</p>
+              )}
             </div>
           </div>
         </div>
