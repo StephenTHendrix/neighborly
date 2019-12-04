@@ -123,7 +123,7 @@ class SeekerProfile extends Component {
               <h1 className="text-center">PROFILE</h1>
             </div>
             <table className="table col-md-6 mx-auto">
-              <tbody ref={this.setWrapperRef}>
+              <tbody >
                 <EditableRow
                   property="First Name"
                   value={this.state.first_name}
@@ -143,7 +143,7 @@ class SeekerProfile extends Component {
                 </EditableRow>
 
                 {this.state.companyName !== "" ?
-                  <EditableRow
+                  <EditableRow ref={this.setWrapperRef}
                     property="Company Name"
                     name="companyName"
                     value={this.state.companyName}
@@ -152,7 +152,7 @@ class SeekerProfile extends Component {
                     toggle={3 === this.state.toggleIndex ? "edit" : "view"}>
                   </EditableRow>
                   :
-                  <div></div>}
+                  <div ref={this.setWrapperRef}></div>}
 
                 <EditableRow
                   property="Bio"
