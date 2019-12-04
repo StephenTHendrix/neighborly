@@ -270,18 +270,16 @@ class SeekerSignUp extends Component {
                                 </textarea>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="form-group col">
-                                <label htmlFor="website">Website URL</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    name="website"
-                                    placeholder="website"
-                                    value={this.state.website}
-                                    onChange={this.onChange}
-                                />
-                            </div>
+                        <div className="form-group col">
+                            <label htmlFor="website">Website URL</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="website"
+                                placeholder="website"
+                                value={this.state.website}
+                                onChange={this.onChange}
+                            />
                             {/* <div className="form-group col-md-6">
                                 <label htmlFor="image">Image</label>
                                 <input
@@ -303,7 +301,8 @@ class SeekerSignUp extends Component {
                         >
                             Register!
               </button>
-                    </div >)} </div>
+                    </div >)
+                } </div>
 
         )
     }

@@ -1,15 +1,9 @@
 import axios from "axios";
 
 export default {
-    // getevent: function () {
-    //     return axios.get("/api/searchevent");
-    // },
-    // searchevent: function (location) {
-    //     return axios.post("/api/searchevent", { location });
-    // },
     searchevent: function () {
         return axios.get("/api/events");
-    },   
+    },
 
     savedEvent: function (id, userId) {
         return axios.post("/api/events/" + id, userId);
@@ -18,7 +12,7 @@ export default {
     removeEvent: function (id, userId) {
         return axios.delete("/api/events/" + id + "/" + userId)
     },
-    
+
     getsavedEvent: function (id) {
         return axios.get("/api/userevents/" + id)
     },
@@ -31,6 +25,6 @@ export default {
     },
 
     seekerEventVolunteerList: function (id, UserId) {
-        return axios.get("/api/seekerEvent/" + id + "/" +  UserId)
+        return axios.get("/api/seekerEvent/" + id + "/" + UserId)
     }
 }

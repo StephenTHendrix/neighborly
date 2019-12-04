@@ -63,7 +63,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         time: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING
+        },
+        ampm: {
+            type: DataTypes.STRING
         },
         flexible: {
             type: DataTypes.STRING

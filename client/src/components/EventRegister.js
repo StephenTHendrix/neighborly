@@ -201,7 +201,7 @@ class EventRegister extends Component {
               onChange={this.props.onChange}
             />
           </div>
-          {/* <div className="form-group col-md-3">
+          <div className="form-group col-md-3">
             <label htmlFor="inputState">AM/PM</label>
             <select
               id="inputState"
@@ -209,10 +209,11 @@ class EventRegister extends Component {
               name="ampm"
               value={this.props.ampm}
               onChange={this.props.onChange}>
-              <option defaultValue>AM</option>
+              <option defaultValue>Choose...</option>
+              <option>AM</option>
               <option>PM</option>
             </select>
-          </div> */}
+          </div>
         </div>
 
       </form>

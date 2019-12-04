@@ -1,5 +1,4 @@
 import axios from 'axios'
-// require('express')
 require('cookie-parser')
 
 export const volunteerRegister = (newUser, newVolunteer) => {
@@ -61,6 +60,7 @@ export const eventRegister = newEvent => {
       needed: newEvent.needed,
       date: newEvent.date,
       time: newEvent.time,
+      ampm: newEvent.ampm
     })
     .then(response => {
       console.log('Registered Event')
@@ -134,7 +134,5 @@ export const getSeekerData = () => {
 export const getSeekerEvents = () => {
   return axios
     .get('/seeker/events')
-  // .then(response => {
-  //   console.log('UserFunctions: ', response)
-  // })
+
 }

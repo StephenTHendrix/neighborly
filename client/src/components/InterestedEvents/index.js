@@ -17,7 +17,7 @@ function InterestedEvent(props) {
           <h5 class="card-header">{props.title}</h5>
           <div className="event-info">
             <h6 className="card-text pl-3 pt-2">
-              {props.date} {props.time}
+              {props.date} {props.time} {props.ampm}
             </h6>
             <p class="card-text pl-3">{props.description}</p>
           </div>
@@ -74,7 +74,7 @@ function InterestedEvent(props) {
                 Address: {props.street} {props.city} {props.state}
               </p>
               <p className="text-muted">
-                {props.date} {props.time}
+                {props.date} {props.time} {props.ampm}
               </p>
 
               <button
@@ -83,7 +83,7 @@ function InterestedEvent(props) {
                 id={props.id}
                 onClick={() => props.deleteEvent(props.id)}
               >
-                I won't be able to go
+                Cancel
               </button>
             </div>
           </div>
