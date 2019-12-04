@@ -90,14 +90,21 @@ class SeekerDashboard extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
     if (e.target.name === "date") {
-      console.log(this.state.date)
       var numChars = e.target.value.length;
       if (this.state[e.target.name].length < e.target.value.length && (numChars === 2 || numChars === 5)) {
         var thisVal = e.target.value;
         thisVal += '/';
         e.target.value = thisVal;
         this.setState({ [e.target.name]: thisVal });
-        console.log(this.state.date)
+      }
+    }
+    if (e.target.name === "time") {
+      var numChars = e.target.value.length;
+      if (this.state[e.target.name].length < e.target.value.length && (numChars === 2)) {
+        var thisVal = e.target.value;
+        thisVal += ':';
+        e.target.value = thisVal;
+        this.setState({ [e.target.name]: thisVal });
       }
     }
   }

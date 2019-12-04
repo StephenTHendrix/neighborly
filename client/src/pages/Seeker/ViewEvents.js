@@ -16,13 +16,6 @@ class ViewEvents extends Component {
       first_name: "",
       last_name: "",
       image: "",
-      // email: "",
-      // dob: '',
-      // bio: '',
-      // gender: '',
-      // city: '',
-      // state: '',
-      // zip: '',
       errors: {},
       events: [],
       token: token,
@@ -69,22 +62,6 @@ class ViewEvents extends Component {
       })
       .catch(err => console.log(err));
   };
-
-  // loadSeekerData = () => {
-  //     getSeekerData().then(res => {
-  //         console.log(res)
-  //         this.setState({
-  //             companyName: res.data.companyName,
-  //             address1: res.data.address1,
-  //             address2: res.data.address2,
-  //             city: res.data.city,
-  //             state: res.data.state,
-  //             zip: res.data.zip,
-  //             website: res.data.website,
-  //             bio: res.data.bio
-  //         })
-  //     })
-  // }
 
   componentDidMount() {
     console.log(this.state.decoded);
