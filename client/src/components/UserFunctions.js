@@ -60,6 +60,7 @@ export const eventRegister = newEvent => {
       needed: newEvent.needed,
       date: newEvent.date,
       time: newEvent.time,
+      ampm: newEvent.ampm
     })
     .then(response => {
       console.log('Registered Event')

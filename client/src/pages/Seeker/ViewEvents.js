@@ -97,6 +97,7 @@ class ViewEvents extends Component {
                       registered={event.registered}
                       date={event.date}
                       time={event.time}
+                      ampm={event.ampm}
                       userVolunteer={event.registeredUser}
                       image={event.image}
                     ></SeekerEventCard>

@@ -13,7 +13,7 @@ function SearchEventCard(props) {
           <h5 class="card-header">{props.title}</h5>
           <div className="event-info">
             <h6 className="card-text pl-3 pt-2">
-              {props.date} {props.time}
+              {props.date} {props.time} {props.ampm}
             </h6>
             <p class="card-text pl-3">{props.smalldescription}</p>
           </div>
@@ -41,7 +41,7 @@ function SearchEventCard(props) {
               <p>Current attendees: {props.signup}/{props.needed}</p>
               <p>{props.description}</p>
               <p>Address: {props.street} {props.city} {props.state}</p>
-              <small className="text-muted">{props.date}  {props.time}</small>
+              <small className="text-muted">{props.date}  {props.time} {props.ampm}</small>
             </div>
             <div className="modal-footer">
               <button className="saved btn btn-sub" key={props.id} id={props.id} onClick={() => props.handleEventSignUp(props.id)}>Sign Up</button>

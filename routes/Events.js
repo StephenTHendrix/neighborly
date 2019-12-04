@@ -24,6 +24,7 @@ events.post('/register', (req, res) => {
     needed: req.body.needed,
     date: req.body.date,
     time: req.body.time,
+    ampm: req.body.ampm
   }
 
 

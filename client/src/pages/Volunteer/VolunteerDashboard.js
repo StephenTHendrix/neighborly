@@ -134,6 +134,7 @@ class VolunteerDashboard extends React.Component {
           smalldescription={event.description.substring(0, 100)}
           date={event.date}
           time={event.time}
+          ampm={event.ampm}
           street={event.street}
           city={event.city}
           state={event.state}

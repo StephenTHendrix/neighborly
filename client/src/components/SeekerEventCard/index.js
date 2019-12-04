@@ -18,7 +18,7 @@ function SeekerEventCard(props) {
           <h5 class="card-header">{props.title}</h5>
           <div className="event-info">
             <h6 className="card-text pl-3 pt-2">
-              {props.date} {props.time}
+              {props.date} {props.time} {props.ampm}
             </h6>
             <p class="card-text pl-3">{props.description}</p>
           </div>
@@ -73,13 +73,13 @@ function SeekerEventCard(props) {
                       image={user.image}
                       city={user.city}
                       state={user.state}
-                      state={user.bio}
+                      bio={user.bio}
                     ></User>
                   );
                 })
               ) : (
-                <p> No One Registered Yet</p>
-              )}
+                  <p> No One Registered Yet</p>
+                )}
             </div>
           </div>
         </div>

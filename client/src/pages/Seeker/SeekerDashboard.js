@@ -49,6 +49,7 @@ class SeekerDashboard extends Component {
       needed: "",
       date: "",
       time: "",
+      ampm: "",
       first_name: "",
       last_name: ""
 
@@ -119,11 +120,8 @@ class SeekerDashboard extends Component {
 
     this.setState({ image: document.cookie.split('=')[1] })
     const imgCookie = document.cookie.split('=')[1]
-    console.log("Img cookie: " + imgCookie)
 
     setTimeout(() => {
-      console.log(this.state.image)
-
       const newEvent = {
         title: this.state.title,
         link: this.state.link,
@@ -137,15 +135,12 @@ class SeekerDashboard extends Component {
         image: this.state.image,
         needed: this.state.needed,
         date: this.state.date,
-        time: this.state.time
-
+        time: this.state.time,
+        ampm: this.state.ampm
       };
 
       eventRegister(newEvent)
-      // .then(res => {
       window.location.reload()
-      // console.log("STATE", this.state);
-      // });
     }, 1000)
   }
 
@@ -298,6 +293,7 @@ class SeekerDashboard extends Component {
                   needed={this.state.needed}
                   date={this.state.date}
                   time={this.state.time}
+                  ampm={this.state.ampm}
                   onChange={this.onChange}
                   onSubmit={this.onSubmit}
 
