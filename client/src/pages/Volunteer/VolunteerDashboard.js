@@ -125,13 +125,14 @@ class VolunteerDashboard extends React.Component {
           needed={event.needed}
           signup={event.going}
           key={event.id}
+          image={event.image}
         />
       )
     });
 
     return (
       <div>
-        <div className="mb-5" id="vol-header">
+        <div className="mb-6" id="vol-header">
           <h3 className="ml-5 pt-5 sub-title">
             Hello, {this.state.first_name} {this.state.last_name}
           </h3>
@@ -144,39 +145,37 @@ class VolunteerDashboard extends React.Component {
           </div>
         </div>
 
-        <div className="mx-5">
+        <div className="mx-5 mt-5">
           <div className="row ">
-            <div className="col">
+            <div className="col-lg-6 col-md-12">
               <div className="row d-flex flex-justify-center">
-                <h3 className="text-center sub-title ml-5">Local Events</h3>
+                <h3 className="text-center sub-title ml-4">Local Events</h3>
               </div>
 
-              <div className="row">
+              <div className="col">
                 <div>
                   {this.state.decoded.kind === "seeker" ||
                     !localStorage.usertoken ? (
                       <h3>Not for you.</h3>
                     ) :
                     (
-                      <div className="ml-5">
-                        <VolunteerSearch />
+                      <div className="ml-2">
+                        <VolunteerSearch  />
                       </div>
                     )
                   }
                 </div>
               </div>
             </div>
-            <div className="col">
+            <div className="col-lg-6 col-md-12">
               <div className="row">
-                <h3 className="col text-left sub-title ml-3">My Events</h3>
-                <div className="col text-right mr-3">
-
-                </div>
+                <h3 className="col-xs-12 text-left sub-title ml-3">My Events</h3>
+                
               </div>
               <div className="row">
                 {/* <p>{this.state.location}</p>
                 <p name="id">{this.state.userId}</p> */}
-                <div>
+                <div className="col-xs-12">
                   {this.state.decoded.kind === "seeker" ||
                     !localStorage.usertoken ? (
                       <h3>Not for you.</h3>
@@ -184,10 +183,10 @@ class VolunteerDashboard extends React.Component {
                       <div>
                         <p>You are currently not Signed Up for any events</p>
 
-                        <div className="col text-right mr-3"></div>
+                        <div className="col text-right"></div>
                       </div>
                     ) : (
-                        <div>{renderEvents}</div>
+                        <div className="col-xs-12">{renderEvents}</div>
                       )}
                 </div>
               </div>

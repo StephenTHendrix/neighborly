@@ -138,88 +138,93 @@ class VolunteerProfile extends Component {
         }
 
         return (
-            <div>
-                {this.state.decoded.kind === "seeker" || !this.state.token ? (
-                    <h3>Not for you.</h3>
-                ) : (
-                        <div className="container">
-                            <div className="jumbotron mt-5">
-                                <div className="col-sm-8 mx-auto">
-                                    <h1 className="text-center sub-title">PROFILE</h1>
-                                </div>
-                                <table className="table col-md-6 mx-auto">
-                                    <tbody ref={this.setWrapperRef}>
-                                        <img src={"../images/" + this.state.image} />
-                                        <EditableRow
-                                            property="First Name"
-                                            value={this.state.first_name}
-                                            toggle="view">
-                                        </EditableRow>
+          <div>
+            {this.state.decoded.kind === "seeker" || !this.state.token ? (
+              <h3>Not for you.</h3>
+            ) : (
+              <div className="container">
+                <div className="jumbotron">
+                  <table className="table col-md-6 mx-auto">
+                    <tbody ref={this.setWrapperRef}>
+                      <img
+                        className="img-fluid rounded-circle"
+                        src={
+                          this.state.image === null
+                            ? this.state.gender === "Male" ? "../assets/images/profile_male.png" : "../assets/images/profile_female.png"
+                            : "../images/" + this.state.image
+                        }
+                      />
+                      <div className="mb-5"></div>
+                      <EditableRow
+                        className="mt-5"
+                        property="First Name"
+                        value={this.state.first_name}
+                        toggle="view"
+                      ></EditableRow>
 
-                                        <EditableRow
-                                            property="Last Name"
-                                            value={this.state.last_name}
-                                            toggle="view">
-                                        </EditableRow>
+                      <EditableRow
+                        property="Last Name"
+                        value={this.state.last_name}
+                        toggle="view"
+                      ></EditableRow>
 
-                                        <EditableRow
-                                            property="Email"
-                                            value={this.state.email}
-                                            toggle="view">
-                                        </EditableRow>
+                      <EditableRow
+                        property="Email"
+                        value={this.state.email}
+                        toggle="view"
+                      ></EditableRow>
 
-                                        <EditableRow
-                                            property="City"
-                                            name="city"
-                                            value={this.state.city}
-                                            onClick={this.editProperty}
-                                            onChange={this.onChange}
-                                            toggle={4 === this.state.toggleIndex ? "edit" : "view"}>
-                                        </EditableRow>
+                      <EditableRow
+                        property="City"
+                        name="city"
+                        value={this.state.city}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={4 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                                        <EditableRow
-                                            property="State"
-                                            name="state"
-                                            value={this.state.state}
-                                            onClick={this.editProperty}
-                                            onChange={this.onChange}
-                                            toggle={5 === this.state.toggleIndex ? "edit" : "view"}>
-                                        </EditableRow>
+                      <EditableRow
+                        property="State"
+                        name="state"
+                        value={this.state.state}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={5 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                                        <EditableRow
-                                            property="Zip"
-                                            name="zip"
-                                            value={this.state.zip}
-                                            onClick={this.editProperty}
-                                            onChange={this.onChange}
-                                            toggle={6 === this.state.toggleIndex ? "edit" : "view"}>
-                                        </EditableRow>
+                      <EditableRow
+                        property="Zip"
+                        name="zip"
+                        value={this.state.zip}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={6 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                                        <EditableRow
-                                            property="DOB"
-                                            namee="dob"
-                                            value={this.state.dob}
-                                            onClick={this.editProperty}
-                                            onChange={this.onChange}
-                                            toggle={7 === this.state.toggleIndex ? "edit" : "view"}>
-                                        </EditableRow>
+                      <EditableRow
+                        property="DOB"
+                        namee="dob"
+                        value={this.state.dob}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={7 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
 
-                                        <EditableRow
-                                            property="Bio"
-                                            name="bio"
-                                            value={this.state.bio}
-                                            onClick={this.editProperty}
-                                            onChange={this.onChange}
-                                            toggle={8 === this.state.toggleIndex ? "edit" : "view"}>
-                                        </EditableRow>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div >
-                    )
-                }
-            </div>
-        )
+                      <EditableRow
+                        property="Bio"
+                        name="bio"
+                        value={this.state.bio}
+                        onClick={this.editProperty}
+                        onChange={this.onChange}
+                        toggle={8 === this.state.toggleIndex ? "edit" : "view"}
+                      ></EditableRow>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        );
     }
 
 }
