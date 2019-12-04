@@ -89,7 +89,17 @@ class SeekerDashboard extends Component {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
+    if (e.target.name === "date") {
+      console.log(this.state.date)
+      var numChars = e.target.value.length;
+      if (this.state[e.target.name].length < e.target.value.length && (numChars === 2 || numChars === 5)) {
+        var thisVal = e.target.value;
+        thisVal += '/';
+        e.target.value = thisVal;
+        this.setState({ [e.target.name]: thisVal });
+        console.log(this.state.date)
+      }
+    }
   }
 
   handleInit() {
@@ -179,7 +189,7 @@ class SeekerDashboard extends Component {
                                 bio={user.bio}
                                 email={user.email}
                                 gender={user.gender}
-                              image={user.image}
+                                image={user.image}
                               ></UserCard>
                             ))}
                           </div>

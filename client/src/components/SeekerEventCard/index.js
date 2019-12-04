@@ -6,7 +6,12 @@ function SeekerEventCard(props) {
       <div class="card bg-dark text-white col-xs-12 mt-2">
         <img
           class="card-img"
-          src={"../images/" + props.image}
+          src={
+            props.image === null
+              ? "../assets/images/placeholder_event.jpg"
+              : "../images/" + props.image
+          }
+          // src={"../images/" + props.image}
           alt="Card image"
         />
         <div class="card-img-overlay p-0">
@@ -45,7 +50,7 @@ function SeekerEventCard(props) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">
-                Current Registered: {props.registered} / {props.needed}{" "}
+                Currently Registered: {props.registered} / {props.needed}{" "}
               </h5>
               <button
                 type="button"

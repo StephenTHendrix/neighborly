@@ -11,9 +11,10 @@ class Register extends Component {
       // <div className="container">
       <form>
         <h1 className="h3 mb-3 font-weight-normal text-center sub-title">Register</h1>
+        <p className="required mb-3 font-weight-normal text-center">Items marked with an asterisk are required</p>
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="name">First name</label>
+            <label htmlFor="name">*First name</label>
             <input
               type="text"
               className="form-control"
@@ -24,7 +25,7 @@ class Register extends Component {
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="name">Last name</label>
+            <label htmlFor="name">*Last name</label>
             <input
               type="text"
               className="form-control"
@@ -36,7 +37,7 @@ class Register extends Component {
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">*Email address</label>
           <input
             type="email"
             className="form-control"
@@ -47,7 +48,7 @@ class Register extends Component {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">*Password</label>
           <input
             type="password"
             className="form-control"

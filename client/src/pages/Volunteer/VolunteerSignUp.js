@@ -132,7 +132,7 @@ class VolunteerSignUp extends Component {
                             <form>
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="inputCity">City</label>
+                                        <label htmlFor="inputCity">*City</label>
                                         <input
                                             className="form-control"
                                             id="inputCity"
@@ -144,7 +144,7 @@ class VolunteerSignUp extends Component {
                                         </input>
                                     </div>
                                     <div className="form-group col-md-4">
-                                        <label htmlFor="inputState">State</label>
+                                        <label htmlFor="inputState">*State</label>
                                         <select
                                             id="inputState"
                                             className="form-control"
