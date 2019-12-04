@@ -20,7 +20,7 @@ function SeekerEventCard(props) {
         </div>
         <div className="card-footer">
           <p className="card-text">
-            Current Registered: {props.registered} / {props.needed}
+            Currently Registered: {props.registered} / {props.needed}
           </p>
           <button
             type="button"
@@ -45,7 +45,7 @@ function SeekerEventCard(props) {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLongTitle">
-                Current Registered: {props.registered} / {props.needed}{" "}
+                Currently Registered: {props.registered} / {props.needed}{" "}
               </h5>
               <button
                 type="button"
@@ -68,8 +68,8 @@ function SeekerEventCard(props) {
                   );
                 })
               ) : (
-                <p> No One Registered Yet</p>
-              )}
+                  <p> No One Registered Yet</p>
+                )}
             </div>
           </div>
         </div>

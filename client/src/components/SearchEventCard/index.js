@@ -3,7 +3,7 @@ import React from "react";
 function SearchEventCard(props) {
   return (
     <div>
-        <div class="card bg-dark text-white col-xs-12 mt-2">
+      <div class="card bg-dark text-white col-xs-12 mt-2">
         <img
           class="card-img"
           src={"../images/" + props.image}
@@ -20,11 +20,11 @@ function SearchEventCard(props) {
         </div>
         <div className="card-footer">
           <p className="card-text">
-            Current Registered: {props.registered} / {props.needed}
+            Currently Registered: {props.registered} / {props.needed}
           </p>
-        <button type="button" className="btn btn-sub" data-toggle="modal" data-target={"#" + props.id}>
-          More Information</button>
-      </div>
+          <button type="button" className="btn btn-sub" data-toggle="modal" data-target={"#" + props.id}>
+            More Information</button>
+        </div>
       </div>
 
       <div className="modal fade" id={props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
