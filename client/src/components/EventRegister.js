@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-
 class EventRegister extends Component {
+
 
   render(props) {
     return (
