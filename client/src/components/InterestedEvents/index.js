@@ -6,7 +6,11 @@ function InterestedEvent(props) {
       <div class="card bg-dark text-white col-xs-12 mt-2">
         <img
           class="card-img"
-          src={"../images/" + props.image}
+          src={
+            props.image === null
+              ? "../assets/images/placeholder_event.jpg"
+              : "../images/" + props.image
+          }
           alt="Card image"
         />
         <div class="card-img-overlay p-0">
@@ -73,7 +77,14 @@ function InterestedEvent(props) {
                 {props.date} {props.time}
               </p>
 
-              <button className="saved btn btn-sub" key={props.id} id={props.id} onClick={() => props.deleteEvent(props.id)}>I won't be able to go</button>
+              <button
+                className="saved btn btn-sub"
+                key={props.id}
+                id={props.id}
+                onClick={() => props.deleteEvent(props.id)}
+              >
+                I won't be able to go
+              </button>
             </div>
           </div>
         </div>

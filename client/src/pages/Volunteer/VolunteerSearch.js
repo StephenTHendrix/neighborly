@@ -138,7 +138,7 @@ class VolunteerSearch extends React.Component {
                     city={event.city}
                     state={event.state}
                     needed={event.needed}
-                    signup={event.going}
+                    registered={event.going}
                     key={event.id}
                     handleEventSignUp={this.handleEventSignUp}
                     image={event.image}
