@@ -176,7 +176,7 @@ class VolunteerDashboard extends React.Component {
                     ) :
                     (
                       <div className="col ml-2">
-                        <VolunteerSearch  />
+                        <VolunteerSearch />
                       </div>
                     )
                   }

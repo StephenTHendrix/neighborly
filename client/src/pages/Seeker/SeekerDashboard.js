@@ -324,7 +324,6 @@ class SeekerDashboard extends Component {
                     });
                   }}>
                 </FilePond>
-                {/* <CreateEvent  /> */}
                 <button
                   type="submit"
                   className="btn btn-lg btn-sub"

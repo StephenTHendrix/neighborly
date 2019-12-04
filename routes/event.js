@@ -13,7 +13,7 @@ module.exports = function (app) {
                 replacements: [req.params.id], type: sequelize.QueryTypes.SELECT
             }
         ).then((result) => {
-            console.table(result);
+            // console.table(result);
             res.json(result);
         })
     })
@@ -27,8 +27,8 @@ module.exports = function (app) {
 
     //  saved events to Event_User Table
     app.post("/api/events/:id", (req, res) => {
-        console.log(req.params.id);
-        console.log(req.body);
+        // console.log(req.params.id);
+        // console.log(req.body);
         let save = req.body;
         db.Event_User.create({
             EventID: req.params.id,
@@ -39,8 +39,8 @@ module.exports = function (app) {
     })
 
     app.delete("/api/events/:id/:userId", (req, res) => {
-        console.log(req.params.id);
-        console.log(req.params.UserId);
+        // console.log(req.params.id);
+        // console.log(req.params.UserId);
         db.Event_User.destroy({
             where: {
                 EventID: req.params.id,
@@ -53,8 +53,8 @@ module.exports = function (app) {
 
     // update events's required people
     app.put("/api/events/add/:id", (req, res) => {
-        console.log(req.params.id);
-        console.log(req.body);
+        // console.log(req.params.id);
+        // console.log(req.body);
         db.Event.increment(
             { going: 1 },
             {
@@ -66,8 +66,8 @@ module.exports = function (app) {
     })
 
     app.put("/api/events/remove/:id", (req, res) => {
-        console.log(req.params.id);
-        console.log(req.body);
+        // console.log(req.params.id);
+        // console.log(req.body);
         db.Event.decrement(
             { going: 1 },
             {
@@ -79,9 +79,6 @@ module.exports = function (app) {
     })
 
     app.get("/api/seekerEvent/:id/:seekerID", (req, res) => {
-        // console.log(req.params.id);
-        // console.log(req.body);
-        // let save = req.body.UserId;
         db.sequelize.query(
             `select users.first_name, users.last_name, users.email from events
             left join event_users on event_users.EventID = events.id
@@ -91,7 +88,6 @@ module.exports = function (app) {
                 type: sequelize.QueryTypes.SELECT
             }
         ).then((result) => {
-            // console.table(result);
             res.json(result);
         })
     })

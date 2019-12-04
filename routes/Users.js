@@ -89,25 +89,6 @@ users.post('/login', (req, res) => {
     })
 })
 
-// users.get('/profile', (req, res) => {
-//   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-
-//   db.User.findOne({
-//     where: {
-//       id: decoded.id
-//     }
-//   })
-//     .then(user => {
-//       if (user) {
-//         res.json(user)
-//       } else {
-//         res.send('User does not exist')
-//       }
-//     })
-//     .catch(err => {
-//       res.send('error: ' + err)
-//     })
-// })
 
 users.get('/all', (req, res) => {
   const userToken = req.cookies.userToken;
@@ -120,7 +101,6 @@ users.get('/all', (req, res) => {
     }
   }).then(seeker =>
 
-    // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
     db.sequelize.query(
       `SELECT *
     FROM Users u
@@ -129,7 +109,6 @@ users.get('/all', (req, res) => {
     WHERE v.state = ?`,
       { replacements: [seeker.state], type: sequelize.QueryTypes.SELECT }
     ))
-    // })
     .then(user => {
       console.log('USERSJS: ', user);
       if (user) {
@@ -144,7 +123,6 @@ users.get('/all', (req, res) => {
 })
 
 users.get('/events', (req, res) => {
-  // var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
   db.Event.findAll()
     .then(event => {
