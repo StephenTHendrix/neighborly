@@ -97,7 +97,6 @@ class VolunteerSearch extends React.Component {
     }
 
     handleEventSignUp = (id) => {
-        
         console.log(id);
         let saved = this.state.events.filter(item => item.id === id);
         saved[0].UserId = this.state.userId;

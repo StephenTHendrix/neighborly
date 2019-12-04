@@ -5,12 +5,8 @@ import { getVolunteerData } from "../../components/UserFunctions";
 import jwt_decode from "jwt-decode";
 import VolunteerProfile from "../Volunteer/VolunteerProfile.js";
 import VolunteerSearch from "./VolunteerSearch.js";
-
 var _ = require("lodash");
 
-// *************************************************************************************************************************************
-// Still need:
-// 1. Sent volunteer informations (thier name, and thier current location) to this page some how!
 
 class VolunteerDashboard extends React.Component {
   constructor() {
@@ -78,15 +74,34 @@ class VolunteerDashboard extends React.Component {
   loadVolunteerData = () => {
     getVolunteerData().then(res => {
       console.log(res);
-
       if (this.state.decoded.kind === "volunteer") {
         this.setState({
           location: res.data.city
         })
       }
-
-
     });
+  };
+
+  onDelete = (id) => {
+    // let saved = this.state.events.filter(item => item.id === id);
+    // saved[0].UserId = this.state.userId;
+    API.removeEvent(id, this.state.userId)
+      .then(function () {
+        console.log("Deleted");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    API.removeNumber(id, 1)
+      .then(function () {
+        console.log("Minus One");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   };
 
   handleInputChange = event => {
@@ -126,6 +141,7 @@ class VolunteerDashboard extends React.Component {
           signup={event.going}
           key={event.id}
           image={event.image}
+          deleteEvent={this.onDelete}
         />
       )
     });
@@ -159,7 +175,7 @@ class VolunteerDashboard extends React.Component {
                       <h3>Not for you.</h3>
                     ) :
                     (
-                      <div className="ml-2">
+                      <div className="col ml-2">
                         <VolunteerSearch  />
                       </div>
                     )
@@ -170,7 +186,7 @@ class VolunteerDashboard extends React.Component {
             <div className="col-lg-6 col-md-12">
               <div className="row">
                 <h3 className="col-xs-12 text-left sub-title ml-3">My Events</h3>
-                
+
               </div>
               <div className="row">
                 {/* <p>{this.state.location}</p>
@@ -186,7 +202,7 @@ class VolunteerDashboard extends React.Component {
                         <div className="col text-right"></div>
                       </div>
                     ) : (
-                        <div className="col-xs-12">{renderEvents}</div>
+                        <div className="col-xs-12 mt-5">{renderEvents}</div>
                       )}
                 </div>
               </div>

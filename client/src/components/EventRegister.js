@@ -141,17 +141,6 @@ class EventRegister extends Component {
 
         </div>
 
-        {/* <div className="form-group">
-          <label htmlFor="state">State</label>
-          <input
-            type="text"
-            className="form-control"
-            name="state"
-            placeholder="State"
-            value={this.props.state}
-            onChange={this.props.onChange}
-          />
-        </div> */}
         <div className="form-group">
           <label htmlFor="zip">Zip</label>
           <input
@@ -199,17 +188,33 @@ class EventRegister extends Component {
             onChange={this.props.onChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="time">Time</label>
-          <input
-            type="text"
-            className="form-control"
-            name="time"
-            placeholder="time"
-            value={this.props.time}
-            onChange={this.props.onChange}
-          />
+        <div className="row">
+          <div className="form-group col-md-9">
+            <label htmlFor="time">Time</label>
+            <input
+              type="text"
+              className="form-control"
+              name="time"
+              maxLength="5"
+              placeholder="00:00"
+              value={this.props.time}
+              onChange={this.props.onChange}
+            />
+          </div>
+          {/* <div className="form-group col-md-3">
+            <label htmlFor="inputState">AM/PM</label>
+            <select
+              id="inputState"
+              className="form-control"
+              name="ampm"
+              value={this.props.ampm}
+              onChange={this.props.onChange}>
+              <option defaultValue>AM</option>
+              <option>PM</option>
+            </select>
+          </div> */}
         </div>
+
       </form>
     )
   }
