@@ -126,7 +126,9 @@ class EventRegister extends Component {
             type="text"
             className="form-control"
             name="date"
-            placeholder="date"
+            id="date"
+            placeholder="mm/dd/yyyy"
+            maxLength="10"
             value={this.props.date}
             onChange={this.props.onChange}
           />
