@@ -20,7 +20,7 @@ function InterestedEvent(props) {
         </div>
         <div className="card-footer">
           <p className="card-text">
-            Current Registered: {props.registered} / {props.needed}
+            Currently Registered: {props.registered} / {props.needed}
           </p>
         </div>
         <button

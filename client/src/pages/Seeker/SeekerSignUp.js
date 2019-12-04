@@ -102,7 +102,7 @@ class SeekerSignUp extends Component {
 
                             <fieldset className="form-group col-md-5">
                                 <div className="row">
-                                    <legend className="col-form-label col-sm-4 pt-0">Type</legend>
+                                    <legend className="col-form-label col-sm-4 pt-0">*Type</legend>
                                     <div className="col-sm-8">
                                         <div className="form-check">
                                             <input
@@ -175,7 +175,7 @@ class SeekerSignUp extends Component {
 
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label htmlFor="inputCity">City</label>
+                                <label htmlFor="inputCity">*City</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -185,7 +185,7 @@ class SeekerSignUp extends Component {
                                     onChange={this.onChange}></input>
                             </div>
                             <div className="form-group col-md-4">
-                                <label htmlFor="inputState">State</label>
+                                <label htmlFor="inputState">*State</label>
                                 <select
                                     id="inputState"
                                     className="form-control"
@@ -271,7 +271,7 @@ class SeekerSignUp extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="form-group col-md-6">
+                            <div className="form-group col">
                                 <label htmlFor="website">Website URL</label>
                                 <input
                                     type="text"
@@ -282,8 +282,8 @@ class SeekerSignUp extends Component {
                                     onChange={this.onChange}
                                 />
                             </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="image">image</label>
+                            {/* <div className="form-group col-md-6">
+                                <label htmlFor="image">Image</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -292,7 +292,7 @@ class SeekerSignUp extends Component {
                                     value={this.state.image}
                                     onChange={this.onChange}
                                 />
-                            </div>
+                            </div> */}
                         </div >
 
 
