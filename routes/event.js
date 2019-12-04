@@ -38,8 +38,21 @@ module.exports = function (app) {
         })
     })
 
+    app.delete("/api/events/:id/:userId", (req, res) => {
+        console.log(req.params.id);
+        console.log(req.params.UserId);
+        db.Event_User.destroy({
+            where: {
+                EventID: req.params.id,
+                UserID: req.params.userId
+            }
+        }).then(function (save) {
+            res.json(save)
+        })
+    })
+
     // update events's required people
-    app.put("/api/events/:id", (req, res) => {
+    app.put("/api/events/add/:id", (req, res) => {
         console.log(req.params.id);
         console.log(req.body);
         db.Event.increment(
@@ -52,20 +65,33 @@ module.exports = function (app) {
         })
     })
 
+    app.put("/api/events/remove/:id", (req, res) => {
+        console.log(req.params.id);
+        console.log(req.body);
+        db.Event.decrement(
+            { going: 1 },
+            {
+                where: { id: req.params.id }
+            }
+        ).then(function (updated) {
+            res.json(updated)
+        })
+    })
+
     app.get("/api/seekerEvent/:id/:seekerID", (req, res) => {
         // console.log(req.params.id);
-        console.log(req.body);
-        let save = req.body.UserId;
+        // console.log(req.body);
+        // let save = req.body.UserId;
         db.sequelize.query(
             `select users.first_name, users.last_name, users.email from events
             left join event_users on event_users.EventID = events.id
             left join users on event_users.UserID = users.id where events.id = ? and events.UserId = ?`,
             {
-                replacements: [req.params.id , req.params.seekerID],
+                replacements: [req.params.id, req.params.seekerID],
                 type: sequelize.QueryTypes.SELECT
             }
         ).then((result) => {
-            console.table(result);
+            // console.table(result);
             res.json(result);
         })
     })
